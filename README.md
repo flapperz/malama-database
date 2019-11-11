@@ -1,4 +1,5 @@
 # malama-database
+Final project for Database design subject.
 
 ## Directory
 - sql
