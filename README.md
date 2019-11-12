@@ -1,3 +1,5 @@
+OIL IS A DOG :D
+
 # malama-database
 Final project for Database design subject.
 
