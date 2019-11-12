@@ -6,7 +6,7 @@
 5. เข้าไปแก้ username/password ใน Server.js กับ app/model/db.js
 6. พอลงเสร็จให้ nodemon Server.js
 
-ีapi ต่างๆ
+api ต่างๆ
 
 //GET Cafe Dog , ADD Cafe Dog
 GET : localhost:5000/cafedog
