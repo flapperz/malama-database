@@ -146,9 +146,17 @@ DogUpdater.getDeposition = function(result){
 };
 
 //LOGIN
-DogUpdater.login = function(value, result){
-    sql.query('select password from user where username = ?',value.username, password);
-}
-
 
 module.exports = DogUpdater;
+
+// var userCredential = function(user){
+//     this.username = user.username;
+//     this.password = user.password;
+//     this.firstname = user.firstname;
+//     this.lastname = user.lastname;
+// }
+
+// userCredential.
+
+
+// module.exports = userCredential;
