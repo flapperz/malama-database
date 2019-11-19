@@ -40,8 +40,8 @@ DogUpdater.addCustomerDog = function(newDog,result){
 
 //Query Dog at 'TABLE' by name
 DogUpdater.getDogByName = function(dogName, table, result){
-    let query = "select * from "+table+" where dog_name = '"+dogName+"'";
-    sql.query(query, function (err,res){
+    let query = "select * from "+table+" where dog_name = ?";
+    sql.query(query, dogName, function (err,res){
         if (err){
             console.log('Error: ',err);
             result(err,null);
@@ -106,8 +106,8 @@ DogUpdater.updateCustomerDog = function(id, value, result){
 };
 
 DogUpdater.deleteDog = function(id, table, result){
-    var query = "delete from "+table+" where dog_id = "+id;
-    sql.query(query, function (err,res){
+    var query = "delete from "+table+" where dog_id = ?";
+    sql.query(query,id, function (err,res){
         if(err) {
             console.log("error: ", err);
             result(null, err);
@@ -144,5 +144,11 @@ DogUpdater.getDeposition = function(result){
         }
     });
 };
+
+//LOGIN
+DogUpdater.login = function(value, result){
+    sql.query('select password from user where username = ?',value.username, password);
+}
+
 
 module.exports = DogUpdater;
