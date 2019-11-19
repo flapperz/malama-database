@@ -3,28 +3,46 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>HOSTEL</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Kodchasan"
-      rel="stylesheet"
-    />
+    <title>DOG</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/hostel.css" />
+    <link rel="stylesheet" />
     <script src="../script.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>getCafeDog()</script>
   </head>
-
-  <!-- Nav template -->
-
   <body>
-    <div class="navbar">
-      <a href="home.html">home</a>
-      <a href="dog.html">dog</a>
-      <a href="hostel.html">hostel</a>
-      <a href="member.html">member</a>
-    </div>
     <!-- Nav template -->
+    <div class="big-bg">
+      <div class="nav-bg">
+        <div class="nav-box-1">
+          <img class="logo1" src="../img/logo1.jpg" />
+        </div>
+        <div class="nav-box-2">
+          <div class="nav-link">
+            <a href="home.html">HOME</a>
+            <a href="dog.html">DOG</a>
+            <a href="hostel.html">HOSTEL</a>
+            <a href="member.html">MEMBER</a>
+          </div>
+        </div>
+        <div class="nav-box-3">
+          <img class="user" src="../img/user.png" />
+          <img class="drop-down-hover" src="../img/drop-down-hover.png" />
+          <img class="drop-down" src="../img/drop-down.png" />
+        </div>
 
-    <p>HOMEPAGE</p>
-    <button onclick="getCafeDog()">getCafeDog</button>
+        <div class="content">
+          <table class="table-manage">
+            <h1 class="heading">HOSTEL</h1>
+                 <th class="manage">ID</th>
+                 <th class="manage">NAME</th> 
+                 <th class="manage">SIZE</th>
+                 <th class="manage">STATUS</th>
+                </tr>
+          </table>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
