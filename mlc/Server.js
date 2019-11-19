@@ -1,18 +1,27 @@
 const express = require('express'),
   app = express(),
   bodyParser = require('body-parser');
-  port = process.env.PORT || 5000;
-
+port = process.env.PORT || 5000;
 
 const mysql = require('mysql');
 // connection configurations
 const mc = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'admin',
-    database: 'malama'
+  host: 'localhost',
+  user: 'root',
+  password: 'admin',
+  database: 'malama'
 });
- 
+
+//oil
+var path = require('path');
+var public = path.join(__dirname, 'public');
+app.get('/', function(req, res) {
+  res.sendFile(path.join(public, 'index.html'));
+});
+
+app.use('/', express.static(public));
+//oil
+
 // connect to database
 mc.connect();
 
