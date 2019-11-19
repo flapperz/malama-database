@@ -3,6 +3,12 @@ const express = require('express'),
   bodyParser = require('body-parser');
   port = process.env.PORT || 5000;
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+  
+
 
 const mysql = require('mysql');
 // connection configurations
@@ -18,6 +24,7 @@ mc.connect();
 
 app.listen(port);
 
+console.log('THIS IS BACKEND')
 console.log('API server started on: ' + port);
 
 app.use(bodyParser.urlencoded({ extended: true }));
