@@ -1,0 +1,22 @@
+div.content table.table-manage {
+    width: 70%; 
+    border-spacing: 10px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-left:auto;
+    margin-right:auto;
+}  
+div.content table.table-manage tr th.manage {
+    font-size:20px;
+    color: #5C4031;
+    padding: 10px;
+    text-align : center;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+div.content h1.heading {
+    font-style: normal;
+    font-size: 6vh;
+    color: #5C4031;
+    padding: 40px;
+} 
