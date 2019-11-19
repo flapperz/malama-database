@@ -3,6 +3,8 @@
 // DELETE : localhost:5000/del/'table'/'id'
 // (table = 'cafe_dog' or 'customer_dog')
 
+console.log('using script.js');
+
 function hideForm() {
   document.getElementById('popup').style.visibility = 'hidden';
 }
@@ -29,7 +31,7 @@ function delCafeDog(id) {
 function getCafeDog() {
   try {
     axios.get('http://localhost:5000/cafedog').then(response => {
-      console.log(response.data);
+      console.log(response);
       var html =
         '<table class="table-cafe"><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>EDIT</th><th>DELETE</th></tr>';
 
@@ -60,6 +62,7 @@ function getCafeDog() {
       document.getElementById('dog-display').innerHTML = html;
     });
   } catch (error) {
+    console.log('failed')
     console.error(error);
   }
 }
