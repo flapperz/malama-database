@@ -1,0 +1,178 @@
+/* style for All background and nav-bar  */
+
+@font-face {
+    font-family: 'Sukhumvit';
+    /* src: url('fonts/sukhumvit-set/SukhumvitSet-Bold.ttf'); */
+    /* src: url('fonts/sukhumvit-set/SukhumvitSet-Light.ttf'); */
+    src: url('../fonts/sukhumvit-set/SukhumvitSet-Medium.ttf') format('truetype');
+    /*src: url('fonts/sukhumvit-set/SukhumvitSet-SemiBold.ttf');
+  src: url('fonts/sukhumvit-set/SukhumvitSet-Text.ttf');
+  src: url('fonts/sukhumvit-set/SukhumvitSet-Thin.ttf');*/
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Kodchasan', sans-serif; */
+    font-family: 'Sukhumvit', Merriweather, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 370;
+}
+
+body {
+    /* background-color: #F1F0EC; */
+    margin: 0;
+    width: 100vw;
+    overflow: hidden;
+    font-size: 0;
+}
+
+div.big-bg {
+    background-color: #F1F0EC;
+    /* background-color: pink; */
+    position: absolute, sticky;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+div.nav-bg {
+    background-color: #796648;
+    position: relative;
+    top: 0vh;
+    width: 100vw;
+    height: 11vh;
+}
+
+div.nav-bg .nav-box-1 {
+    /* background-color: pink; */
+    position: relative;
+    display: inline-block;
+    width: 15vw;
+    height: 11vh;
+    left: 0.94vw;
+}
+
+div.nav-bg .nav-box-1 .logo1 {
+    position: relative;
+    height: inherit;
+}
+
+div.nav-bg .nav-box-2 {
+    /* background-color: pink; */
+    position: relative;
+    padding-right: 1vw;
+    position: absolute;
+    display: block;
+    width: auto;
+    height: inherit;
+    top: 0px;
+    float: right;
+    right: 10vw;
+}
+
+div.nav-bg .nav-box-2 a {
+    position: relative;
+    display: inline;
+    color: #F1F0EC;
+    font-style: normal;
+    /* font-weight: 600; */
+    font-size: 2vh;
+    padding-left: 1.3vw;
+    top: 4vh;
+    text-decoration: none;
+    /* border: 10px black; */
+}
+
+div.nav-bg .nav-box-2 a:hover {
+    position: relative;
+    display: inline;
+    color: #C0AE95;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2vh;
+    padding-left: 1.3vw;
+    top: 4vh;
+    text-decoration: none;
+    /* border: 10px black; */
+}
+
+div.nav-bg .nav-box-3 {
+    /* background-color: goldenrod; */
+    position: relative;
+    display: block;
+    width: 9vw;
+    height: inherit;
+    float: right;
+    /* border: 1mm solid rgba(170, 50, 220, .6); */
+}
+
+div.nav-bg .nav-box-3 img.user {
+    position: relative;
+    top: 2.5vh;
+    height: 6vh;
+    float: left;
+}
+
+div.nav-bg .nav-box-3 img.drop-down {
+    position: absolute;
+    top: 4.5vh;
+    padding-left: 1vw;
+    height: 2vh;
+    cursor: pointer;
+}
+
+div.nav-bg .nav-box-3 img.drop-down:hover {
+    position: absolute;
+    top: 4.5vh;
+    padding-left: 1vw;
+    height: 2vh;
+    display: none;
+    cursor: pointer;
+}
+
+div.nav-bg .nav-box-3 img.drop-down-hover {
+    position: absolute;
+    top: 4.5vh;
+    padding-left: 1vw;
+    height: 2vh;
+    cursor: pointer;
+}
+
+div.content {
+    /* background-color: brown; */
+    width: 100vw;
+    height: 89vh;
+    position: relative;
+    text-align: center;
+}
+
+/* popup */
+
+div.popup {
+    position: absolute;
+    margin: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 0;
+    font-size: 100px;
+    display: inline-block;
+    text-align: center;
+}
+
+div.popup div.popup-bg {
+    position: absolute;
+    margin: 0;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 0;
+    background-color: black;
+    font-size: 100px;
+    opacity: 0.75;
+    display: inline-block;
+    text-align: center;
+}
