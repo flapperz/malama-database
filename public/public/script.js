@@ -11,6 +11,10 @@ function addError(error, message) {
   return error == '' ? message : error + ', ' + message;
 }
 
+function clearForm() {
+  document.getElementById('add-dog-form').reset();
+}
+
 //--------------API-----------------
 
 function edit(id) {
@@ -123,6 +127,7 @@ function addCafeDog() {
         console.log(response);
         max_id = ID;
         hideForm();
+        clearForm();
         getCafeDog();
       })
       .catch(function(error) {
