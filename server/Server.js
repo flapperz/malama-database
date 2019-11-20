@@ -7,8 +7,6 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
 });
-  
-
 
 const mysql = require('mysql');
 // connection configurations

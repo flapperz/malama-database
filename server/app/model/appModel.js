@@ -6,10 +6,6 @@ var DogUpdater = function(dog){
     this.dog_breed = dog.breed;
     this.dog_date_of_birth = dog.date_of_birth;
     this.dog_weight = dog.weight;
-
-    // this.dog = dog.dog;
-    // this.status = dog.status;
-    // this.created_at = new Date();
 };
 
 //Add Cafe Dog
@@ -147,16 +143,29 @@ DogUpdater.getDeposition = function(result){
 
 //LOGIN
 
-module.exports = DogUpdater;
 
-// var userCredential = function(user){
-//     this.username = user.username;
-//     this.password = user.password;
-//     this.firstname = user.firstname;
-//     this.lastname = user.lastname;
-// }
+var userCredential = function(user){
+    this.username = user.username;
+    this.password = user.password;
+    this.firstname = user.firstname;
+    this.lastname = user.lastname;
+}
 
-// userCredential.
+//POST - Sign Up
+userCredential.createUser = function(value,result){
+    sql.query('insert into user set ?', value, function(err,res){
+        if (err){
+            console.log("Error adding user",err);
+            result(null,err);
+        }else{
+            console.log('Add user complete');
+            result(null,res);
+        }
+    });
+};
 
 
-// module.exports = userCredential;
+
+
+//Exports All
+module.exports = {dogUpdater : DogUpdater, userCred : userCredential};
