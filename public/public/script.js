@@ -1,8 +1,3 @@
-// const axios = require("axios");
-
-// DELETE : localhost:5000/del/'table'/'id'
-// (table = 'cafe_dog' or 'customer_dog')
-
 console.log('using script.js');
 
 function hideForm() {
@@ -40,7 +35,7 @@ function getCafeDog() {
         const NAME = response.data[i].dog_name;
         const BREED = response.data[i].breed;
         // const BIRTHDATE = response.data[i].date_of_birth;
-        const BIRTHDATE = (response.data[i].date_of_birth).slice(0,10);
+        const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
         const WEIGHT = response.data[i].weight;
         html +=
           '<tr><td>' +
@@ -63,44 +58,34 @@ function getCafeDog() {
       document.getElementById('dog-display').innerHTML = html;
     });
   } catch (error) {
-    console.log('failed')
+    console.log('failed');
     console.error(error);
   }
 }
 function addCafeDog() {
   var NAME = $("[name='dog_name']").val();
-  var BREED = $("[name='surname']").val();
-  var BIRTHDATE = $("[name='nickname']").val();
-  var WEIGHT = $("[name='image']").val();
-  var sourcing_company = $("[name='gender']:checked").val();
+  var BREED = $("[name='breed']").val();
+  var BIRTHDATE = $("[name='date_of_birth']").val();
+  var WEIGHT = $("[name='weight']").val();
+  var COMPANY = $("[name='sourcing_company']").val();
+  var PRICE = $("[name='brought_price']").val();
+  var LAST_CHECK = $("[name='last_checkup_date']").val();
+  var LAST_BATH = $("[name='last_bath_date']").val();
+  var HEALTH = $("[name='health_status']").val();
+  var SHOWTIME = $("[name='show-time']").val();
 
-  console.log(NAME + BREED + BIRTHDATE + WEIGHT + sourcing_company);
-
-  // axios
-  //   // .post("https://sb-oil-web-bootcamp.herokuapp.com/users", {
-  //   .post('http://localhost:3000/api/users', {
-  //     name: name,
-  //     surname: surname,
-  //     nickname: nickname,
-  //     gender: gender,
-  //     image: image
-  //   })
-  //   .then(function(response) {
-  //     console.log(response);
-  //     var obj = response.data;
-  //     var status = obj.status;
-  //     if (status == 0) {
-  //       errMessage = obj.error;
-  //       $('createUserForm').trigger('reset');
-  //       alert(errMessage);
-  //       unhideForm();
-  //     } else {
-  //       getAllUsers();
-  //     }
-  //   })
-  //   .catch(function(error) {
-  //     console.log(error);
-  //   });
+  console.log(
+    NAME +
+      BREED +
+      BIRTHDATE +
+      WEIGHT +
+      COMPANY +
+      PRICE +
+      LAST_CHECK +
+      LAST_BATH +
+      HEALTH +
+      SHOWTIME
+  );
 }
 
 function createUser() {
@@ -110,19 +95,6 @@ function createUser() {
   var nickname = $("[name='nickname']").val();
   var image = $("[name='image']").val();
   var gender = $("[name='gender']:checked").val();
-  var text =
-    'name=' +
-    name +
-    '&surname=' +
-    surname +
-    '&nickname=' +
-    nickname +
-    '&gender=' +
-    gender +
-    '&image=' +
-    image;
-  var xmlhttp = new XMLHttpRequest();
-  var str = '';
 
   axios
     .post('https://sb-oil-web-bootcamp.herokuapp.com/users', {
