@@ -188,8 +188,4 @@ exports.log_in = function(req,res){
       res.status(400).send({error:true, message:'Wrong Password'})
     }
   });
-
-
-
-  
 }
