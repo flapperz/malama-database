@@ -1,3 +1,4 @@
+var max_id = 0;
 function hideForm() {
   document.getElementById('popup').style.visibility = 'hidden';
 }
@@ -42,6 +43,9 @@ function getCafeDog() {
         // const BIRTHDATE = response.data[i].date_of_birth;
         const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
         const WEIGHT = response.data[i].weight;
+
+        max_id = max_id > ID ? max_id : ID;
+
         html +=
           '<tr><td>' +
           ID +
@@ -68,8 +72,9 @@ function getCafeDog() {
   }
 }
 
-function addCafeDogUseThis() {
+function addCafeDog() {
   var error = '';
+  var ID = max_id + 1;
   var NAME = $("[name='dog_name']").val();
   var BREED = $("[name='breed']").val();
   var BIRTHDATE = $("[name='date_of_birth']").val();
@@ -81,20 +86,20 @@ function addCafeDogUseThis() {
   var HEALTH = $("[name='health_status']").val();
   var SHOWTIME = $("[name='show-time']").val();
 
-  if (
-    NAME == '' ||
-    BREED == '' ||
-    BIRTHDATE == '' ||
-    WEIGHT == '' ||
-    COMPANY == '' ||
-    PRICE == '' ||
-    LAST_CHECK == '' ||
-    LAST_BATH == '' ||
-    HEALTH == '' ||
-    SHOWTIME == ''
-  ) {
-    error = addError(error, 'Fields required');
-  }
+  // if (
+  //   NAME == '' ||
+  //   BREED == '' ||
+  //   BIRTHDATE == '' ||
+  //   WEIGHT == '' ||
+  //   COMPANY == '' ||
+  //   PRICE == '' ||
+  //   LAST_CHECK == '' ||
+  //   LAST_BATH == '' ||
+  //   HEALTH == '' ||
+  //   SHOWTIME == ''
+  // ) {
+  //   error = addError(error, 'Fields required');
+  // }
 
   if (error != '') {
     window.alert(error);
@@ -112,9 +117,10 @@ function addCafeDogUseThis() {
     //     HEALTH +
     //     SHOWTIME
     // );
+    // max_id++;
     axios
       .post('http://localhost:5000/cafedog', {
-        dog_id: 5,
+        dog_id: ID,
         dog_name: 'OIL',
         breed: 'EnglishCocker',
         date_of_birth: '1999-12-11',
@@ -128,6 +134,9 @@ function addCafeDogUseThis() {
       })
       .then(function(response) {
         console.log(response);
+        max_id = ID;
+        hideForm();
+        getCafeDog();
       })
       .catch(function(error) {
         console.log(error);
@@ -135,10 +144,10 @@ function addCafeDogUseThis() {
   }
 }
 
-function addCafeDog() {
+function addCafeDogTest() {
   axios
     .post('http://localhost:5000/cafedog', {
-      dog_id: 6,
+      dog_id: 64,
       dog_name: 'OIL',
       breed: 'EnglishCocker',
       date_of_birth: '1999-12-11',
