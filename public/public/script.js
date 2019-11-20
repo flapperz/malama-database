@@ -39,7 +39,8 @@ function getCafeDog() {
         const ID = response.data[i].dog_id;
         const NAME = response.data[i].dog_name;
         const BREED = response.data[i].breed;
-        const BIRTHDATE = response.data[i].date_of_birth;
+        // const BIRTHDATE = response.data[i].date_of_birth;
+        const BIRTHDATE = (response.data[i].date_of_birth).slice(0,10);
         const WEIGHT = response.data[i].weight;
         html +=
           '<tr><td>' +
