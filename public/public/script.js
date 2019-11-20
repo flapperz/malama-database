@@ -86,51 +86,38 @@ function addCafeDog() {
   var HEALTH = $("[name='health_status']").val();
   var SHOWTIME = $("[name='show-time']").val();
 
-  // if (
-  //   NAME == '' ||
-  //   BREED == '' ||
-  //   BIRTHDATE == '' ||
-  //   WEIGHT == '' ||
-  //   COMPANY == '' ||
-  //   PRICE == '' ||
-  //   LAST_CHECK == '' ||
-  //   LAST_BATH == '' ||
-  //   HEALTH == '' ||
-  //   SHOWTIME == ''
-  // ) {
-  //   error = addError(error, 'Fields required');
-  // }
+  if (
+    NAME == '' ||
+    BREED == '' ||
+    BIRTHDATE == '' ||
+    WEIGHT == '' ||
+    COMPANY == '' ||
+    PRICE == '' ||
+    LAST_CHECK == '' ||
+    LAST_BATH == '' ||
+    HEALTH == null ||
+    SHOWTIME == null
+  ) {
+    error = addError(error, 'Fields required');
+  }
 
   if (error != '') {
     window.alert(error);
     return;
   } else {
-    // console.log(
-    //   NAME +
-    //     BREED +
-    //     BIRTHDATE +
-    //     WEIGHT +
-    //     COMPANY +
-    //     PRICE +
-    //     LAST_CHECK +
-    //     LAST_BATH +
-    //     HEALTH +
-    //     SHOWTIME
-    // );
-    // max_id++;
     axios
       .post('http://localhost:5000/cafedog', {
         dog_id: ID,
-        dog_name: 'OIL',
-        breed: 'EnglishCocker',
-        date_of_birth: '1999-12-11',
-        weight: '12',
-        last_checkup_date: '1999-12-11',
-        last_bath_date: '1999-12-11',
-        health_status: 'yes',
-        sourcing_company: 'dontknow',
-        brought_price: '12',
-        showtime: '14-18'
+        dog_name: NAME,
+        breed: BREED,
+        date_of_birth: BIRTHDATE,
+        weight: WEIGHT,
+        last_checkup_date: LAST_CHECK,
+        last_bath_date: LAST_BATH,
+        health_status: HEALTH,
+        sourcing_company: COMPANY,
+        brought_price: PRICE,
+        showtime: SHOWTIME
       })
       .then(function(response) {
         console.log(response);
