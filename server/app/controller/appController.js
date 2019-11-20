@@ -113,7 +113,7 @@ var Deposition = function(deposit){
   this.box_id = deposit.box_id;
   this.is_retrieved = deposit.is_retrieved;
   this.checkout_time = deposit.checkout_time;
-}
+};
 
 exports.add_deposition = function(req,res){
   var new_dep = Deposition(req.body);
@@ -141,27 +141,29 @@ exports.get_deposition = function(req,res){
 
 //For hashing password 
 var bcrypt = require('bcryptjs');
+const saltRounds = 10;
 
 //For User SignUp/SignIn
-var userCredential = function(user){
-  bcrypt.genSalt(10, function(err, salt){
-    bcrypt.hash(user.password, salt, function(err,hash){
-      this.password = hash;
-    });
-  });
-
-  this.username = user.username;
-  this.firstname = user.firstname;
-  this.lastname = user.lastname;
+var userCredential = function(users){
+  let salt = bcrypt.genSaltSync(saltRounds);
+  let hash = bcrypt.hashSync(users.pwd, salt);
+      
+  // console.log('password',hash);
+  // console.log('password',this.pwd);
+  this.username = users.username;
+  this.pwd = hash;
+  this.firstname = users.firstname;
+  this.lastname = users.lastname;
 };
 
 exports.sign_up = function(req,res){
-  
     console.log('Signing Up');
-    var new_user = userCredential(req.body);
+    console.log(JSON.stringify(req.body));
+    let new_user = new userCredential(req.body);
+    console.log(new_user);
 
-    if (!new_user.username || !new_user.password || !new_user.firstname || !new_user.lastname){
-      res.status(400).send({error:true, message:'Please provide data'})
+    if (!new_user.username || !new_user.pwd || !new_user.firstname || !new_user.lastname){
+      res.status(400).send({error:true, message:'Please provide user data'})
     }else{
       Model.userCred.createUser(new_user, function(err,new_user){
         if (err) res.send(err);
@@ -170,3 +172,24 @@ exports.sign_up = function(req,res){
       });
     }
 };
+
+exports.log_in = function(req,res){
+  console.log('Signing In');
+  console.log(req.body.username);
+
+  Model.userCred.loginRequest(req.body.username,function(sql_err,usr_hash){
+    console.log('user password from query:',usr_hash);
+    let flag = bcrypt.compareSync(req.body.pwd,usr_hash);
+
+    if (flag){
+      console.log('Login Success')
+      res.send({username : req.body.username, status : 'success'});
+    }else{
+      res.status(400).send({error:true, message:'Wrong Password'})
+    }
+  });
+
+
+
+  
+}

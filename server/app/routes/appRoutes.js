@@ -28,4 +28,10 @@ module.exports = function(app) {
   app.route('/dep')
     .get(todoList.get_deposition)
     .post(todoList.add_deposition);
+
+  app.route('/login/signup')
+    .post(todoList.sign_up);
+
+  app.route('/login/signin')
+    .post(todoList.log_in);
 };
