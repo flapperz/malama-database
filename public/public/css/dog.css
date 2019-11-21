@@ -5,7 +5,7 @@ div.content img.dogs {
     display: inline-block;
     height: 37vh;
     clear: right;
-} 
+}
 
 div.content div.option-bar {
     position: relative;
@@ -38,9 +38,9 @@ div.content div.dog-display {
     text-align: center;
     top: 2vh;
     height: 30vh;
-    width: 70vw;
+    width: 83vw;
     /* width: auto; */
-    max-width: 800px;
+    /* max-width: 900px; */
     background-color: whitesmoke;
     overflow-y: scroll;
 }
@@ -48,7 +48,7 @@ div.content div.dog-display {
 div.content div.dog-display table.table-cafe {
     color: #5C4031;
     font-style: normal;
-    font-size: 2vh;
+    font-size: 1.9vh;
     border-collapse: collapse;
     width: 100%;
 }
@@ -88,16 +88,18 @@ div.content div.add-dog-botton {
     position: relative;
     font-size: 2vh;
     bottom: -4.5vh;
-    left: 24.3vw;
+    left: 38.5vw;
     color: #5C4031;
 }
 
 div.content div.add-dog-botton:hover {
-    position: relative;
-    font-size: 2vh;
-    bottom: -4.5vh;
-    left: 24.3vw;
-    color: #796648;
+    /* position: relative; */
+    /* font-size: 2.1vh;
+    bottom: -4.45vh; */
+    /* left: 24.3vw; */
+    /* color: #796648; */
+    color: #AC9B68;
+    /* text-decoration: underline; */
     cursor: pointer;
     /* background-color: pink; */
 }

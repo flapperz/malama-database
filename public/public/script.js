@@ -187,7 +187,7 @@ function getCafeDog() {
     axios.get('http://localhost:5000/cafedog').then(response => {
       console.log(response);
       var html =
-        '<table class="table-cafe"><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>EDIT</th><th>DELETE</th></tr>';
+        '<table class="table-cafe"><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>COMPANY</th><th>PRICE</th><th>LAST_CHECK</th><th>LAST_BATH</th><th>HEALTH</th><th>SHOWTIME</th><th>EDIT</th><th>DELETE</th></tr>';
 
       for (let i = 0; i < response.data.length; i++) {
         const ID = response.data[i].dog_id;
@@ -196,7 +196,12 @@ function getCafeDog() {
         // const BIRTHDATE = response.data[i].date_of_birth;
         const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
         const WEIGHT = response.data[i].weight;
-
+        const COMPANY = response.data[i].sourcing_company;
+        const PRICE = response.data[i].brought_price;
+        const LAST_CHECK = response.data[i].last_checkup_date.slice(0, 10);
+        const LAST_BATH = response.data[i].last_bath_date.slice(0, 10);
+        const HEALTH = response.data[i].health_status;
+        const SHOWTIME = response.data[i].showtime;
         max_id = max_id > ID ? max_id : ID;
 
         html +=
@@ -210,6 +215,18 @@ function getCafeDog() {
           BIRTHDATE +
           '</td><td>' +
           WEIGHT +
+          '</td><td>' +
+          COMPANY +
+          '</td><td>' +
+          PRICE +
+          '</td><td>' +
+          LAST_CHECK +
+          '</td><td>' +
+          LAST_BATH +
+          '</td><td>' +
+          HEALTH +
+          '</td><td>' +
+          SHOWTIME +
           '</td><td><img src="../img/pencil.png" onclick="edit(' +
           ID +
           ')" /></td><td><img src="../img/bin.png" onclick="delCafeDog(' +
