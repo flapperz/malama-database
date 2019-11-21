@@ -1,18 +1,31 @@
+//--------variable----------------------
+
 var max_id = 0;
-function hideForm() {
-  document.getElementById('popup').style.visibility = 'hidden';
+
+//--------Form Managrment---------------
+
+//----------------Form Management (HIDE)
+
+function hideFormAddCafeDog() {
+  document.getElementById('popup-add-cafeDog').style.visibility = 'hidden';
 }
 
-function showForm() {
-  document.getElementById('popup').style.visibility = 'visible';
+//----------------Form Management (SHOW)
+
+function showFormAddCafeDog() {
+  document.getElementById('popup-add-cafeDog').style.visibility = 'visible';
 }
 
-function addError(error, message) {
-  return error == '' ? message : error + ', ' + message;
-}
+//----------------Form Management (CLEAR)
 
 function clearForm() {
   document.getElementById('add-dog-form').reset();
+}
+
+//-------Err Management-----------------
+
+function addError(error, message) {
+  return error == '' ? message : error + ', ' + message;
 }
 
 //--------------API-----------------
@@ -126,7 +139,7 @@ function addCafeDog() {
       .then(function(response) {
         console.log(response);
         max_id = ID;
-        hideForm();
+        hideFormAddCafeDog();
         clearForm();
         getCafeDog();
       })
@@ -153,40 +166,6 @@ function addCafeDogTest() {
     })
     .then(function(response) {
       console.log(response);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-}
-
-function createUser() {
-  hideForm();
-  var name = $("[name='name']").val();
-  var surname = $("[name='surname']").val();
-  var nickname = $("[name='nickname']").val();
-  var image = $("[name='image']").val();
-  var gender = $("[name='gender']:checked").val();
-
-  axios
-    .post('https://sb-oil-web-bootcamp.herokuapp.com/users', {
-      name: name,
-      surname: surname,
-      nickname: nickname,
-      gender: gender,
-      image: image
-    })
-    .then(function(response) {
-      console.log(response);
-      var obj = response.data;
-      var status = obj.status;
-      if (status == 0) {
-        errMessage = obj.error;
-        $('createUserForm').trigger('reset');
-        alert(errMessage);
-        unhideForm();
-      } else {
-        getAllUsers();
-      }
     })
     .catch(function(error) {
       console.log(error);
