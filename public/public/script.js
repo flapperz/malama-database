@@ -11,17 +11,29 @@ function hideFormAddCafeDog() {
   clearFormAddCafeDog();
 }
 
+function hideFormEditCafeDog() {
+  document.getElementById('popup-edit-cafeDog').style.visibility = 'hidden';
+  clearFormEditCafeDog();
+}
+
 //----------------Form Management (SHOW)
 
 function showFormAddCafeDog() {
   document.getElementById('popup-add-cafeDog').style.visibility = 'visible';
 }
 
+function showFormEditCafeDog() {
+  document.getElementById('popup-edit-cafeDog').style.visibility = 'visible';
+}
+
 //----------------Form Management (CLEAR)
 
 function clearFormAddCafeDog() {
-  document.getElementById('add-dog-form').reset();
-  // document.getElementsByClassName('form').reset();
+  document.getElementById('add-cafeDog-form').reset();
+}
+
+function clearFormEditCafeDog() {
+  document.getElementById('edit-cafeDog-form').reset();
 }
 
 //-------Err Management-----------------
@@ -33,6 +45,7 @@ function addError(error, message) {
 //--------------API-----------------
 
 function edit(id) {
+  showFormEditCafeDog();
   console.log('edit' + id);
 }
 
@@ -148,29 +161,6 @@ function addCafeDog() {
         console.log(error);
       });
   }
-}
-
-function addCafeDogTest() {
-  axios
-    .post('http://localhost:5000/cafedog', {
-      dog_id: 64,
-      dog_name: 'OIL',
-      breed: 'EnglishCocker',
-      date_of_birth: '1999-12-11',
-      weight: '12',
-      last_checkup_date: '1999-12-11',
-      last_bath_date: '1999-12-11',
-      health_status: 'yes',
-      sourcing_company: 'dontknow',
-      brought_price: '12',
-      showtime: '14-18'
-    })
-    .then(function(response) {
-      console.log(response);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
 }
 
 // function getCustomerDog() {
