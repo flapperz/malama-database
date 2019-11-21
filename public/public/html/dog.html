@@ -121,31 +121,39 @@
             <p>Dog Information</p>
           </span>
           <form id="edit-cafeDog-form">
-            <input type="text" id="dog_name" name="dog_name" placeholder="NAME">
-            <input type="text" id="breed" name="breed" placeholder="BREED">
-            <input type="text" id="date_of_birth" name="date_of_birth"
+            <input type="text" id="edit_cafeDog_dog_name" name="dog_name"
+              placeholder="NAME">
+            <input type="text" id="edit_cafeDog_breed" name="breed"
+              placeholder="BREED">
+            <input type="text" id="edit_cafeDog_date_of_birth"
+              name="date_of_birth"
               placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)">
 
-            <input type="text" id="weight" name="weight" placeholder="WEIGHT in
+            <input type="text" id="edit_cafeDog_weight" name="weight"
+              placeholder="WEIGHT in
               Kg (ex. 3.5)">
 
-            <input type="text" id="sourcing_company" name="sourcing_company"
+            <input type="text" id="edit_cafeDog_sourcing_company"
+              name="sourcing_company"
               placeholder="SOURCING COMPANY">
 
-            <input type="text" id="brought_price" name="brought_price"
+            <input type="text" id="edit_cafeDog_brought_price"
+              name="brought_price"
               placeholder="BROUGHT PRICE (BAHT)">
 
-            <input type="text" id="last_checkup_date" name="last_checkup_date"
+            <input type="text" id="edit_cafeDog_last_checkup_date"
+              name="last_checkup_date"
               placeholder="Last_Checkup_Date (YYYY-MM-DD ex.1999-12-01)">
-            <input type="text" id="last_bath_date" name="last_bath_date"
+            <input type="text" id="edit_cafeDog_last_bath_date"
+              name="last_bath_date"
               placeholder="Last_Bath_Date (YYYY-MM-DD ex. 1999-12-01)">
-            <select id="health_status" name="health_status">
+            <select id="edit_cafeDog_health_status" name="health_status">
               <option value="" disabled selected hidden>HEALTH STATUS
                 (fine=no/sick=yes) </option>
               <option value="NO">NO</option>
               <option value="YES">YES</option>
             </select>
-            <select id="show-time" name="show-time">
+            <select id="edit_cafeDog_show-time" name="show-time">
               <option value="" disabled selected hidden>SHOW TIME</option>
               <option value="10-14">10-14</option>
               <option value="14-18">14-18</option>
@@ -156,7 +164,7 @@
 
 
         </div>
-        <div class='submit-botton' onclick="addCafeDog()">
+        <div class='submit-botton' onclick="editCafeDog()">
           <p>Submit</p>
         </div>
       </div>
