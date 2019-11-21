@@ -44,10 +44,81 @@ function addError(error, message) {
 
 //--------------API-----------------
 
+function findCafeDog(id) {
+  try {
+    return axios.get('http://localhost:5000/cafedog').then(response => {
+      // console.log(response);
+      var dog;
+      for (let i = 0; i < response.data.length; i++) {
+        if (response.data[i].dog_id == id) {
+          dog = {
+            dog_id: id,
+            dog_name: response.data[i].dog_name,
+            breed: response.data[i].breed,
+            date_of_birth: response.data[i].date_of_birth.slice(0, 10),
+            weight: response.data[i].weight,
+            last_checkup_date: response.data[i].last_checkup_date,
+            last_bath_date: response.data[i].last_bath_date,
+            health_status: response.data[i].health_status,
+            sourcing_company: response.data[i].sourcing_company,
+            brought_price: response.data[i].brought_price,
+            showtime: response.data[i].showtime
+          };
+          console.log('return');
+          console.log(dog);
+
+          return dog;
+        }
+      }
+    });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
+  }
+}
+
 function edit(id) {
   showFormEditCafeDog();
   //ถ้าขยันก็ทำค่า default ไป ถ้า ขก.ก็ทำแบบที่เคยทำอะ55555
-  console.log('edit' + id);
+  // document.getElementById('dog_name').value = 'new value';
+  // $("[name='dog_name']").val('oil');
+  // console.log('edit' + id);
+  var find = findCafeDog(id);
+  find.then(dog => {
+    console.log(dog.last_checkup_date);
+    $("[name='dog_name']").val(dog.dog_name);
+    $("[name='breed']").val(dog.breed);
+    $("[name='date_of_birth']").val(dog.date_of_birth);
+    $("[name='weight']").val(dog.weight);
+    $("[name='sourcing_company']").val(dog.sourcing_company);
+    $("[name='brought_price']").val(dog.brought_price);
+    $("[name='last_checkup_date']").val(dog.last_checkup_date);
+    $("[name='last_bath_date']").val(dog.last_bath_date);
+    $("[name='health_status']").val(dog.health_status);
+    $("[name='show-time']").val(dog.showtime);
+  });
+  // console.log('end');
+  // console.log(dog.dog_name);
+  // try {
+  //   axios.get('http://localhost:5000/cafedog').then(response => {
+  //     console.log(response);
+
+  //     for (let i = 0; i < response.data.length; i++) {
+  //       if (i == ID) {
+  //       }
+  //       const ID = response.data[i].dog_id;
+  //       const NAME = response.data[i].dog_name;
+  //       const BREED = response.data[i].breed;
+  //       const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
+  //       const WEIGHT = response.data[i].weight;
+  //     }
+  //     html += '</table>';
+  //     document.getElementById('dog-display').innerHTML = html;
+  //   });
+  // } catch (error) {
+  //   console.log('failed');
+  //   console.error(error);
+  // }
 }
 
 function delCafeDog(id) {
