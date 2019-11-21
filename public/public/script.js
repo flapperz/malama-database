@@ -187,8 +187,9 @@ function getCafeDog() {
     axios.get('http://localhost:5000/cafedog').then(response => {
       console.log(response);
       var html =
-        '<table class="table-cafe"><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>COMPANY</th><th>PRICE</th><th>LAST_CHECK</th><th>LAST_BATH</th><th>HEALTH</th><th>SHOWTIME</th><th>EDIT</th><th>DELETE</th></tr>';
+        '<table class="table-cafe"><thead><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>COMPANY</th><th>PRICE</th><th>LAST_CHECK</th><th>LAST_BATH</th><th>HEALTH</th><th>SHOWTIME</th><th>EDIT</th><th>DELETE</th></tr></thead></table>';
 
+      html += '<div class="table-data"><table class="table-cafe"><tbody>';
       for (let i = 0; i < response.data.length; i++) {
         const ID = response.data[i].dog_id;
         const NAME = response.data[i].dog_name;
@@ -233,8 +234,9 @@ function getCafeDog() {
           ID +
           ')"></td></tr>';
       }
-      html += '</table>';
+      html += '</tbody></table></div>';
       document.getElementById('dog-display').innerHTML = html;
+      console.log(html);
     });
   } catch (error) {
     console.log('failed');

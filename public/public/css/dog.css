@@ -12,8 +12,9 @@ div.content div.option-bar {
     display: inline-block;
     text-align: center;
     height: 6vh;
-    width: 100vw;
+    width: 70vw;
     /* background-color: aquamarine; */
+    /* left: -0.7vw; */
 }
 
 div.content div.option-bar p {
@@ -32,6 +33,13 @@ div.content div.option-bar p.option-bar-text:hover {
     color: #96504C;
 }
 
+div.content div.search-bar {
+    display: inline-block;
+    background-color: blue;
+    width: 150px;
+    height: 20px;
+}
+
 div.content div.dog-display {
     position: relative;
     display: inline-block;
@@ -41,8 +49,9 @@ div.content div.dog-display {
     width: 83vw;
     /* width: auto; */
     /* max-width: 900px; */
-    background-color: whitesmoke;
-    overflow-y: scroll;
+    /* background-color: whitesmoke; */
+    background-color: #F1F0EC;
+    /* overflow-y: scroll; */
 }
 
 div.content div.dog-display table.table-cafe {
@@ -51,37 +60,57 @@ div.content div.dog-display table.table-cafe {
     font-size: 1.9vh;
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
+    /* border-color: #414141; */
 }
 
-div.content div.dog-display table.table-cafe td, th {
+div.content div.dog-display table.table-cafe thead tr {
+    background-color: #F1F0EC;
+    padding-bottom: 1px;
+    /* background-color: pink; */
+}
+
+div.content div.dog-display table.table-cafe thead th {
     border: 1px #dddddd;
     text-align: center;
     padding: 8px;
 }
 
-div.content div.dog-display table.table-cafe tr:nth-child(even) {
-    background-color: #dddddd;
+div.content div.dog-display div.table-data table.table-cafe tr:nth-child(odd) {
+    /* background-color: #DED8CC; */
+    background-color: white;
 }
 
-div.content div.dog-display table.table-cafe td img {
+div.content div.dog-display div.table-data {
+    height: 23vh;
+    overflow-y: scroll;
+    padding-top: 1.5px;
+    padding-bottom: 1.5px;
+    border-top: 0.6px solid #5C4032;
+    border-bottom: 0.6px solid #5C4032;
+    /* border: 4px dotted blue; */
+}
+
+div.content div.dog-display div.table-data table.table-cafe {
+    /* border: 2px solid blue; */
+}
+
+div.content div.dog-display div.table-data table.table-cafe td img {
     height: 2.3vh;
     padding-top: 0.4vh;
 }
 
-div.content div.dog-display table.table-cafe td img:hover {
+div.content div.dog-display div.table-data table.table-cafe td img:hover {
     height: 2.5vh;
     padding-top: 0.2vh;
     cursor: pointer;
 }
 
-div.content div.dog-display iframe.form-add-cafe-dog {
-    width: inherit;
-    height: inherit;
-    /* background-color: cadetblue; */
-    border: 0px;
-    overflow-x: hidden;
+div.content div.dog-display div.table-data table.table-cafe tbody {
+    /* background-color: pink; */
+    height: 2vh;
     margin: 0;
-    padding: 0;
+    overflow-y: scroll;
 }
 
 div.content div.add-dog-botton {
@@ -93,15 +122,8 @@ div.content div.add-dog-botton {
 }
 
 div.content div.add-dog-botton:hover {
-    /* position: relative; */
-    /* font-size: 2.1vh;
-    bottom: -4.45vh; */
-    /* left: 24.3vw; */
-    /* color: #796648; */
     color: #AC9B68;
-    /* text-decoration: underline; */
     cursor: pointer;
-    /* background-color: pink; */
 }
 
 /* popup : deposit-form */
