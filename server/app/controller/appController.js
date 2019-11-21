@@ -7,7 +7,7 @@ var CafeDog = function(dog){
   this.date_of_birth = dog.date_of_birth;
   this.weight = dog.weight;
 
-  this.last_checkup_date = dog.last_chechup_date;
+  this.last_checkup_date = dog.last_checkup_date;
   this.last_bath_date = dog.last_bath_date;
   this.health_status =  dog.health_status;
   this.sourcing_company = dog.sourcing_company;

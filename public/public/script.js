@@ -29,11 +29,26 @@ function showFormEditCafeDog() {
 //----------------Form Management (CLEAR)
 
 function clearFormAddCafeDog() {
+  clearFormValue();
   document.getElementById('add-cafeDog-form').reset();
 }
 
 function clearFormEditCafeDog() {
+  clearFormValue();
   document.getElementById('edit-cafeDog-form').reset();
+}
+
+function clearFormValue() {
+  $("[name='dog_name']").val(null);
+  $("[name='breed']").val(null);
+  $("[name='date_of_birth']").val(null);
+  $("[name='weight']").val(null);
+  $("[name='sourcing_company']").val(null);
+  $("[name='brought_price']").val(null);
+  $("[name='last_checkup_date']").val(null);
+  $("[name='last_bath_date']").val(null);
+  $("[name='health_status']").val(null);
+  $("[name='show-time']").val(null);
 }
 
 //-------Err Management-----------------
@@ -57,8 +72,8 @@ function findCafeDog(id) {
             breed: response.data[i].breed,
             date_of_birth: response.data[i].date_of_birth.slice(0, 10),
             weight: response.data[i].weight,
-            last_checkup_date: response.data[i].last_checkup_date,
-            last_bath_date: response.data[i].last_bath_date,
+            last_checkup_date: response.data[i].last_checkup_date.slice(0, 10),
+            last_bath_date: response.data[i].last_bath_date.slice(0, 10),
             health_status: response.data[i].health_status,
             sourcing_company: response.data[i].sourcing_company,
             brought_price: response.data[i].brought_price,
