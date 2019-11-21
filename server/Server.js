@@ -10,8 +10,6 @@ app.use((req, res, next) => {
 
   next();
 });
-  
-
 
 const mysql = require('mysql');
 // connection configurations
