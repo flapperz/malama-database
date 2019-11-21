@@ -8,6 +8,7 @@ var max_id = 0;
 
 function hideFormAddCafeDog() {
   document.getElementById('popup-add-cafeDog').style.visibility = 'hidden';
+  clearFormAddCafeDog();
 }
 
 //----------------Form Management (SHOW)
@@ -18,8 +19,9 @@ function showFormAddCafeDog() {
 
 //----------------Form Management (CLEAR)
 
-function clearForm() {
+function clearFormAddCafeDog() {
   document.getElementById('add-dog-form').reset();
+  // document.getElementsByClassName('form').reset();
 }
 
 //-------Err Management-----------------
@@ -140,7 +142,6 @@ function addCafeDog() {
         console.log(response);
         max_id = ID;
         hideFormAddCafeDog();
-        clearForm();
         getCafeDog();
       })
       .catch(function(error) {
