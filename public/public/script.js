@@ -46,6 +46,7 @@ function addError(error, message) {
 
 function edit(id) {
   showFormEditCafeDog();
+  //ถ้าขยันก็ทำค่า default ไป ถ้า ขก.ก็ทำแบบที่เคยทำอะ55555
   console.log('edit' + id);
 }
 
