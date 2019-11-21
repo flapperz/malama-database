@@ -146,12 +146,12 @@ const saltRounds = 10;
 //For User SignUp/SignIn
 var userCredential = function(users){
   let salt = bcrypt.genSaltSync(saltRounds);
-  let hash = bcrypt.hashSync(users.pwd, salt);
+  let hash = bcrypt.hashSync(users.password, salt);
       
   // console.log('password',hash);
   // console.log('password',this.pwd);
   this.username = users.username;
-  this.pwd = hash;
+  this.password = hash;
   this.firstname = users.firstname;
   this.lastname = users.lastname;
 };
@@ -162,7 +162,7 @@ exports.sign_up = function(req,res){
     let new_user = new userCredential(req.body);
     console.log(new_user);
 
-    if (!new_user.username || !new_user.pwd || !new_user.firstname || !new_user.lastname){
+    if (!new_user.username || !new_user.password || !new_user.firstname || !new_user.lastname){
       res.status(400).send({error:true, message:'Please provide user data'})
     }else{
       Model.userCred.createUser(new_user, function(err,new_user){
@@ -179,7 +179,7 @@ exports.log_in = function(req,res){
 
   Model.userCred.loginRequest(req.body.username,function(sql_err,usr_hash){
     console.log('user password from query:',usr_hash);
-    let flag = bcrypt.compareSync(req.body.pwd,usr_hash);
+    let flag = bcrypt.compareSync(req.body.password,usr_hash);
 
     if (flag){
       console.log('Login Success')

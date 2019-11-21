@@ -146,14 +146,14 @@ DogUpdater.getDeposition = function(result){
 
 var userCredential = function(user){
     this.username = user.username;
-    this.pwd = user.pwd;
+    this.password = user.password;
     this.firstname = user.firstname;
     this.lastname = user.lastname;
 }
 
 //POST - Sign Up
 userCredential.createUser = function(value,result){
-    sql.query('insert into user_table set ?', value, function(err,res){
+    sql.query('insert into `user` set ?', value, function(err,res){
         if (err){
             console.log("Error adding user",err);
             result(null,err);
@@ -165,7 +165,7 @@ userCredential.createUser = function(value,result){
 };
 
 userCredential.loginRequest = function(username,result){
-    sql.query('select * from user_table where username = ?', username, function(err,res){
+    sql.query('select * from `user` where username = ?', username, function(err,res){
         res = res[0]
         console.log('user',res);
 
@@ -174,8 +174,8 @@ userCredential.loginRequest = function(username,result){
             result(null, err);
         }
         else{
-            console.log('query password : ', res.pwd);  
-            result(null, res.pwd);
+            console.log('query password : ', res.password);  
+            result(null, res.password);
         } 
     });
 };
