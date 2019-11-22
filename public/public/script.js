@@ -1,6 +1,8 @@
 //--------variable----------------------
 
-var max_id = 0;
+var max_id_cafe = 0;
+var max_id_customer = 0;
+
 var edit_id = 0;
 var page = '';
 
@@ -229,7 +231,7 @@ function getCafeDog() {
         const LAST_BATH = response.data[i].last_bath_date.slice(0, 10);
         const HEALTH = response.data[i].health_status;
         const SHOWTIME = response.data[i].showtime;
-        max_id = max_id > ID ? max_id : ID;
+        max_id_cafe = max_id_cafe > ID ? max_id_cafe : ID;
 
         html +=
           '<tr><td>' +
@@ -272,7 +274,7 @@ function getCafeDog() {
 
 function addCafeDog() {
   var error = '';
-  var ID = max_id + 1;
+  var ID = max_id_cafe + 1;
   var NAME = $("[name='dog_name']").val();
   var BREED = $("[name='breed']").val();
   var BIRTHDATE = $("[name='date_of_birth']").val();
@@ -319,7 +321,7 @@ function addCafeDog() {
       })
       .then(function(response) {
         console.log(response);
-        max_id = ID;
+        max_id_cafe = ID;
         hideFormAddCafeDog();
         getCafeDog();
       })
@@ -354,7 +356,7 @@ function searchCafeDog() {
           const LAST_BATH = response.data[i].last_bath_date.slice(0, 10);
           const HEALTH = response.data[i].health_status;
           const SHOWTIME = response.data[i].showtime;
-          max_id = max_id > ID ? max_id : ID;
+          max_id_cafe = max_id_cafe > ID ? max_id_cafe : ID;
 
           html +=
             '<tr><td>' +
@@ -445,7 +447,7 @@ function getCustomerDog() {
         // const BIRTHDATE = response.data[i].date_of_birth;
         const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
         const WEIGHT = response.data[i].weight;
-        max_id = max_id > ID ? max_id : ID;
+        max_id_customer = max_id_customer > ID ? max_id_customer : ID;
 
         html +=
           '<tr><td>' +
@@ -492,4 +494,63 @@ function editCustomerDog_(id) {
   //   $("[name='health_status']").val(dog.health_status);
   //   $("[name='show-time']").val(dog.showtime);
   // });
+}
+
+function addCustomerDog() {
+  var error = '';
+  var ID = max_id_customer + 1;
+  var NAME = $("[name='dog_name']").val();
+  var BREED = $("[name='breed']").val();
+  var BIRTHDATE = $("[name='date_of_birth']").val();
+  var WEIGHT = $("[name='weight']").val();
+  var COMPANY = $("[name='sourcing_company']").val();
+  var PRICE = $("[name='brought_price']").val();
+  var LAST_CHECK = $("[name='last_checkup_date']").val();
+  var LAST_BATH = $("[name='last_bath_date']").val();
+  var HEALTH = $("[name='health_status']").val();
+  var SHOWTIME = $("[name='show-time']").val();
+
+  if (
+    NAME == '' ||
+    BREED == '' ||
+    BIRTHDATE == '' ||
+    WEIGHT == '' ||
+    COMPANY == '' ||
+    PRICE == '' ||
+    LAST_CHECK == '' ||
+    LAST_BATH == '' ||
+    HEALTH == null ||
+    SHOWTIME == null
+  ) {
+    error = addError(error, 'Fields required');
+  }
+
+  if (error != '') {
+    window.alert(error);
+    return;
+  } else {
+    axios
+      .post('http://localhost:5000/cafedog', {
+        dog_id: ID,
+        dog_name: NAME,
+        breed: BREED,
+        date_of_birth: BIRTHDATE,
+        weight: WEIGHT,
+        last_checkup_date: LAST_CHECK,
+        last_bath_date: LAST_BATH,
+        health_status: HEALTH,
+        sourcing_company: COMPANY,
+        brought_price: PRICE,
+        showtime: SHOWTIME
+      })
+      .then(function(response) {
+        console.log(response);
+        max_id_customer = ID;
+        hideFormAddCafeDog();
+        getCafeDog();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 }
