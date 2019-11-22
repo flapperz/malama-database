@@ -170,6 +170,19 @@ div.popup div.form-bg {
   overflow-y: scroll;
 }
 
+div.popup #form-bg-add-customerDog,
+#form-bg-edit-customerDog {
+  position: relative;
+  top: 35px;
+  background-color: #ffffff;
+  /* background-color: pink; */
+  display: inline-block;
+  width: 600px;
+  height: 63.5vh;
+  border-radius: 13px;
+  overflow-y: scroll;
+}
+
 div.popup div.form-bg img.close {
   height: 19px;
   position: absolute;
@@ -198,6 +211,18 @@ div.popup div.form-bg div.dog-information-bg {
   width: 480px;
   height: 480px;
   top: 70px;
+  /*grey*/
+  background-color: #edeeee;
+  display: inline-block;
+}
+
+div.popup div.form-bg #dog-information-bg-add-customer-dog,
+#dog-information-bg-edit-customer-dog {
+  position: relative;
+  width: 480px;
+  height: 270px;
+  top: 70px;
+  margin-bottom: 20px;
   /*grey*/
   background-color: #edeeee;
   display: inline-block;
