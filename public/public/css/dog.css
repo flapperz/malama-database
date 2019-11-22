@@ -1,246 +1,247 @@
 /* edit in div.content part of dog.html  */
 
 div.content img.dogs {
-    position: relative;
-    display: inline-block;
-    height: 35vh;
-    clear: right;
+  position: relative;
+  display: inline-block;
+  height: 35vh;
+  clear: right;
 }
 
 div.content div.option-bar {
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    height: 6vh;
-    width: 70vw;
-    /* background-color: aquamarine; */
-    /* left: -0.7vw; */
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  height: 6vh;
+  width: 70vw;
+  /* background-color: aquamarine; */
+  /* left: -0.7vw; */
 }
 
 div.content div.option-bar p {
-    position: relative;
-    display: inline;
-    color: #5C4031;
-    font-style: normal;
-    font-size: 2vh;
-    padding-left: 1.3vw;
-    top: 2vh;
+  position: relative;
+  display: inline;
+  color: #5c4031;
+  font-style: normal;
+  font-size: 2vh;
+  padding-left: 1.3vw;
+  top: 2vh;
 }
 
 div.content div.option-bar p.option-bar-text:hover {
-    text-decoration-line: underline;
-    cursor: pointer;
-    color: #96504C;
+  text-decoration-line: underline;
+  cursor: pointer;
+  color: #96504c;
 }
 
 div.content div.search-bar {
-    display: inline-block;
-    position: relative;
-    /* background-color: pink; */
-    top: 15px;
-    left: -11px;
-    width: 280px;
-    height: 30px;
+  display: inline-block;
+  position: relative;
+  /* background-color: pink; */
+  top: 15px;
+  left: -11px;
+  width: 280px;
+  height: 30px;
 }
 
 div.content div.search-bar form input {
-    position: relative;
-    display: inline-block;
-    width: 200px;
-    height: 20px;
-    border: none;
-    padding: 5px;
-    text-align: center;
-    border-radius: 15px;
-    background-color: white;
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 20px;
+  border: none;
+  padding: 5px;
+  text-align: center;
+  border-radius: 15px;
+  background-color: white;
 }
 
 div.content div.search-bar img.search-img {
-    height: 30px;
-    right: -3px;
-    display: inline-block;
-    position: absolute;
-    border-radius: 50%;
+  height: 30px;
+  right: -3px;
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
 }
 
 div.content div.search-bar img.search-img:hover {
-    height: 33px;
-    right: -4.5px;
-    top: -1.5px;
-    display: inline-block;
-    position: absolute;
-    border-radius: 50%;
-    cursor: pointer;
+  height: 33px;
+  right: -4.5px;
+  top: -1.5px;
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 div.content div.dog-display {
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    top: 3.5vh;
-    height: 30vh;
-    width: 83vw;
-    /* width: auto; */
-    /* max-width: 900px; */
-    /* background-color: whitesmoke; */
-    background-color: #F1F0EC;
-    /* overflow-y: scroll; */
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  top: 3.5vh;
+  height: 30vh;
+  width: 83vw;
+  /* width: auto; */
+  /* max-width: 900px; */
+  /* background-color: whitesmoke; */
+  background-color: #f1f0ec;
+  /* overflow-y: scroll; */
 }
 
 div.content div.dog-display table.table-cafe {
-    color: #5C4031;
-    font-style: normal;
-    font-size: 1.9vh;
-    border-collapse: collapse;
-    width: 100%;
-    table-layout: fixed;
-    /* border-color: #414141; */
+  color: #5c4031;
+  font-style: normal;
+  font-size: 1.9vh;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  /* border-color: #414141; */
 }
 
 div.content div.dog-display table.table-cafe thead tr {
-    background-color: #F1F0EC;
-    padding-bottom: 1px;
-    /* border-top: 0.6px solid #5C4032; */
-    border-bottom: 0.6px solid #5C4032;
-    /* background-color: pink; */
+  background-color: #f1f0ec;
+  padding-bottom: 1px;
+  /* border-top: 0.6px solid #5C4032; */
+  border-bottom: 0.6px solid #5c4032;
+  /* background-color: pink; */
 }
 
 div.content div.dog-display table.table-cafe thead th {
-    border: 1px #dddddd;
-    text-align: center;
-    padding: 8px;
+  border: 1px #dddddd;
+  text-align: center;
+  padding: 8px;
 }
 
 div.content div.dog-display div.table-data table.table-cafe tr:nth-child(odd) {
-    /* background-color: #DED8CC; */
-    background-color: white;
+  /* background-color: #DED8CC; */
+  background-color: white;
 }
 
 div.content div.dog-display div.table-data {
-    height: 23vh;
-    overflow-y: scroll;
-    padding-top: 1.5px;
-    padding-bottom: 1.5px;
-    /* border-top: 0.6px solid #5C4032; */
-    border-bottom: 0.6px solid #5C4032;
-    /* border: 4px dotted blue; */
+  height: 23vh;
+  overflow-y: scroll;
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
+  /* border-top: 0.6px solid #5C4032; */
+  border-bottom: 0.6px solid #5c4032;
+  /* border: 4px dotted blue; */
 }
 
 div.content div.dog-display div.table-data table.table-cafe td img {
-    height: 2.3vh;
-    padding-top: 0.4vh;
+  height: 2.3vh;
+  padding-top: 0.4vh;
 }
 
 div.content div.dog-display div.table-data table.table-cafe td img:hover {
-    height: 2.5vh;
-    padding-top: 0.2vh;
-    cursor: pointer;
+  height: 2.5vh;
+  padding-top: 0.2vh;
+  cursor: pointer;
 }
 
 div.content div.dog-display div.table-data table.table-cafe tbody {
-    /* background-color: pink; */
-    height: 2vh;
-    margin: 0;
-    overflow-y: scroll;
+  /* background-color: pink; */
+  height: 2vh;
+  margin: 0;
+  overflow-y: scroll;
 }
 
 div.content div.add-dog-botton {
-    position: relative;
-    font-size: 2vh;
-    bottom: -4.5vh;
-    left: 38.5vw;
-    color: #5C4031;
+  position: relative;
+  font-size: 2vh;
+  bottom: -4.5vh;
+  left: 38.5vw;
+  color: #5c4031;
 }
 
 div.content div.add-dog-botton:hover {
-    color: #AC9B68;
-    cursor: pointer;
+  color: #ac9b68;
+  cursor: pointer;
 }
 
 /* popup : deposit-form */
 
 div.popup div.form-bg {
-    position: relative;
-    top: 35px;
-    background-color: #FFFFFF;
-    display: inline-block;
-    width: 600px;
-    height: 89vh;
-    border-radius: 13px;
-    overflow-y: scroll;
+  position: relative;
+  top: 35px;
+  background-color: #ffffff;
+  display: inline-block;
+  width: 600px;
+  height: 89vh;
+  border-radius: 13px;
+  overflow-y: scroll;
 }
 
 div.popup div.form-bg img.close {
-    height: 19px;
-    position: absolute;
-    right: 30px;
-    top: 30px;
-    cursor: pointer;
+  height: 19px;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  cursor: pointer;
 }
 
 div.popup div.form-bg img.close:hover {
-    height: 25px;
-    position: absolute;
-    right: 27px;
-    top: 27px;
+  height: 25px;
+  position: absolute;
+  right: 27px;
+  top: 27px;
 }
 
 div.popup div.form-bg span.form-name p {
-    position: relative;
-    top: 50px;
-    font-size: 20px;
-    font-weight: 350;
-    color: #414141;
+  position: relative;
+  top: 50px;
+  font-size: 20px;
+  font-weight: 350;
+  color: #414141;
 }
 
 div.popup div.form-bg div.dog-information-bg {
-    position: relative;
-    width: 480px;
-    height: 530px;
-    top: 70px;
-    /*grey*/
-    background-color: #EDEEEE;
-    display: inline-block;
+  position: relative;
+  width: 480px;
+  height: 480px;
+  top: 70px;
+  /*grey*/
+  background-color: #edeeee;
+  display: inline-block;
 }
 
 div.popup div.form-bg div.dog-information-bg span.dog-information-name p {
-    font-size: 18px;
-    margin-top: 20px;
+  font-size: 18px;
+  margin-top: 20px;
 }
 
 div.popup div.form-bg div.submit-botton {
-    position: relative;
-    width: 120px;
-    height: 45px;
-    top: 14px;
-    background-color: #ACA08D;
-    display: inline-block;
-    cursor: pointer;
+  position: relative;
+  width: 120px;
+  height: 45px;
+  top: -9px;
+  background-color: #aca08d;
+  display: inline-block;
+  cursor: pointer;
+  /* border-radius: 30px; */
 }
 
 div.popup div.form-bg div.submit-botton:hover {
-    background-color: #6B5043;
+  background-color: #6b5043;
 }
 
 div.popup div.form-bg div.submit-botton p {
-    position: relative;
-    font-size: 17px;
-    top: 10px;
-    color: #FFFFFE;
+  position: relative;
+  font-size: 17px;
+  top: 7.5px;
+  color: #fffffe;
 }
 
 /*form*/
 
 div.popup div.form-bg div.dog-information-bg form {
-    width: inherit;
-    /* background-color: pink; */
-    line-height: 5px;
+  width: inherit;
+  /* background-color: pink; */
+  line-height: 5px;
 }
 
 div.popup div.form-bg div.dog-information-bg form input {
-    width: 400px;
-    height: 20px;
-    border: none;
-    padding: 5px;
-    /* background-color: pink; */
+  width: 400px;
+  height: 20px;
+  border: none;
+  padding: 5px;
+  /* background-color: pink; */
 }

@@ -10,12 +10,13 @@
     <link
       href="https://fonts.googleapis.com/css?family=Kodchasan"
       rel="stylesheet"
-      />
-    <script
-      src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../script.js"></script>
-    <script>getCafeDog()</script>
+    <script>
+      getCafeDog();
+    </script>
   </head>
   <body>
     <!-- Nav template -->
@@ -39,7 +40,6 @@
         </div>
 
         <div class="content">
-
           <img class="dogs" src="../img/dogs.png" />
           <div class="option-bar">
             <p class="option-bar-text" onclick="getCafeDog()">CAFE</p>
@@ -48,56 +48,97 @@
             <p class="option-bar-text">|</p>
             <p class="option-bar-text">DEPOSITION</p>
           </div>
-          <br>
+          <br />
           <div class="search-bar">
-            <form>
-              <input type="text" id="search_form" name="search_form"
-                placeholder="SEARCH BY NAME">
-              <img src="../img/search.png" class="search-img"
-                onclick="searchCafeDog()">
+            <form id="searching-form">
+              <input
+                type="text"
+                id="search_form"
+                name="search_form"
+                placeholder="SEARCH BY NAME"
+              />
+              <img
+                src="../img/search.png"
+                class="search-img"
+                onclick="searchCafeDog()"
+              />
             </form>
           </div>
-          <br>
+          <br />
           <div class="dog-display" id="dog-display">
-
             <p class="each-all"></p>
           </div>
-          <div class="add-dog-botton" onclick="showFormAddCafeDog()">+ ADD DOG</div>
+          <div class="add-dog-botton" onclick="showFormAddCafeDog()">
+            + ADD DOG
+          </div>
         </div>
       </div>
     </div>
 
-    <div class= 'popup' id='popup-add-cafeDog'>
-      <div class= 'popup-bg'></div>
-      <div class='form-bg'>
+    <div class="popup" id="popup-add-cafeDog">
+      <div class="popup-bg"></div>
+      <div class="form-bg">
+        <img
+          onclick="hideFormAddCafeDog()"
+          src="../img/close.png"
+          class="close"
+        />
+        <span class="form-name"> <p>ADD CAFE DOG</p></span>
+        <div class="dog-information-bg">
+          <span class="dog-information-name"><p>Dog Information</p></span>
+          <form id="add-cafeDog-form" class="form">
+            <input
+              type="text"
+              id="dog_name"
+              name="dog_name"
+              placeholder="NAME"
+            />
+            <input type="text" id="breed" name="breed" placeholder="BREED" />
+            <input
+              type="text"
+              id="date_of_birth"
+              name="date_of_birth"
+              placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)"
+            />
 
-        <img onclick='hideFormAddCafeDog()' src="../img/close.png"
-          class="close">
-        <span class='form-name'> <p>ADD CAFE DOG</p></span>
-        <div class='dog-information-bg'>
-          <span class='dog-information-name'><p>Dog Information</p></span>
-          <form id="add-cafeDog-form" class='form'>
-            <input type="text" id="dog_name" name="dog_name" placeholder="NAME">
-            <input type="text" id="breed" name="breed" placeholder="BREED">
-            <input type="text" id="date_of_birth" name="date_of_birth"
-              placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)">
+            <input
+              type="text"
+              id="weight"
+              name="weight"
+              placeholder="WEIGHT in
+              Kg (ex. 3.5)"
+            />
 
-            <input type="text" id="weight" name="weight" placeholder="WEIGHT in
-              Kg (ex. 3.5)">
+            <input
+              type="text"
+              id="sourcing_company"
+              name="sourcing_company"
+              placeholder="SOURCING COMPANY"
+            />
 
-            <input type="text" id="sourcing_company" name="sourcing_company"
-              placeholder="SOURCING COMPANY">
+            <input
+              type="text"
+              id="brought_price"
+              name="brought_price"
+              placeholder="BROUGHT PRICE (BAHT)"
+            />
 
-            <input type="text" id="brought_price" name="brought_price"
-              placeholder="BROUGHT PRICE (BAHT)">
-
-            <input type="text" id="last_checkup_date" name="last_checkup_date"
-              placeholder="Last_Checkup_Date (YYYY-MM-DD ex.1999-12-01)">
-            <input type="text" id="last_bath_date" name="last_bath_date"
-              placeholder="Last_Bath_Date (YYYY-MM-DD ex. 1999-12-01)">
+            <input
+              type="text"
+              id="last_checkup_date"
+              name="last_checkup_date"
+              placeholder="Last_Checkup_Date (YYYY-MM-DD ex.1999-12-01)"
+            />
+            <input
+              type="text"
+              id="last_bath_date"
+              name="last_bath_date"
+              placeholder="Last_Bath_Date (YYYY-MM-DD ex. 1999-12-01)"
+            />
             <select id="health_status" name="health_status">
-              <option value="" disabled selected hidden>HEALTH STATUS
-                (fine=no/sick=yes) </option>
+              <option value="" disabled selected hidden
+                >HEALTH STATUS (fine=no/sick=yes)
+              </option>
               <option value="NO">NO</option>
               <option value="YES">YES</option>
             </select>
@@ -109,56 +150,84 @@
               <option value="NO SHOWTIME">NO SHOWTIME</option>
             </select>
           </form>
-
-
         </div>
-        <div class='submit-botton' onclick="addCafeDog()"><p>Submit</p></div>
+        <div class="submit-botton" onclick="addCafeDog()"><p>Submit</p></div>
       </div>
     </div>
     <!-----------EDIT---CAFE----Dog----------->
-    <div class='popup' id='popup-edit-cafeDog'>
-      <div class='popup-bg'></div>
-      <div class='form-bg'>
-
-        <img onclick='hideFormEditCafeDog()' src="../img/close.png"
-          class="close">
-        <span class='form-name'>
+    <div class="popup" id="popup-edit-cafeDog">
+      <div class="popup-bg"></div>
+      <div class="form-bg">
+        <img
+          onclick="hideFormEditCafeDog()"
+          src="../img/close.png"
+          class="close"
+        />
+        <span class="form-name">
           <p>EDIT CAFE DOG</p>
         </span>
-        <div class='dog-information-bg'>
-          <span class='dog-information-name'>
+        <div class="dog-information-bg">
+          <span class="dog-information-name">
             <p>Dog Information</p>
           </span>
           <form id="edit-cafeDog-form">
-            <input type="text" id="edit_cafeDog_dog_name" name="dog_name"
-              placeholder="NAME">
-            <input type="text" id="edit_cafeDog_breed" name="breed"
-              placeholder="BREED">
-            <input type="text" id="edit_cafeDog_date_of_birth"
+            <input
+              type="text"
+              id="edit_cafeDog_dog_name"
+              name="dog_name"
+              placeholder="NAME"
+            />
+            <input
+              type="text"
+              id="edit_cafeDog_breed"
+              name="breed"
+              placeholder="BREED"
+            />
+            <input
+              type="text"
+              id="edit_cafeDog_date_of_birth"
               name="date_of_birth"
-              placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)">
+              placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)"
+            />
 
-            <input type="text" id="edit_cafeDog_weight" name="weight"
+            <input
+              type="text"
+              id="edit_cafeDog_weight"
+              name="weight"
               placeholder="WEIGHT in
-              Kg (ex. 3.5)">
+              Kg (ex. 3.5)"
+            />
 
-            <input type="text" id="edit_cafeDog_sourcing_company"
+            <input
+              type="text"
+              id="edit_cafeDog_sourcing_company"
               name="sourcing_company"
-              placeholder="SOURCING COMPANY">
+              placeholder="SOURCING COMPANY"
+            />
 
-            <input type="text" id="edit_cafeDog_brought_price"
+            <input
+              type="text"
+              id="edit_cafeDog_brought_price"
               name="brought_price"
-              placeholder="BROUGHT PRICE (BAHT)">
+              placeholder="BROUGHT PRICE (BAHT)"
+            />
 
-            <input type="text" id="edit_cafeDog_last_checkup_date"
+            <input
+              type="text"
+              id="edit_cafeDog_last_checkup_date"
               name="last_checkup_date"
-              placeholder="Last_Checkup_Date (YYYY-MM-DD ex.1999-12-01)">
-            <input type="text" id="edit_cafeDog_last_bath_date"
+              placeholder="Last_Checkup_Date (YYYY-MM-DD ex.1999-12-01)"
+            />
+            <input
+              type="text"
+              id="edit_cafeDog_last_bath_date"
               name="last_bath_date"
-              placeholder="Last_Bath_Date (YYYY-MM-DD ex. 1999-12-01)">
+              placeholder="Last_Bath_Date (YYYY-MM-DD ex. 1999-12-01)"
+            />
             <select id="edit_cafeDog_health_status" name="health_status">
-              <option value="" disabled selected hidden>HEALTH STATUS
-                (fine=no/sick=yes) </option>
+              <option value="" disabled selected hidden
+                >HEALTH STATUS (fine=no/sick=yes)
+              </option>
               <option value="NO">NO</option>
               <option value="YES">YES</option>
             </select>
@@ -170,10 +239,8 @@
               <option value="NO SHOWTIME">NO SHOWTIME</option>
             </select>
           </form>
-
-
         </div>
-        <div class='submit-botton' onclick="editCafeDog()">
+        <div class="submit-botton" onclick="editCafeDog()">
           <p>Submit</p>
         </div>
       </div>

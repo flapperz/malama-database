@@ -52,6 +52,10 @@ function clearFormValue() {
   $("[name='show-time']").val(null);
 }
 
+function clearSearchingValue() {
+  document.getElementById('searching-form').reset();
+}
+
 //-------Err Management-----------------
 
 function addError(error, message) {
@@ -361,7 +365,8 @@ function searchCafeDog() {
         }
         html += '</tbody></table></div>';
         document.getElementById('dog-display').innerHTML = html;
-        console.log(html);
+        // console.log(html);
+        clearSearchingValue();
       });
   } catch (error) {
     console.log('failed');
