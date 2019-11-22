@@ -113,6 +113,14 @@ function addError(error, message) {
 
 //--------------API-----------------
 
+function searchDog() {
+  if (page == 'CAFE') {
+    searchCafeDog();
+  } else if (page == 'CUSTOMER') {
+    searchCustomerDog();
+  }
+}
+
 //cafeDog
 
 function findCafeDog(id) {
@@ -601,5 +609,51 @@ function addCustomerDog() {
       .catch(function(error) {
         console.log(error);
       });
+  }
+}
+
+function searchCustomerDog() {
+  const search_name = $("[id='search_form']").val();
+  console.log(search_name);
+  try {
+    axios
+      .get('http://localhost:5000/customer_dog/' + search_name)
+      .then(response => {
+        console.log(response);
+        var html =
+          '<table class="table-cafe"><thead><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>EDIT</th><th>DELETE</th></tr></thead></table>';
+
+        html += '<div class="table-data"><table class="table-cafe"><tbody>';
+        for (let i = 0; i < response.data.length; i++) {
+          const ID = response.data[i].dog_id;
+          const NAME = response.data[i].dog_name;
+          const BREED = response.data[i].breed;
+          const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
+          const WEIGHT = response.data[i].weight;
+
+          html +=
+            '<tr><td>' +
+            ID +
+            '</td><td>' +
+            NAME +
+            '</td><td>' +
+            BREED +
+            '</td><td>' +
+            BIRTHDATE +
+            '</td><td>' +
+            WEIGHT +
+            '</td><td><img src="../img/pencil.png" onclick="editCustomerDog_(' +
+            ID +
+            ')" /></td><td><img src="../img/bin.png" onclick="delCustomerDog(' +
+            ID +
+            ')"></td></tr>';
+        }
+        html += '</tbody></table></div>';
+        document.getElementById('dog-display').innerHTML = html;
+        clearSearchingValue();
+      });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
   }
 }
