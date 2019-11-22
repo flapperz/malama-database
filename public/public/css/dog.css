@@ -3,7 +3,7 @@
 div.content img.dogs {
     position: relative;
     display: inline-block;
-    height: 37vh;
+    height: 35vh;
     clear: right;
 }
 
@@ -35,16 +35,28 @@ div.content div.option-bar p.option-bar-text:hover {
 
 div.content div.search-bar {
     display: inline-block;
-    background-color: blue;
-    width: 150px;
+    position: relative;
+    background-color: pink;
+    top: 15px;
+    width: 240px;
+    height: 30px;
+}
+
+div.content div.search-bar form input {
+    width: 200px;
     height: 20px;
+    border: none;
+    padding: 5px;
+    text-align: center;
+    border-radius: 15px;
+    background-color: white;
 }
 
 div.content div.dog-display {
     position: relative;
     display: inline-block;
     text-align: center;
-    top: 2vh;
+    top: 3.5vh;
     height: 30vh;
     width: 83vw;
     /* width: auto; */
@@ -67,6 +79,8 @@ div.content div.dog-display table.table-cafe {
 div.content div.dog-display table.table-cafe thead tr {
     background-color: #F1F0EC;
     padding-bottom: 1px;
+    /* border-top: 0.6px solid #5C4032; */
+    border-bottom: 0.6px solid #5C4032;
     /* background-color: pink; */
 }
 
@@ -86,13 +100,9 @@ div.content div.dog-display div.table-data {
     overflow-y: scroll;
     padding-top: 1.5px;
     padding-bottom: 1.5px;
-    border-top: 0.6px solid #5C4032;
+    /* border-top: 0.6px solid #5C4032; */
     border-bottom: 0.6px solid #5C4032;
     /* border: 4px dotted blue; */
-}
-
-div.content div.dog-display div.table-data table.table-cafe {
-    /* border: 2px solid blue; */
 }
 
 div.content div.dog-display div.table-data table.table-cafe td img {
