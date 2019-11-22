@@ -8,10 +8,20 @@ var page = '';
 
 //-------OTHERS-------------------------
 function setPage(thisPage) {
+  console.log(thisPage);
   page = thisPage;
   if (page == 'CAFE') {
+    document.getElementById('CAFE').style.textDecoration = 'underLine';
+    document.getElementById('CUSTOMER').style.textDecoration = 'none';
+    document.getElementById('DEPOSITION').style.textDecoration = 'none';
   } else if (page == 'CUSTOMER') {
+    document.getElementById('CAFE').style.textDecoration = 'none';
+    document.getElementById('CUSTOMER').style.textDecoration = 'underLine';
+    document.getElementById('DEPOSITION').style.textDecoration = 'none';
   } else if (page == 'DEPOSTION') {
+    document.getElementById('CAFE').style.textDecoration = 'none';
+    document.getElementById('CUSTOMER').style.textDecoration = 'none';
+    document.getElementById('DEPOSITION').style.textDecoration = 'underLine';
   }
 }
 
@@ -228,7 +238,7 @@ function delCafeDog(id) {
 }
 
 function getCafeDog() {
-  setPage('CAFE');
+  // setPage('CAFE');
   try {
     axios.get('http://localhost:5000/cafedog').then(response => {
       console.log(response);
@@ -282,6 +292,7 @@ function getCafeDog() {
       }
       html += '</tbody></table></div>';
       document.getElementById('dog-display').innerHTML = html;
+      setPage('CAFE');
       // console.log(html);
     });
   } catch (error) {
