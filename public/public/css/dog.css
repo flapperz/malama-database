@@ -3,17 +3,18 @@
 div.content img.dogs {
     position: relative;
     display: inline-block;
-    height: 37vh;
+    height: 35vh;
     clear: right;
-} 
+}
 
 div.content div.option-bar {
     position: relative;
     display: inline-block;
     text-align: center;
     height: 6vh;
-    width: 100vw;
+    width: 70vw;
     /* background-color: aquamarine; */
+    /* left: -0.7vw; */
 }
 
 div.content div.option-bar p {
@@ -32,74 +33,128 @@ div.content div.option-bar p.option-bar-text:hover {
     color: #96504C;
 }
 
+div.content div.search-bar {
+    display: inline-block;
+    position: relative;
+    /* background-color: pink; */
+    top: 15px;
+    left: -11px;
+    width: 280px;
+    height: 30px;
+}
+
+div.content div.search-bar form input {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 20px;
+    border: none;
+    padding: 5px;
+    text-align: center;
+    border-radius: 15px;
+    background-color: white;
+}
+
+div.content div.search-bar img.search-img {
+    height: 30px;
+    right: -3px;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+}
+
+div.content div.search-bar img.search-img:hover {
+    height: 33px;
+    right: -4.5px;
+    top: -1.5px;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 div.content div.dog-display {
     position: relative;
     display: inline-block;
     text-align: center;
-    top: 2vh;
+    top: 3.5vh;
     height: 30vh;
-    width: 70vw;
+    width: 83vw;
     /* width: auto; */
-    max-width: 800px;
-    background-color: whitesmoke;
-    overflow-y: scroll;
+    /* max-width: 900px; */
+    /* background-color: whitesmoke; */
+    background-color: #F1F0EC;
+    /* overflow-y: scroll; */
 }
 
 div.content div.dog-display table.table-cafe {
     color: #5C4031;
     font-style: normal;
-    font-size: 2vh;
+    font-size: 1.9vh;
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
+    /* border-color: #414141; */
 }
 
-div.content div.dog-display table.table-cafe td, th {
+div.content div.dog-display table.table-cafe thead tr {
+    background-color: #F1F0EC;
+    padding-bottom: 1px;
+    /* border-top: 0.6px solid #5C4032; */
+    border-bottom: 0.6px solid #5C4032;
+    /* background-color: pink; */
+}
+
+div.content div.dog-display table.table-cafe thead th {
     border: 1px #dddddd;
     text-align: center;
     padding: 8px;
 }
 
-div.content div.dog-display table.table-cafe tr:nth-child(even) {
-    background-color: #dddddd;
+div.content div.dog-display div.table-data table.table-cafe tr:nth-child(odd) {
+    /* background-color: #DED8CC; */
+    background-color: white;
 }
 
-div.content div.dog-display table.table-cafe td img {
+div.content div.dog-display div.table-data {
+    height: 23vh;
+    overflow-y: scroll;
+    padding-top: 1.5px;
+    padding-bottom: 1.5px;
+    /* border-top: 0.6px solid #5C4032; */
+    border-bottom: 0.6px solid #5C4032;
+    /* border: 4px dotted blue; */
+}
+
+div.content div.dog-display div.table-data table.table-cafe td img {
     height: 2.3vh;
     padding-top: 0.4vh;
 }
 
-div.content div.dog-display table.table-cafe td img:hover {
+div.content div.dog-display div.table-data table.table-cafe td img:hover {
     height: 2.5vh;
     padding-top: 0.2vh;
     cursor: pointer;
 }
 
-div.content div.dog-display iframe.form-add-cafe-dog {
-    width: inherit;
-    height: inherit;
-    /* background-color: cadetblue; */
-    border: 0px;
-    overflow-x: hidden;
+div.content div.dog-display div.table-data table.table-cafe tbody {
+    /* background-color: pink; */
+    height: 2vh;
     margin: 0;
-    padding: 0;
+    overflow-y: scroll;
 }
 
 div.content div.add-dog-botton {
     position: relative;
     font-size: 2vh;
     bottom: -4.5vh;
-    left: 24.3vw;
+    left: 38.5vw;
     color: #5C4031;
 }
 
 div.content div.add-dog-botton:hover {
-    position: relative;
-    font-size: 2vh;
-    bottom: -4.5vh;
-    left: 24.3vw;
-    color: #796648;
+    color: #AC9B68;
     cursor: pointer;
-    /* background-color: pink; */
 }
 
 /* popup : deposit-form */

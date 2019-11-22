@@ -159,6 +159,7 @@ div.popup {
     font-size: 100px;
     display: inline-block;
     text-align: center;
+    visibility: hidden;
 }
 
 div.popup div.popup-bg {

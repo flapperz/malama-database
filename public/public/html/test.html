@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>DOG</title>
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <link rel="stylesheet" type="text/css" href="../css/dog.css" />
+
+        <link href="https://fonts.googleapis.com/css?family=Kodchasan"
+            rel="stylesheet" />
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="../script.js"></script>
+        <!-- <script>getCafeDog()</script> -->
+    </head>
+
+    <body>
+        <!-- Nav template -->
+        <div class="big-bg">
+            <div class="nav-bg">
+                <div class="nav-box-1">
+                    <img class="logo1" src="../img/logo1.jpg" />
+                </div>
+                <div class="nav-box-2">
+                    <div class="nav-link">
+                        <a href="home.html">HOME</a>
+                        <a href="dog.html">DOG</a>
+                        <a href="hostel.html">HOSTEL</a>
+                        <!-- <a href="member.html">MEMBER</a> -->
+                    </div>
+                </div>
+                <div class="nav-box-3">
+                    <img class="user" src="../img/user.png" />
+                    <img class="drop-down-hover"
+                        src="../img/drop-down-hover.png" />
+                    <img class="drop-down" src="../img/drop-down.png" />
+                </div>
+
+                <div class="content">
+
+                    <img class="dogs" src="../img/dogs.png" />
+                    <div class="option-bar">
+                        <p class="option-bar-text">ALL</p>
+                        <p class="option-bar-text">|</p>
+                        <p class="option-bar-text" onclick="getCafeDog()">CAFE</p>
+                        <p class="option-bar-text">|</p>
+                        <p class="option-bar-text">DEPOSITION</p>
+                    </div>
+                    <br>
+                    <div class="search-bar"></div>
+                    <br>
+                    <div class="dog-display" id="dog-display">
+
+                        <table class="table-cafe">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NAME</th>
+                                    <th>BREED</th>
+                                    <th>BIRTHDATE</th>
+                                    <th>WEIGHT</th>
+                                    <th>COMPANY</th>
+                                    <th>PRICE</th>
+                                    <th>LAST_CHECK</th>
+                                    <th>LAST_BATH</th>
+                                    <th>HEALTH</th>
+                                    <th>SHOWTIME</th>
+                                    <th>EDIT</th>
+                                    <th>DELETE</th>
+                                </tr>
+                            </thead>
+                        </table>
+
+                        <div class="table-data">
+                            <table class="table-cafe">
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>oil_love_dog</td>
+                                        <td>bernese_edit</td>
+                                        <td>1990-01-28</td>
+                                        <td>1990</td>
+                                        <td>chula_edit</td>
+                                        <td>1990</td>
+                                        <td>1990-01-28</td>
+                                        <td>1990-01-28</td>
+                                        <td>NO</td>
+                                        <td>10-14</td>
+                                        <td><img src="../img/pencil.png"
+                                                onclick="edit(1)" /></td>
+                                        <td><img src="../img/bin.png"
+                                                onclick="delCafeDog(1)" /></td>
+                                    </tr>
+
+                                    <div
+                                        class="table-data"><table
+                                            class="table-cafe"><tbody><tr><td>2</td><td>dog_love_oil</td><td>oil</td><td>1998-06-03</td><td>80</td><td>OIL's
+                                                        heart</td><td>10000000</td><td>1998-06-03</td><td>1998-06-03</td><td>NO</td><td>14-18</td><td><img
+                                                            src="../img/pencil.png"
+                                                            onclick="edit(2)" /></td><td><img
+                                                            src="../img/bin.png"
+                                                            onclick="delCafeDog(2)"></td></tr><div
+                                                    class="table-data"><table
+                                                        class="table-cafe"><tbody><tr><td>4</td><td>oil_is_a_dog</td><td>bink</td><td>1999-09-05</td><td>12</td><td>nice</td><td>5</td><td>1999-09-05</td><td>1999-09-05</td><td>YES</td><td>10-14</td><td><img
+                                                                        src="../img/pencil.png"
+                                                                        onclick="edit(4)"
+                                                                        /></td><td><img
+                                                                        src="../img/bin.png"
+                                                                        onclick="delCafeDog(4)"></td></tr><div
+                                                                class="table-data"><table
+                                                                    class="table-cafe"><tbody><tr><td>5</td><td>Ajinn</td><td>English
+                                                                                Cocker</td><td>1999-12-10</td><td>12</td><td>dontknow</td><td>12</td><td>1999-12-10</td><td>1999-12-10</td><td>yes</td><td>14-18</td><td><img
+                                                                                    src="../img/pencil.png"
+                                                                                    onclick="edit(5)"
+                                                                                    /></td><td><img
+                                                                                    src="../img/bin.png"
+                                                                                    onclick="delCafeDog(5)"></td></tr><div
+                                                                            class="table-data"><table
+                                                                                class="table-cafe"><tbody><tr><td>6</td><td>Ajinn</td><td>English
+                                                                                            Cocker</td><td>1999-12-10</td><td>12</td><td>dontknow</td><td>12</td><td>1999-12-10</td><td>1999-12-10</td><td>yes</td><td>14-18</td><td><img
+                                                                                                src="../img/pencil.png"
+                                                                                                onclick="edit(6)"
+                                                                                                /></td><td><img
+                                                                                                src="../img/bin.png"
+                                                                                                onclick="delCafeDog(6)"></td></tr><div
+                                                                                        class="table-data"><table
+                                                                                            class="table-cafe"><tbody><tr><td>7</td><td>Ajinn</td><td>English
+                                                                                                        Cocker</td><td>1999-12-10</td><td>12</td><td>dontknow</td><td>12</td><td>1999-12-10</td><td>1999-12-10</td><td>yes</td><td>14-18</td><td><img
+                                                                                                            src="../img/pencil.png"
+                                                                                                            onclick="edit(7)"
+                                                                                                            /></td><td><img
+                                                                                                            src="../img/bin.png"
+                                                                                                            onclick="delCafeDog(7)"></td></tr><div
+                                                                                                    class="table-data"><table
+                                                                                                        class="table-cafe"><tbody><tr><td>8</td><td>Ajinn</td><td>English
+                                                                                                                    Cocker</td><td>1999-12-10</td><td>12</td><td>dontknow</td><td>12</td><td>1999-12-10</td><td>1999-12-10</td><td>yes</td><td>14-18</td><td><img
+                                                                                                                        src="../img/pencil.png"
+                                                                                                                        onclick="edit(8)"
+                                                                                                                        /></td><td><img
+                                                                                                                        src="../img/bin.png"
+                                                                                                                        onclick="delCafeDog(8)"></td></tr><div
+                                                                                                                class="table-data"><table
+                                                                                                                    class="table-cafe"><tbody><tr><td>9</td><td>Ajinn</td><td>English
+                                                                                                                                Cocker</td><td>1999-12-10</td><td>12</td><td>dontknow</td><td>12</td><td>1999-12-10</td><td>1999-12-10</td><td>yes</td><td>14-18</td><td><img
+                                                                                                                                    src="../img/pencil.png"
+                                                                                                                                    onclick="edit(9)"
+                                                                                                                                    /></td><td><img
+                                                                                                                                    src="../img/bin.png"
+                                                                                                                                    onclick="delCafeDog(9)"></td></tr><div
+                                                                                                                            class="table-data"><table
+                                                                                                                                class="table-cafe"><tbody><tr><td>10</td><td>Ajinn</td><td>English
+                                                                                                                                            Cocker</td><td>1999-12-10</td><td>12</td><td>dontknow</td><td>12</td><td>1999-12-10</td><td>1999-12-10</td><td>yes</td><td>14-18</td><td><img
+                                                                                                                                                src="../img/pencil.png"
+                                                                                                                                                onclick="edit(10)"
+                                                                                                                                                /></td><td><img
+                                                                                                                                                src="../img/bin.png"
+                                                                                                                                                onclick="delCafeDog(10)"></td></tr><div
+                                                                                                                                        class="table-data"><table
+                                                                                                                                            class="table-cafe"><tbody><tr><td>11</td><td>Ajinn</td><td>English
+                                                                                                                                                        Cocker</td><td>1999-12-10</td><td>12</td><td>dontknow</td><td>12</td><td>1999-12-10</td><td>1999-12-10</td><td>yes</td><td>14-18</td><td><img
+                                                                                                                                                            src="../img/pencil.png"
+                                                                                                                                                            onclick="edit(11)"
+                                                                                                                                                            /></td><td><img
+                                                                                                                                                            src="../img/bin.png"
+                                                                                                                                                            onclick="delCafeDog(11)"></td></tr></tbody></table></div>
+                                                                                                                                    <p
+                                                                                                                                        class="each-all"></p>
+                                                                                                                                </div>
+                                                                                                                                <div
+                                                                                                                                    class="add-dog-botton"
+                                                                                                                                    onclick="showFormAddCafeDog()">+
+                                                                                                                                    ADD
+                                                                                                                                    DOG</div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </body>
+                                                                                                            </html>
