@@ -496,6 +496,33 @@ function editCustomerDog() {
   }
 }
 
+function editCustomerDog_(id) {
+  console.log('editCustomerDog : ' + id);
+  showFormEditCustomerDog();
+  edit_id = id;
+  var find = findCustomerDog(id);
+  find.then(dog => {
+    $("[id='edit_customerDog_dog_name']").val(dog.dog_name);
+    $("[id='edit_customerDog_breed']").val(dog.breed);
+    $("[id='edit_customerDog_date_of_birth']").val(dog.date_of_birth);
+    $("[id='edit_customerDog_weight']").val(dog.weight);
+  });
+}
+
+function delCustomerDog(id) {
+  try {
+    axios
+      .delete('http://localhost:5000/del/customer_dog/' + id)
+      .then(response => {
+        console.log(response.data);
+        window.alert('ID: ' + id + ' Successfully delete');
+        getCustomerDog();
+      });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function getCustomerDog() {
   setPage('CUSTOMER');
   try {
@@ -527,7 +554,7 @@ function getCustomerDog() {
           WEIGHT +
           '</td><td><img src="../img/pencil.png" onclick="editCustomerDog_(' +
           ID +
-          ')" /></td><td><img src="../img/bin.png" onclick="delCafeDog(' +
+          ')" /></td><td><img src="../img/bin.png" onclick="delCustomerDog(' +
           ID +
           ')"></td></tr>';
       }
@@ -540,19 +567,6 @@ function getCustomerDog() {
     console.log('failed');
     console.error(error);
   }
-}
-
-function editCustomerDog_(id) {
-  console.log('editCustomerDog : ' + id);
-  showFormEditCustomerDog();
-  edit_id = id;
-  var find = findCustomerDog(id);
-  find.then(dog => {
-    $("[id='edit_customerDog_dog_name']").val(dog.dog_name);
-    $("[id='edit_customerDog_breed']").val(dog.breed);
-    $("[id='edit_customerDog_date_of_birth']").val(dog.date_of_birth);
-    $("[id='edit_customerDog_weight']").val(dog.weight);
-  });
 }
 
 function addCustomerDog() {
