@@ -44,7 +44,7 @@
           <div class="option-bar">
             <p class="option-bar-text" onclick="getCafeDog()">CAFE</p>
             <p class="option-bar-text">|</p>
-            <p class="option-bar-text">CUSTOMER</p>
+            <p class="option-bar-text" onclick="getCustomerDog()">CUSTOMER</p>
             <p class="option-bar-text">|</p>
             <p class="option-bar-text">DEPOSITION</p>
           </div>
@@ -74,7 +74,7 @@
         </div>
       </div>
     </div>
-
+    <!-----------ADD---CAFE----Dog----------->
     <div class="popup" id="popup-add-cafeDog">
       <div class="popup-bg"></div>
       <div class="form-bg">
@@ -241,6 +241,183 @@
           </form>
         </div>
         <div class="submit-botton" onclick="editCafeDog()">
+          <p>Submit</p>
+        </div>
+      </div>
+    </div>
+    <!-----------ADD---CUSTOMER----Dog----------->
+    <div class="popup" id="popup-add-customerDog">
+      <div class="popup-bg"></div>
+      <div class="form-bg">
+        <img
+          onclick="hideFormAddCafeDog()"
+          src="../img/close.png"
+          class="close"
+        />
+        <span class="form-name">
+          <p>ADD CAFE DOG</p>
+        </span>
+        <div class="dog-information-bg">
+          <span class="dog-information-name">
+            <p>Dog Information</p>
+          </span>
+          <form id="add-cafeDog-form" class="form">
+            <input
+              type="text"
+              id="dog_name"
+              name="dog_name"
+              placeholder="NAME"
+            />
+            <input type="text" id="breed" name="breed" placeholder="BREED" />
+            <input
+              type="text"
+              id="date_of_birth"
+              name="date_of_birth"
+              placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)"
+            />
+
+            <input
+              type="text"
+              id="weight"
+              name="weight"
+              placeholder="WEIGHT in
+                Kg (ex. 3.5)"
+            />
+
+            <input
+              type="text"
+              id="sourcing_company"
+              name="sourcing_company"
+              placeholder="SOURCING COMPANY"
+            />
+
+            <input
+              type="text"
+              id="brought_price"
+              name="brought_price"
+              placeholder="BROUGHT PRICE (BAHT)"
+            />
+
+            <input
+              type="text"
+              id="last_checkup_date"
+              name="last_checkup_date"
+              placeholder="Last_Checkup_Date (YYYY-MM-DD ex.1999-12-01)"
+            />
+            <input
+              type="text"
+              id="last_bath_date"
+              name="last_bath_date"
+              placeholder="Last_Bath_Date (YYYY-MM-DD ex. 1999-12-01)"
+            />
+            <select id="health_status" name="health_status">
+              <option value="" disabled selected hidden
+                >HEALTH STATUS (fine=no/sick=yes)
+              </option>
+              <option value="NO">NO</option>
+              <option value="YES">YES</option>
+            </select>
+            <select id="show-time" name="show-time">
+              <option value="" disabled selected hidden>SHOW TIME</option>
+              <option value="10-14">10-14</option>
+              <option value="14-18">14-18</option>
+              <option value="18-21">18-21</option>
+              <option value="NO SHOWTIME">NO SHOWTIME</option>
+            </select>
+          </form>
+        </div>
+        <div class="submit-botton" onclick="addCafeDog()">
+          <p>Submit</p>
+        </div>
+      </div>
+    </div>
+    <!-----------EDIT---CUSTOMER----Dog----------->
+    <div class="popup" id="popup-edit-customerDog">
+      <div class="popup-bg"></div>
+      <div class="form-bg">
+        <img
+          onclick="hideFormEditCustomerDog()"
+          src="../img/close.png"
+          class="close"
+        />
+        <span class="form-name">
+          <p>EDIT CUSTOMER DOG</p>
+        </span>
+        <div class="dog-information-bg">
+          <span class="dog-information-name">
+            <p>Dog Information</p>
+          </span>
+          <form id="edit-customerDog-form">
+            <input
+              type="text"
+              id="edit_customerDog_dog_name"
+              name="dog_name"
+              placeholder="NAME"
+            />
+            <input
+              type="text"
+              id="edit_customerDog_breed"
+              name="breed"
+              placeholder="BREED"
+            />
+            <input
+              type="text"
+              id="edit_customerDog_date_of_birth"
+              name="date_of_birth"
+              placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)"
+            />
+
+            <input
+              type="text"
+              id="edit_customerDog_weight"
+              name="weight"
+              placeholder="WEIGHT in
+                      Kg (ex. 3.5)"
+            />
+
+            <input
+              type="text"
+              id="edit_customerDog_sourcing_company"
+              name="sourcing_company"
+              placeholder="SOURCING COMPANY"
+            />
+
+            <input
+              type="text"
+              id="edit_customerDog_brought_price"
+              name="brought_price"
+              placeholder="BROUGHT PRICE (BAHT)"
+            />
+
+            <input
+              type="text"
+              id="edit_customerDog_last_checkup_date"
+              name="last_checkup_date"
+              placeholder="Last_Checkup_Date (YYYY-MM-DD ex.1999-12-01)"
+            />
+            <input
+              type="text"
+              id="edit_customerDog_last_bath_date"
+              name="last_bath_date"
+              placeholder="Last_Bath_Date (YYYY-MM-DD ex. 1999-12-01)"
+            />
+            <select id="edit_customerDog_health_status" name="health_status">
+              <option value="" disabled selected hidden
+                >HEALTH STATUS (fine=no/sick=yes)
+              </option>
+              <option value="NO">NO</option>
+              <option value="YES">YES</option>
+            </select>
+            <select id="edit_customerDog_show-time" name="show-time">
+              <option value="" disabled selected hidden>SHOW TIME</option>
+              <option value="10-14">10-14</option>
+              <option value="14-18">14-18</option>
+              <option value="18-21">18-21</option>
+              <option value="NO SHOWTIME">NO SHOWTIME</option>
+            </select>
+          </form>
+        </div>
+        <div class="submit-botton" onclick="editCustomerDog()">
           <p>Submit</p>
         </div>
       </div>

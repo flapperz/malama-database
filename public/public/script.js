@@ -2,6 +2,7 @@
 
 var max_id = 0;
 var edit_id = 0;
+var page = '';
 
 //--------Form Managrment---------------
 
@@ -17,6 +18,16 @@ function hideFormEditCafeDog() {
   clearFormEditCafeDog();
 }
 
+function hideFormAddCustomerDog() {
+  document.getElementById('popup-add-customerDog').style.visibility = 'hidden';
+  clearFormAddCafeDog();
+}
+
+function hideFormEditCustomerDog() {
+  document.getElementById('popup-edit-customerDog').style.visibility = 'hidden';
+  clearFormEditCafeDog();
+}
+
 //----------------Form Management (SHOW)
 
 function showFormAddCafeDog() {
@@ -25,6 +36,15 @@ function showFormAddCafeDog() {
 
 function showFormEditCafeDog() {
   document.getElementById('popup-edit-cafeDog').style.visibility = 'visible';
+}
+
+function showFormAddCustomerDog() {
+  document.getElementById('popup-add-customerDog').style.visibility = 'visible';
+}
+
+function showFormEditCustomerDog() {
+  document.getElementById('popup-edit-customerDog').style.visibility =
+    'visible';
 }
 
 //----------------Form Management (CLEAR)
@@ -63,6 +83,8 @@ function addError(error, message) {
 }
 
 //--------------API-----------------
+
+//cafeDog
 
 function findCafeDog(id) {
   try {
@@ -155,7 +177,7 @@ function editCafeDog() {
   }
 }
 
-function edit(id) {
+function editCafeDog_(id) {
   showFormEditCafeDog();
   edit_id = id;
 
@@ -232,7 +254,7 @@ function getCafeDog() {
           HEALTH +
           '</td><td>' +
           SHOWTIME +
-          '</td><td><img src="../img/pencil.png" onclick="edit(' +
+          '</td><td><img src="../img/pencil.png" onclick="editCafeDog_(' +
           ID +
           ')" /></td><td><img src="../img/bin.png" onclick="delCafeDog(' +
           ID +
@@ -240,7 +262,7 @@ function getCafeDog() {
       }
       html += '</tbody></table></div>';
       document.getElementById('dog-display').innerHTML = html;
-      console.log(html);
+      // console.log(html);
     });
   } catch (error) {
     console.log('failed');
@@ -357,7 +379,7 @@ function searchCafeDog() {
             HEALTH +
             '</td><td>' +
             SHOWTIME +
-            '</td><td><img src="../img/pencil.png" onclick="edit(' +
+            '</td><td><img src="../img/pencil.png" onclick="editCafeDog_(' +
             ID +
             ')" /></td><td><img src="../img/bin.png" onclick="delCafeDog(' +
             ID +
@@ -374,121 +396,100 @@ function searchCafeDog() {
   }
 }
 
-// function getCustomerDog() {
-//   try {
-//     const response = await axios.get("http://localhost:5000/customerdog");
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+//customerDog
 
-// function addCafeDog() {
-//   //มาแก้ parameter ที่ส่งด้วยจ้าาาาา : 3
-//   try {
-//     const response = await axios.post("http://localhost:5000/cafedog", {
-//       dog_id: 99,
-//       dog_name: "OIL",
-//       breed: "EnglishCocker",
-//       date_of_birth: "1999-12-11",
-//       weight: "12",
-//       last_checkup_date: "1999-12-11",
-//       last_bath_date: "1999-12-11",
-//       health_status: "yes",
-//       sourcing_company: "dontknow",
-//       brought_price: "12",
-//       showtime: "14-18"
-//     });
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+// "dog_id": 1,
+// "dog_name": "oil",
+// "breed": "oil",
+// "date_of_birth": "1999-12-09T17:00:00.000Z",
+// "weight": 12
 
-// function addCustomerDog() {
-//   //มาแก้ parameter ที่ส่งด้วยจ้าาาาา : 3
-//   try {
-//     const response = await axios.post("http://localhost:5000/customerdog", {
-//       dog_id: 999,
-//       dog_name: "OIL",
-//       breed: "EnglishCocker",
-//       date_of_birth: "1999-12-11",
-//       weight: "12"
-//     });
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+function findCustomerDog(id) {
+  try {
+    return axios.get('http://localhost:5000/customerdog').then(response => {
+      // console.log(response);
+      var dog;
+      for (let i = 0; i < response.data.length; i++) {
+        if (response.data[i].dog_id == id) {
+          dog = {
+            dog_id: id,
+            dog_name: response.data[i].dog_name,
+            breed: response.data[i].breed,
+            date_of_birth: response.data[i].date_of_birth.slice(0, 10),
+            weight: response.data[i].weight
+          };
+          // console.log('return');
+          // console.log(dog);
+          return dog;
+        }
+      }
+    });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
+  }
+}
 
-// function getCafeDogByName(name) {
-//   try {
-//     const response = await axios.get("http://localhost:5000/cafe_dog/" + name);
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+function getCustomerDog() {
+  try {
+    axios.get('http://localhost:5000/customerdog').then(response => {
+      console.log(response);
+      var html =
+        '<table class="table-cafe"><thead><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>EDIT</th><th>DELETE</th></tr></thead></table>';
 
-// function getCustomerDogByName(name) {
-//   try {
-//     const response = await axios.get(
-//       "http://localhost:5000/customer_dog/" + name
-//     );
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+      html += '<div class="table-data"><table class="table-cafe"><tbody>';
+      for (let i = 0; i < response.data.length; i++) {
+        const ID = response.data[i].dog_id;
+        const NAME = response.data[i].dog_name;
+        const BREED = response.data[i].breed;
+        // const BIRTHDATE = response.data[i].date_of_birth;
+        const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
+        const WEIGHT = response.data[i].weight;
+        max_id = max_id > ID ? max_id : ID;
 
-// function updateCafeDogByID(id) {
-//   //มาแก้ parameter ที่ส่งด้วยจ้าาาาา : 3
-//   try {
-//     const response = await axios.put("http://localhost:5000/cafedog/" + id, {
-//       dog_id: id,
-//       dog_name: "EDIT",
-//       breed: "EnglishCocker",
-//       date_of_birth: "1999-12-11",
-//       weight: "12",
-//       last_checkup_date: "1999-12-11",
-//       last_bath_date: "1999-12-11",
-//       health_status: "yes",
-//       sourcing_company: "dontknow",
-//       brought_price: "12",
-//       showtime: "14-18"
-//     });
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+        html +=
+          '<tr><td>' +
+          ID +
+          '</td><td>' +
+          NAME +
+          '</td><td>' +
+          BREED +
+          '</td><td>' +
+          BIRTHDATE +
+          '</td><td>' +
+          WEIGHT +
+          '</td><td><img src="../img/pencil.png" onclick="editCustomerDog_(' +
+          ID +
+          ')" /></td><td><img src="../img/bin.png" onclick="delCafeDog(' +
+          ID +
+          ')"></td></tr>';
+      }
+      html += '</tbody></table></div>';
+      document.getElementById('dog-display').innerHTML = html;
+      // console.log(html);
+      console.log('getCustomerDog');
+    });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
+  }
+}
 
-// function updateCustomerDogByID(id) {
-//   //มาแก้ parameter ที่ส่งด้วยจ้าาาาา : 3
-//   try {
-//     const response = await axios.put(
-//       "http://localhost:5000/customerdog/" + id,
-//       {
-//         dog_id: id,
-//         dog_name: "EDIT",
-//         breed: "EnglishCocker",
-//         date_of_birth: "1999-12-11",
-//         weight: "12"
-//       }
-//     );
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-// getCafeDog();
-// getCustomerDog();
-// addCafeDog();
-// addCustomerDog();
-
-//if ในหน้า form ว่าถ้าไม่กรอกห้ามใส่ !!!!!
-// getCafeDogByName("oil");
-// getCustomerDogByName("oil");
-// updateCafeDogByID(2);
-// updateCustomerDogByID(1);
+function editCustomerDog_(id) {
+  console.log('editCustomerDog : ' + id);
+  showFormEditCustomerDog();
+  edit_id = id;
+  var find = findCustomerDog(id);
+  // find.then(dog => {
+  //   $("[name='dog_name']").val(dog.dog_name);
+  //   $("[name='breed']").val(dog.breed);
+  //   $("[name='date_of_birth']").val(dog.date_of_birth);
+  //   $("[name='weight']").val(dog.weight);
+  //   $("[name='sourcing_company']").val(dog.sourcing_company);
+  //   $("[name='brought_price']").val(dog.brought_price);
+  //   $("[name='last_checkup_date']").val(dog.last_checkup_date);
+  //   $("[name='last_bath_date']").val(dog.last_bath_date);
+  //   $("[name='health_status']").val(dog.health_status);
+  //   $("[name='show-time']").val(dog.showtime);
+  // });
+}
