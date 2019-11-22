@@ -36,13 +36,16 @@ div.content div.option-bar p.option-bar-text:hover {
 div.content div.search-bar {
     display: inline-block;
     position: relative;
-    background-color: pink;
+    /* background-color: pink; */
     top: 15px;
-    width: 240px;
+    left: -7px;
+    width: 280px;
     height: 30px;
 }
 
 div.content div.search-bar form input {
+    position: relative;
+    display: inline-block;
     width: 200px;
     height: 20px;
     border: none;
@@ -50,6 +53,24 @@ div.content div.search-bar form input {
     text-align: center;
     border-radius: 15px;
     background-color: white;
+}
+
+div.content div.search-bar img.search-img {
+    height: 30px;
+    right: 0px;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+}
+
+div.content div.search-bar img.search-img:hover {
+    height: 33px;
+    right: -1.5px;
+    top: -1.5px;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 div.content div.dog-display {

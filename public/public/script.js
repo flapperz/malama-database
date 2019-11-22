@@ -303,6 +303,72 @@ function addCafeDog() {
   }
 }
 
+function searchCafeDog() {
+  const search_name = $("[id='search_form']").val();
+  console.log(search_name);
+  try {
+    axios
+      .get('http://localhost:5000/cafe_dog/' + search_name)
+      .then(response => {
+        console.log(response);
+        var html =
+          '<table class="table-cafe"><thead><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>COMPANY</th><th>PRICE</th><th>LAST_CHECK</th><th>LAST_BATH</th><th>HEALTH</th><th>SHOWTIME</th><th>EDIT</th><th>DELETE</th></tr></thead></table>';
+
+        html += '<div class="table-data"><table class="table-cafe"><tbody>';
+        for (let i = 0; i < response.data.length; i++) {
+          const ID = response.data[i].dog_id;
+          const NAME = response.data[i].dog_name;
+          const BREED = response.data[i].breed;
+          // const BIRTHDATE = response.data[i].date_of_birth;
+          const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
+          const WEIGHT = response.data[i].weight;
+          const COMPANY = response.data[i].sourcing_company;
+          const PRICE = response.data[i].brought_price;
+          const LAST_CHECK = response.data[i].last_checkup_date.slice(0, 10);
+          const LAST_BATH = response.data[i].last_bath_date.slice(0, 10);
+          const HEALTH = response.data[i].health_status;
+          const SHOWTIME = response.data[i].showtime;
+          max_id = max_id > ID ? max_id : ID;
+
+          html +=
+            '<tr><td>' +
+            ID +
+            '</td><td>' +
+            NAME +
+            '</td><td>' +
+            BREED +
+            '</td><td>' +
+            BIRTHDATE +
+            '</td><td>' +
+            WEIGHT +
+            '</td><td>' +
+            COMPANY +
+            '</td><td>' +
+            PRICE +
+            '</td><td>' +
+            LAST_CHECK +
+            '</td><td>' +
+            LAST_BATH +
+            '</td><td>' +
+            HEALTH +
+            '</td><td>' +
+            SHOWTIME +
+            '</td><td><img src="../img/pencil.png" onclick="edit(' +
+            ID +
+            ')" /></td><td><img src="../img/bin.png" onclick="delCafeDog(' +
+            ID +
+            ')"></td></tr>';
+        }
+        html += '</tbody></table></div>';
+        document.getElementById('dog-display').innerHTML = html;
+        console.log(html);
+      });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
+  }
+}
+
 // function getCustomerDog() {
 //   try {
 //     const response = await axios.get("http://localhost:5000/customerdog");
