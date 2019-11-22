@@ -38,7 +38,7 @@ div.content div.search-bar {
     position: relative;
     /* background-color: pink; */
     top: 15px;
-    left: -7px;
+    left: -11px;
     width: 280px;
     height: 30px;
 }
@@ -57,7 +57,7 @@ div.content div.search-bar form input {
 
 div.content div.search-bar img.search-img {
     height: 30px;
-    right: 0px;
+    right: -3px;
     display: inline-block;
     position: absolute;
     border-radius: 50%;
@@ -65,7 +65,7 @@ div.content div.search-bar img.search-img {
 
 div.content div.search-bar img.search-img:hover {
     height: 33px;
-    right: -1.5px;
+    right: -4.5px;
     top: -1.5px;
     display: inline-block;
     position: absolute;
