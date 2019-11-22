@@ -6,6 +6,15 @@ var max_id_customer = 0;
 var edit_id = 0;
 var page = '';
 
+//-------OTHERS-------------------------
+function setPage(thisPage) {
+  page = thisPage;
+  if (page == 'CAFE') {
+  } else if (page == 'CUSTOMER') {
+  } else if (page == 'DEPOSTION') {
+  }
+}
+
 //--------Form Managrment---------------
 
 //----------------Form Management (HIDE)
@@ -31,6 +40,14 @@ function hideFormEditCustomerDog() {
 }
 
 //----------------Form Management (SHOW)
+
+function showFormAddDog() {
+  if (page == 'CAFE') {
+    showFormAddCafeDog();
+  } else if (page == 'CUSTOMER') {
+    showFormAddCustomerDog();
+  }
+}
 
 function showFormAddCafeDog() {
   document.getElementById('popup-add-cafeDog').style.visibility = 'visible';
@@ -211,6 +228,7 @@ function delCafeDog(id) {
 }
 
 function getCafeDog() {
+  setPage('CAFE');
   try {
     axios.get('http://localhost:5000/cafedog').then(response => {
       console.log(response);
@@ -433,6 +451,7 @@ function findCustomerDog(id) {
 }
 
 function getCustomerDog() {
+  setPage('CUSTOMER');
   try {
     axios.get('http://localhost:5000/customerdog').then(response => {
       console.log(response);
@@ -503,25 +522,7 @@ function addCustomerDog() {
   var BREED = $("[name='breed']").val();
   var BIRTHDATE = $("[name='date_of_birth']").val();
   var WEIGHT = $("[name='weight']").val();
-  var COMPANY = $("[name='sourcing_company']").val();
-  var PRICE = $("[name='brought_price']").val();
-  var LAST_CHECK = $("[name='last_checkup_date']").val();
-  var LAST_BATH = $("[name='last_bath_date']").val();
-  var HEALTH = $("[name='health_status']").val();
-  var SHOWTIME = $("[name='show-time']").val();
-
-  if (
-    NAME == '' ||
-    BREED == '' ||
-    BIRTHDATE == '' ||
-    WEIGHT == '' ||
-    COMPANY == '' ||
-    PRICE == '' ||
-    LAST_CHECK == '' ||
-    LAST_BATH == '' ||
-    HEALTH == null ||
-    SHOWTIME == null
-  ) {
+  if (NAME == '' || BREED == '' || BIRTHDATE == '' || WEIGHT == '') {
     error = addError(error, 'Fields required');
   }
 
@@ -530,24 +531,18 @@ function addCustomerDog() {
     return;
   } else {
     axios
-      .post('http://localhost:5000/cafedog', {
+      .post('http://localhost:5000/customerdog', {
         dog_id: ID,
         dog_name: NAME,
         breed: BREED,
         date_of_birth: BIRTHDATE,
-        weight: WEIGHT,
-        last_checkup_date: LAST_CHECK,
-        last_bath_date: LAST_BATH,
-        health_status: HEALTH,
-        sourcing_company: COMPANY,
-        brought_price: PRICE,
-        showtime: SHOWTIME
+        weight: WEIGHT
       })
       .then(function(response) {
         console.log(response);
         max_id_customer = ID;
-        hideFormAddCafeDog();
-        getCafeDog();
+        hideFormAddCustomerDog();
+        getCustomerDog();
       })
       .catch(function(error) {
         console.log(error);

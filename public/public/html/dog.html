@@ -68,7 +68,7 @@
           <div class="dog-display" id="dog-display">
             <p class="each-all"></p>
           </div>
-          <div class="add-dog-botton" onclick="showFormAddCafeDog()">
+          <div class="add-dog-botton" onclick="showFormAddDog()">
             + ADD DOG
           </div>
         </div>
@@ -264,66 +264,30 @@
           <form id="add-customerDog-form" class="form">
             <input
               type="text"
-              id="dog_name"
+              id="dog_name_customer"
               name="dog_name"
               placeholder="NAME"
             />
-            <input type="text" id="breed" name="breed" placeholder="BREED" />
             <input
               type="text"
-              id="date_of_birth"
+              id="breed_customer"
+              name="breed"
+              placeholder="BREED"
+            />
+            <input
+              type="text"
+              id="date_of_birth_customer_customer"
               name="date_of_birth"
               placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)"
             />
 
             <input
               type="text"
-              id="weight"
+              id="weight_customer"
               name="weight"
               placeholder="WEIGHT in
                 Kg (ex. 3.5)"
             />
-
-            <input
-              type="text"
-              id="sourcing_company"
-              name="sourcing_company"
-              placeholder="SOURCING COMPANY"
-            />
-
-            <input
-              type="text"
-              id="brought_price"
-              name="brought_price"
-              placeholder="BROUGHT PRICE (BAHT)"
-            />
-
-            <input
-              type="text"
-              id="last_checkup_date"
-              name="last_checkup_date"
-              placeholder="Last_Checkup_Date (YYYY-MM-DD ex.1999-12-01)"
-            />
-            <input
-              type="text"
-              id="last_bath_date"
-              name="last_bath_date"
-              placeholder="Last_Bath_Date (YYYY-MM-DD ex. 1999-12-01)"
-            />
-            <select id="health_status" name="health_status">
-              <option value="" disabled selected hidden
-                >HEALTH STATUS (fine=no/sick=yes)
-              </option>
-              <option value="NO">NO</option>
-              <option value="YES">YES</option>
-            </select>
-            <select id="show-time" name="show-time">
-              <option value="" disabled selected hidden>SHOW TIME</option>
-              <option value="10-14">10-14</option>
-              <option value="14-18">14-18</option>
-              <option value="18-21">18-21</option>
-              <option value="NO SHOWTIME">NO SHOWTIME</option>
-            </select>
           </form>
         </div>
         <div class="submit-botton" onclick="addCustomerDog()">
