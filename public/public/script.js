@@ -527,16 +527,16 @@ function editCustomerDog_(id) {
 }
 
 function addCustomerDog() {
+  console.log('addCustomerDog');
   var error = '';
   var ID = max_id_customer + 1;
-  var NAME = $("[name='dog_name']").val();
-  var BREED = $("[name='breed']").val();
-  var BIRTHDATE = $("[name='date_of_birth']").val();
-  var WEIGHT = $("[name='weight']").val();
+  var NAME = $("[id='dog_name_customer']").val();
+  var BREED = $("[id='breed_customer']").val();
+  var BIRTHDATE = $("[id='date_of_birth_customer']").val();
+  var WEIGHT = $("[id='weight_customer']").val();
   if (NAME == '' || BREED == '' || BIRTHDATE == '' || WEIGHT == '') {
     error = addError(error, 'Fields required');
   }
-
   if (error != '') {
     window.alert(error);
     return;
