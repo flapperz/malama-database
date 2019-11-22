@@ -305,7 +305,7 @@
     <!-----------EDIT---CUSTOMER----Dog----------->
     <div class="popup" id="popup-edit-customerDog">
       <div class="popup-bg"></div>
-      <div class="form-bg">
+      <div class="form-bg" id="form-bg-edit-customerDog">
         <img
           onclick="hideFormEditCustomerDog()"
           src="../img/close.png"
@@ -314,11 +314,14 @@
         <span class="form-name">
           <p>EDIT CUSTOMER DOG</p>
         </span>
-        <div class="dog-information-bg">
+        <div
+          class="dog-information-bg"
+          id="dog-information-bg-edit-customer-dog"
+        >
           <span class="dog-information-name">
             <p>Dog Information</p>
           </span>
-          <form id="edit-customerDog-form">
+          <form id="edit-customerDog-form" class="form">
             <input
               type="text"
               id="edit_customerDog_dog_name"
@@ -345,47 +348,6 @@
               placeholder="WEIGHT in
                       Kg (ex. 3.5)"
             />
-
-            <input
-              type="text"
-              id="edit_customerDog_sourcing_company"
-              name="sourcing_company"
-              placeholder="SOURCING COMPANY"
-            />
-
-            <input
-              type="text"
-              id="edit_customerDog_brought_price"
-              name="brought_price"
-              placeholder="BROUGHT PRICE (BAHT)"
-            />
-
-            <input
-              type="text"
-              id="edit_customerDog_last_checkup_date"
-              name="last_checkup_date"
-              placeholder="Last_Checkup_Date (YYYY-MM-DD ex.1999-12-01)"
-            />
-            <input
-              type="text"
-              id="edit_customerDog_last_bath_date"
-              name="last_bath_date"
-              placeholder="Last_Bath_Date (YYYY-MM-DD ex. 1999-12-01)"
-            />
-            <select id="edit_customerDog_health_status" name="health_status">
-              <option value="" disabled selected hidden
-                >HEALTH STATUS (fine=no/sick=yes)
-              </option>
-              <option value="NO">NO</option>
-              <option value="YES">YES</option>
-            </select>
-            <select id="edit_customerDog_show-time" name="show-time">
-              <option value="" disabled selected hidden>SHOW TIME</option>
-              <option value="10-14">10-14</option>
-              <option value="14-18">14-18</option>
-              <option value="18-21">18-21</option>
-              <option value="NO SHOWTIME">NO SHOWTIME</option>
-            </select>
           </form>
         </div>
         <div class="submit-botton" onclick="editCustomerDog()">

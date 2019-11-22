@@ -461,6 +461,41 @@ function findCustomerDog(id) {
   }
 }
 
+function editCustomerDog() {
+  var error = '';
+  const ID = edit_id;
+  var NAME = $("[id='edit_customerDog_dog_name']").val();
+  var BREED = $("[id='edit_customerDog_breed']").val();
+  var BIRTHDATE = $("[id='edit_customerDog_date_of_birth']").val();
+  var WEIGHT = $("[id='edit_customerDog_weight']").val();
+
+  if (NAME == '' || BREED == '' || BIRTHDATE == '' || WEIGHT == '') {
+    error = addError(error, 'Fields required');
+  }
+
+  if (error != '') {
+    window.alert(error);
+    return;
+  } else {
+    axios
+      .put('http://localhost:5000/customerdog/' + ID, {
+        dog_id: ID,
+        dog_name: NAME,
+        breed: BREED,
+        date_of_birth: BIRTHDATE,
+        weight: WEIGHT
+      })
+      .then(function(response) {
+        console.log(response);
+        hideFormEditCustomerDog();
+        getCustomerDog();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+}
+
 function getCustomerDog() {
   setPage('CUSTOMER');
   try {
@@ -512,18 +547,12 @@ function editCustomerDog_(id) {
   showFormEditCustomerDog();
   edit_id = id;
   var find = findCustomerDog(id);
-  // find.then(dog => {
-  //   $("[name='dog_name']").val(dog.dog_name);
-  //   $("[name='breed']").val(dog.breed);
-  //   $("[name='date_of_birth']").val(dog.date_of_birth);
-  //   $("[name='weight']").val(dog.weight);
-  //   $("[name='sourcing_company']").val(dog.sourcing_company);
-  //   $("[name='brought_price']").val(dog.brought_price);
-  //   $("[name='last_checkup_date']").val(dog.last_checkup_date);
-  //   $("[name='last_bath_date']").val(dog.last_bath_date);
-  //   $("[name='health_status']").val(dog.health_status);
-  //   $("[name='show-time']").val(dog.showtime);
-  // });
+  find.then(dog => {
+    $("[id='edit_customerDog_dog_name']").val(dog.dog_name);
+    $("[id='edit_customerDog_breed']").val(dog.breed);
+    $("[id='edit_customerDog_date_of_birth']").val(dog.date_of_birth);
+    $("[id='edit_customerDog_weight']").val(dog.weight);
+  });
 }
 
 function addCustomerDog() {
