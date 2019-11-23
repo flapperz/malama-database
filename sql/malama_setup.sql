@@ -134,8 +134,8 @@ CREATE TABLE IF NOT EXISTS deposition
 	dog_id			INT NOT NULL,
     deposition_id	INT NOT NULL AUTO_INCREMENT,
     product_id 		INT NOT NULL,
-    box_id			INT NOT NULL,
-    deposit_fee		FLOAT NOT NULL,
+    box_id			INT,
+    deposit_fee		FLOAT,
     is_retrieved	BOOLEAN NOT NULL,
     checkout_time	DATETIME,
     
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS deposition
         
 	FOREIGN KEY (dog_id)
 		REFERENCES customer_dog(dog_id)
-        ON UPDATE CASCADE ON DELETE SET NULL,
+        ON UPDATE CASCADE ON DELETE CASCADE,
         
 	FOREIGN KEY (box_id)
 		REFERENCES box(box_id)
