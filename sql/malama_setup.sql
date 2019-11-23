@@ -340,7 +340,7 @@ END$$
 DELIMITER ;
 
 -- index
--- CREATE UNIQUE INDEX price_index ON product(price) USING BTREE;
+CREATE INDEX price_index ON product(price) USING BTREE;
 
 
 
