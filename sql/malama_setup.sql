@@ -250,13 +250,46 @@ CREATE TABLE IF NOT EXISTS user
 );
 
 -- User Store Procedure
-DROP PROCEDURE IF EXISTS usp_checkout_dog;
+DROP PROCEDURE IF EXISTS usp_checkout;
 DELIMITER $$
-CREATE PROCEDURE usp_checkout ()
+CREATE PROCEDURE usp_checkout (IN v_dog_id INT, IN v_deposition_id INT)
 BEGIN
-SET @dummy_var = 1;
-END;
-DELIMITER;
+    DECLARE v_base_price FLOAT;
+    DECLARE v_box_id INT;
+    DECLARE v_box_size	FLOAT;
+    DECLARE v_product_id INT;
+    
+    SELECT box_id, product_id INTO v_box_id, v_product_id FROM deposition WHERE deposition_id = v_deposition_id AND dog_id = v_dog_id;
+    SELECT size INTO v_box_size FROM `box` WHERE box_id = v_box_id;
+    SET v_base_price = 150;
+    SET @price = v_base_price * v_box_size;
+    
+    -- update depostion :: checkout datetime, is retrieved, fee
+	UPDATE 
+		deposition 
+	SET
+		checkout_time = now(),
+        is_retrieved = 1,
+        deposit_fee = @price
+	WHERE
+		deposition_id = v_deposition_id and dog_id = v_dog_id;
+        
+    -- update product :: price
+    UPDATE
+		product
+	SET
+		price = @price
+	WHERE
+		product_id = v_product_id;
+    -- udpate box :: status
+    UPDATE
+		`box`
+	SET
+		`status` = 'occupied'
+	WHERE
+		box_id = v_box_id;
+END$$
+DELIMITER ;
 
 DROP FUNCTION IF EXISTS usf_deposit_dog;
 DELIMITER $$
