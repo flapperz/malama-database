@@ -18,28 +18,6 @@ This repository include
 - Running front-end server `nodemon frontend-server.js` in `public/`
 - Open `http://localhost:3000/html/basic-page.html` VOLA!
 
-## API description
-api
-//GET Cafe Dog , ADD Cafe Dog
-GET : localhost:5000/cafedog
-POST : localhost:5000/cafedog
-
-//GET Customer Dog , ADD Customer Dog
-GET : localhost:5000/customerdog
-POST : localhost:5000/customerdog
-
-//GET Dog from 'TABLE' by 'NAME' -> เอาไว้ search
-GET : localhost:5000/cafe_dog/'name'
-GET : localhost:5000/customer_dog/'name'
-
-//UPDATE Cafe/Customer Dog by 'ID'
-PUT : localhost:5000/cafedog/'id'
-PUT : localhost:5000/customerdog/'id'
-
-//DELETE Dog from 'TABLE' by 'ID'
-DELETE : localhost:5000/del/'table'/'id'
-(table = 'cafe_dog' or 'customer_dog')
-
 ## Credits
 database : Krit Chonlapand
 design : Jinwara Jenjenprasert
