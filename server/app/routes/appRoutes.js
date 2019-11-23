@@ -27,7 +27,9 @@ module.exports = function(app) {
 
   app.route('/dep')
     .get(todoList.get_deposition)
-    .post(todoList.add_deposition);
+    .post(todoList.deposit);
+    // .post(todoList.add_deposition);
+
 
   //LOGIN/SIGNUP
   app.route('/login/signup')

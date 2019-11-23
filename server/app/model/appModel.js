@@ -116,17 +116,17 @@ DogUpdater.deleteDog = function(id, table, result){
 };
 
 //DEPOSITION
-DogUpdater.depositDog = function(value, result){
-    sql.query('insert into deposition set ?', value, function(err,res){
-        if (err){
-            console.log('Error: ',err);
-            result(err,null);
-        }else{
-            console.log(res.insertId);
-            result(null,res.insertId);
-        }
-    });
-};
+// DogUpdater.depositDog = function(value, result){
+//     sql.query('insert into deposition set ?', value, function(err,res){
+//         if (err){
+//             console.log('Error: ',err);
+//             result(err,null);
+//         }else{
+//             console.log(res.insertId);
+//             result(null,res.insertId);
+//         }
+//     });
+// };
 
 DogUpdater.getDeposition = function(result){
     sql.query('select * from deposition', function (err,res){
@@ -137,6 +137,21 @@ DogUpdater.getDeposition = function(result){
         else{
             console.log('deposition list : ', res);  
             result(null, res);
+        }
+    });
+};
+
+DogUpdater.deposit_Dog = function(dog_id, box_id, result){
+    sql.query('select `usf_deposit_dog`(' + dog_id + ',' + box_id + ')', function(err,res){
+        if (err){
+            console.log('error :',err);
+        }else{
+            // res = JSON.parse(res);
+            let res_key = '`usf_deposit_dog`('+dog_id+','+box_id+')';
+            console.log(res_key);
+            let status = res[0][res_key];
+            console.log('status pre',status);
+            result(null,status);
         }
     });
 };
@@ -198,9 +213,6 @@ boxes.getBoxes = function(result){
         }
     });
 };
-
-
-
 
 
 //Exports All
