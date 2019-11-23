@@ -52,6 +52,7 @@
 
       <!-- NAV-END -->
 
+      <!-- sign-up-form -->
       <div class="popup" id="sign-up-form">
         <div class="popup-bg"></div>
         <div class="form-bg" id="form-bg-edit-customerDog">
@@ -83,6 +84,37 @@
           </div>
           <div class='text-sign-in'> <p>Already have an account ?</p> <p
               class="linkLogin">Login</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- sign-in-form -->
+      <div class="popup" id="sign-in-form">
+        <div class="popup-bg"></div>
+        <div class="form-bg" id="form-bg-sign-in">
+          <!-- <img onclick="hideSignUpForm()" src="../img/close.png"
+                    class="close" /> -->
+          <span class="form-name">
+            <p>Sing In</p>
+          </span>
+          <div class="dog-information-bg"
+            id="dog-information-bg-sign-in">
+            <span class="dog-information-name">
+              <!-- <p>already have an account? Sign In</p> -->
+            </span>
+            <form id="edit-customerDog-form" class="form">
+              <input type="text" id="username_login" name="dog_name"
+                placeholder="USERNAME" />
+              <input type="text" id="password_login" name="breed"
+                placeholder="PASSWORD" />
+            </form>
+          </div>
+          <div class="submit-botton" onclick="signIn()">
+            <p>Submit</p>
+          </div>
+          <div class='text-sign-in'>
+            <p>No account ?</p>
+            <p class="linkLogin">Create account</p>
           </div>
         </div>
       </div>

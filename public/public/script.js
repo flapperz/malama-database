@@ -48,11 +48,6 @@ function hideFormEditCustomerDog() {
   document.getElementById('popup-edit-customerDog').style.visibility = 'hidden';
   clearFormEditCafeDog();
 }
-
-function hideSignUpForm() {
-  document.getElementById('sign-up-form').style.visibility = 'hidden';
-}
-
 //----------------Form Management (SHOW)
 
 function showFormAddDog() {
@@ -658,6 +653,10 @@ function searchCustomerDog() {
 
 //---------AUTHORIZATION----------------
 
+function hideSignUpForm() {
+  document.getElementById('sign-up-form').style.visibility = 'hidden';
+}
+
 function signUp() {
   console.log('signUp');
   var error = '';
@@ -681,13 +680,45 @@ function signUp() {
         lastname: LASTNAME
       })
       .then(function(response) {
+        // console.log(response.data.code);
         console.log(response);
-        // max_id_customer = ID;
-        // hideFormAddCustomerDog();
-        // getCustomerDog();
+        if (response.data.code == undefined) {
+          console.log('loginComplete');
+        } else {
+          alert(response.data.code);
+        }
       })
       .catch(function(error) {
         console.log(error);
+      });
+  }
+}
+
+function signIn() {
+  console.log('signIp');
+  var error = '';
+  var USERNAME = $("[id='username_login']").val();
+  var PASSWORD = $("[id='password_login']").val();
+
+  if (USERNAME == '' || PASSWORD == '') {
+    error = addError(error, 'Fields required');
+  }
+  if (error != '') {
+    window.alert(error);
+    return;
+  } else {
+    axios
+      .post('http://localhost:5000/login/signin', {
+        username: USERNAME,
+        password: PASSWORD
+      })
+      .then(function(response) {
+        console.log(response);
+        // if(response.data.)
+      })
+      .catch(function(error) {
+        console.log(error);
+        console.log('login Fail');
       });
   }
 }

@@ -1,4 +1,12 @@
-div.popup {
+/* div.popup {
+    visibility: visible;
+} */
+
+/* #sign-up-form {
+    visibility: visible;
+} */
+
+#sign-in-form {
     visibility: visible;
 }
 
@@ -18,10 +26,34 @@ div.popup #form-bg-add-customerDog, #form-bg-edit-customerDog {
     overflow-y: scroll;
 }
 
+div.popup #form-bg-sign-in {
+    position: relative;
+    top: 35px;
+    background-color: #ffffff;
+    /* background-color: pink; */
+    display: inline-block;
+    width: 600px;
+    height: 57.5vh;
+    border-radius: 13px;
+    overflow-y: scroll;
+}
+
 div.popup div.form-bg #dog-information-bg-add-customer-dog, #dog-information-bg-edit-customer-dog {
     position: relative;
     width: 480px;
     height: 220px;
+    top: 70px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    /*grey*/
+    background-color: #edeeee;
+    display: inline-block;
+}
+
+div.popup div.form-bg #dog-information-bg-sign-in {
+    position: relative;
+    width: 480px;
+    height: 133px;
     top: 70px;
     padding-top: 20px;
     margin-bottom: 20px;
