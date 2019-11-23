@@ -250,14 +250,20 @@ CREATE TABLE IF NOT EXISTS user
 );
 
 -- User Store Procedure
-DROP PROCEDURE IF EXISTS usp_checkout;
+DROP FUNCTION IF EXISTS usf_checkout;
 DELIMITER $$
-CREATE PROCEDURE usp_checkout (IN v_dog_id INT, IN v_deposition_id INT)
+CREATE FUNCTION usf_checkout (v_dog_id INT, v_deposition_id INT) RETURNS INT DETERMINISTIC
 BEGIN
     DECLARE v_base_price FLOAT;
     DECLARE v_box_id INT;
     DECLARE v_box_size	FLOAT;
     DECLARE v_product_id INT;
+    DECLARE v_is_retrieved INT;
+    
+    SELECT is_retrieved INTO v_is_retrieved FROM deposition WHERE deposition_id = v_deposition_id AND dog_id = v_dog_id;
+    IF v_is_retrieved = 1 THEN
+		RETURN 1;
+	END IF;
     
     SELECT box_id, product_id INTO v_box_id, v_product_id FROM deposition WHERE deposition_id = v_deposition_id AND dog_id = v_dog_id;
     SELECT size INTO v_box_size FROM `box` WHERE box_id = v_box_id;
@@ -285,9 +291,10 @@ BEGIN
     UPDATE
 		`box`
 	SET
-		`status` = 'occupied'
+		`status` = 'available'
 	WHERE
 		box_id = v_box_id;
+	RETURN 0;
 END$$
 DELIMITER ;
 
