@@ -2,7 +2,7 @@
 ## Store procedures and functions
 ### Procedures
     `CALL usp_checkout(deposition_id)`
-1. `usp_checkout(deposition_id)`
+1. `usp_checkout(dog_id, deposition_id)`
     - checkout deposition :
 
         -> update deposition fee, is_retrieve, retrieve_date
