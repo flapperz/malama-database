@@ -437,12 +437,6 @@ function searchCafeDog() {
 
 //customerDog
 
-// "dog_id": 1,
-// "dog_name": "oil",
-// "breed": "oil",
-// "date_of_birth": "1999-12-09T17:00:00.000Z",
-// "weight": 12
-
 function findCustomerDog(id) {
   try {
     return axios.get('http://localhost:5000/customerdog').then(response => {
