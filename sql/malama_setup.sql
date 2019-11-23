@@ -137,6 +137,7 @@ CREATE TABLE IF NOT EXISTS deposition
     box_id			INT,
     deposit_fee		FLOAT,
     is_retrieved	BOOLEAN NOT NULL,
+    deposit_time    DATETIME,
     checkout_time	DATETIME,
     
     PRIMARY KEY (deposition_id, dog_id),
@@ -248,7 +249,40 @@ CREATE TABLE IF NOT EXISTS user
     PRIMARY KEY (username)
 );
 
+-- User Store Procedure
+DROP FUNCTION IF EXISTS usf_deposit_dog;
+DELIMITER $$
+CREATE FUNCTION `usf_deposit_dog`(v_dog_id INT, v_box_id INT) RETURNS INT DETERMINISTIC
+BEGIN
+	SET @deposition_fix_cost = 100;
 
+    -- check box available
+    IF NOT ((SELECT `status` FROM `box` WHERE box_id = v_box_id) = 1) THEN
+		RETURN 1;
+    END IF;
+    
+	-- @box_size = SELECT size FROM `box` WHERE box_id = @v_box_id;   
+    -- insert product
+    INSERT INTO 
+		product
+	SET
+		product_name = 'deposition_x',
+        cost = @deposition_fix_cost,
+        price = 0;
+        
+    -- insert deposit
+    SET @v_product_id = LAST_INSERT_ID();
+    INSERT INTO
+		deposition
+	SET
+		dog_id = v_dog_id,
+        product_id = @v_product_id,
+        box_id = v_box_id,
+        is_retrieved = false,
+        deposit_time = NOW();	
+	RETURN 0;
+END$$
+DELIMITER ;
 
 
 
