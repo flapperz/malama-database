@@ -241,7 +241,7 @@ CREATE TABLE IF NOT EXISTS transaction
 CREATE TABLE IF NOT EXISTS user
 (
 	username	CHAR(10) NOT NULL,
-    password	CHAR(50) NOT NULL,
+    password	CHAR(255) NOT NULL,
     firstname	CHAR(50) NOT NULL,
     lastname	CHAR(50) NOT NULL,
     
