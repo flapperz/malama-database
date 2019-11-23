@@ -252,9 +252,10 @@ CREATE TABLE IF NOT EXISTS user
 -- User Store Procedure
 DROP FUNCTION IF EXISTS usp_checkout_dog;
 DELIMITER $$
-CREATE PROCEDURE IF EXISTS usp_checkout;
+CREATE PROCEDURE usp_checkout ()
 BEGIN
-END$$
+SET @dummy_var = 1;
+END $$
 DELIMITER;
 
 DROP FUNCTION IF EXISTS usf_deposit_dog;
@@ -264,9 +265,9 @@ BEGIN
 	SET @deposition_fix_cost = 100;
 
     -- check box available
-    IF NOT ((SELECT `status` FROM `box` WHERE box_id = v_box_id) = 1) THEN
-		RETURN 1;
-    END IF;
+--     IF NOT ((SELECT `status` FROM `box` WHERE box_id = v_box_id) = 2) THEN
+-- 		RETURN 1;
+--     END IF;
     
 	-- @box_size = SELECT size FROM `box` WHERE box_id = @v_box_id;   
     -- insert product
@@ -289,7 +290,7 @@ BEGIN
         deposit_time = NOW();	
 	RETURN 0;
 END$$
-DELIMITER;
+DELIMITER ;
 
 
 
