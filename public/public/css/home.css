@@ -1,0 +1,18 @@
+div.content img.content-img {
+    width: 70vw;
+    text-align: center;
+}
+
+div.content div.text-box {
+    width: 70vw;
+    display: inline-block;
+    color: #5C4031;
+    /* background-color: pink; */
+    text-align: left;
+}
+
+div.content div.text-box h1 {
+    padding-top: 3vh;
+    padding-bottom: 0.5vh;
+    font-size: 4vh;
+}
