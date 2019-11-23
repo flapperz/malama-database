@@ -134,9 +134,10 @@ CREATE TABLE IF NOT EXISTS deposition
 	dog_id			INT NOT NULL,
     deposition_id	INT NOT NULL AUTO_INCREMENT,
     product_id 		INT NOT NULL,
-    box_id			INT NOT NULL,
-    deposit_fee		FLOAT NOT NULL,
+    box_id			INT,
+    deposit_fee		FLOAT,
     is_retrieved	BOOLEAN NOT NULL,
+    deposit_time    DATETIME,
     checkout_time	DATETIME,
     
     PRIMARY KEY (deposition_id, dog_id),
@@ -147,7 +148,7 @@ CREATE TABLE IF NOT EXISTS deposition
         
 	FOREIGN KEY (dog_id)
 		REFERENCES customer_dog(dog_id)
-        ON UPDATE CASCADE ON DELETE SET NULL,
+        ON UPDATE CASCADE ON DELETE CASCADE,
         
 	FOREIGN KEY (box_id)
 		REFERENCES box(box_id)
@@ -241,13 +242,54 @@ CREATE TABLE IF NOT EXISTS transaction
 CREATE TABLE IF NOT EXISTS user
 (
 	username	CHAR(10) NOT NULL,
-    password	CHAR(50) NOT NULL,
+    password	CHAR(255) NOT NULL,
     firstname	CHAR(50) NOT NULL,
     lastname	CHAR(50) NOT NULL,
     
     PRIMARY KEY (username)
 );
 
+-- User Store Procedure
+DROP FUNCTION IF EXISTS usp_checkout_dog;
+DELIMITER $$
+CREATE PROCEDURE IF EXISTS usp_checkout;
+BEGIN
+END$$
+DELIMITER;
+
+DROP FUNCTION IF EXISTS usf_deposit_dog;
+DELIMITER $$
+CREATE FUNCTION `usf_deposit_dog`(v_dog_id INT, v_box_id INT) RETURNS INT DETERMINISTIC
+BEGIN
+	SET @deposition_fix_cost = 100;
+
+    -- check box available
+    IF NOT ((SELECT `status` FROM `box` WHERE box_id = v_box_id) = 1) THEN
+		RETURN 1;
+    END IF;
+    
+	-- @box_size = SELECT size FROM `box` WHERE box_id = @v_box_id;   
+    -- insert product
+    INSERT INTO 
+		product
+	SET
+		product_name = 'deposition_x',
+        cost = @deposition_fix_cost,
+        price = 0;
+        
+    -- insert deposit
+    SET @v_product_id = LAST_INSERT_ID();
+    INSERT INTO
+		deposition
+	SET
+		dog_id = v_dog_id,
+        product_id = @v_product_id,
+        box_id = v_box_id,
+        is_retrieved = false,
+        deposit_time = NOW();	
+	RETURN 0;
+END$$
+DELIMITER;
 
 
 
