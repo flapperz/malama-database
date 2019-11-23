@@ -111,12 +111,15 @@ var Deposition = function(deposit){
   this.deposition_id = deposit.deposition_id;
   this.product_id = deposit.product_id;
   this.box_id = deposit.box_id;
+  this.deposit_fee = deposit.deposit_fee;
   this.is_retrieved = deposit.is_retrieved;
   this.checkout_time = deposit.checkout_time;
 };
 
 exports.add_deposition = function(req,res){
-  var new_dep = Deposition(req.body);
+  console.log(req.body);
+  let new_dep = new Deposition(req.body);
+  console.log(new_dep)
 
   if (!new_dep.dog_id || !new_dep.deposition_id || !new_dep.product_id || !new_dep.box_id || !new_dep.is_retrieved || !new_dep.checkout_time){
     res.status(400).send({error:true, message: 'Please provide data'})
