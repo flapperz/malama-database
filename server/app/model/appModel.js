@@ -142,8 +142,6 @@ DogUpdater.getDeposition = function(result){
 };
 
 //LOGIN
-
-
 var userCredential = function(user){
     this.username = user.username;
     this.password = user.password;
@@ -180,8 +178,30 @@ userCredential.loginRequest = function(username,result){
     });
 };
 
+//BOX
+var boxes = function(box){
+    this.box_id = box.box_id;
+    this.size = box.size;
+    this.last_cleaning_date = box.last_cleaning_date;
+    this.status = box.status;
+};
+
+boxes.getBoxes = function(result){
+    sql.query('select * from `box` where `status` = "Available"',function(err,res){
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else{
+            console.log('box list : ', res);  
+            result(null, res);
+        }
+    });
+};
+
+
 
 
 
 //Exports All
-module.exports = {dogUpdater : DogUpdater, userCred : userCredential};
+module.exports = {dogUpdater : DogUpdater, userCred : userCredential, boxes:boxes};

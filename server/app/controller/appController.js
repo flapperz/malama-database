@@ -192,3 +192,15 @@ exports.log_in = function(req,res){
     }
   });
 }
+
+
+//For Box query
+exports.get_boxes = function(req,res){
+  console.log('Get all boxes list');
+
+  Model.boxes.getBoxes(function(err,box){
+    if (err) console.log(err);
+    console.log('Available box',box)
+    res.send(box);
+  })
+}

@@ -29,9 +29,13 @@ module.exports = function(app) {
     .get(todoList.get_deposition)
     .post(todoList.add_deposition);
 
+  //LOGIN/SIGNUP
   app.route('/login/signup')
     .post(todoList.sign_up);
 
   app.route('/login/signin')
     .post(todoList.log_in);
+
+  app.route('/boxes')
+    .get(todoList.get_boxes);
 };
