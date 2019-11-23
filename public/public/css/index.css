@@ -1,0 +1,60 @@
+div.popup {
+    visibility: visible;
+}
+
+div.popup div.form-bg {
+    margin-top: 12vh;
+}
+
+div.popup #form-bg-add-customerDog, #form-bg-edit-customerDog {
+    position: relative;
+    top: 35px;
+    background-color: #ffffff;
+    /* background-color: pink; */
+    display: inline-block;
+    width: 600px;
+    height: 65.5vh;
+    border-radius: 13px;
+    overflow-y: scroll;
+}
+
+div.popup div.form-bg #dog-information-bg-add-customer-dog, #dog-information-bg-edit-customer-dog {
+    position: relative;
+    width: 480px;
+    height: 220px;
+    top: 70px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    /*grey*/
+    background-color: #edeeee;
+    display: inline-block;
+}
+
+div.popup div.form-bg div.text-sign-in {
+    position: relative;
+    font-size: 15px;
+    display: block;
+    top: -5px;
+    /* background-color: pink; */
+}
+
+div.popup div.form-bg div.text-sign-in p {
+    position: relative;
+    font-size: 15px;
+    display: inline-block;
+    color: #9E9E9E;
+    /* background-color: pink; */
+    margin: 0px;
+    padding: 0px;
+    /* top: -100px; */
+}
+
+div.popup div.form-bg div.text-sign-in p.linkLogin {
+    color: #6B5043;
+}
+
+div.popup div.form-bg div.text-sign-in p.linkLogin:hover {
+    /* color: #6B5043; */
+    text-decoration: underline;
+    cursor: pointer;
+}

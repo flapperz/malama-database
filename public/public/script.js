@@ -49,6 +49,10 @@ function hideFormEditCustomerDog() {
   clearFormEditCafeDog();
 }
 
+function hideSignUpForm() {
+  document.getElementById('sign-up-form').style.visibility = 'hidden';
+}
+
 //----------------Form Management (SHOW)
 
 function showFormAddDog() {
@@ -649,5 +653,41 @@ function searchCustomerDog() {
   } catch (error) {
     console.log('failed');
     console.error(error);
+  }
+}
+
+//---------AUTHORIZATION----------------
+
+function signUp() {
+  console.log('signUp');
+  var error = '';
+  // var ID = max_id_customer + 1;
+  var USERNAME = $("[id='username']").val();
+  var PASSWORD = $("[id='password']").val();
+  var FIRSTNAME = $("[id='firstname']").val();
+  var LASTNAME = $("[id='lastname']").val();
+  if (USERNAME == '' || PASSWORD == '' || FIRSTNAME == '' || LASTNAME == '') {
+    error = addError(error, 'Fields required');
+  }
+  if (error != '') {
+    window.alert(error);
+    return;
+  } else {
+    axios
+      .post('http://localhost:5000/login/signup', {
+        username: USERNAME,
+        password: PASSWORD,
+        firstname: FIRSTNAME,
+        lastname: LASTNAME
+      })
+      .then(function(response) {
+        console.log(response);
+        // max_id_customer = ID;
+        // hideFormAddCustomerDog();
+        // getCustomerDog();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 }
