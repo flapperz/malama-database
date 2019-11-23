@@ -179,17 +179,16 @@ userCredential.createUser = function(value,result){
 
 userCredential.loginRequest = function(username,result){
     sql.query('select * from `user` where username = ?', username, function(err,res){
-        res = res[0]
-        console.log('user',res);
-
-        if(err) {
-            console.log("error: ", err);
-            result(null, err);
-        }
-        else{
+        if (res.length > 0){
+            res = res[0]
+            console.log('user',res);
             console.log('query password : ', res.password);  
             result(null, res.password);
-        } 
+        }else{
+
+            console.log("error: ", err);
+            result(null, 'invalid');
+        }
     });
 };
 

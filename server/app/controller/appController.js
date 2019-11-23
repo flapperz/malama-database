@@ -179,7 +179,7 @@ exports.sign_up = function(req,res){
     console.log(new_user);
 
     if (!new_user.username || !new_user.password || !new_user.firstname || !new_user.lastname){
-      res.status(400).send({error:true, message:'Please provide user data'})
+      res.send({status : 'failed', message:'Please provide user data'})
     }else{
       Model.userCred.createUser(new_user, function(err,new_user){
         if (err) res.send(err);
@@ -195,14 +195,19 @@ exports.log_in = function(req,res){
 
   Model.userCred.loginRequest(req.body.username,function(sql_err,usr_hash){
     console.log('user password from query:',usr_hash);
-    let flag = bcrypt.compareSync(req.body.password,usr_hash);
+    if (usr_hash != 'invalid'){
+      let flag = bcrypt.compareSync(req.body.password,usr_hash);
 
-    if (flag){
-      console.log('Login Success')
-      res.send({username : req.body.username, status : 'success'});
-    }else{
-      res.status(400).send({error:true, message:'Wrong Password'})
+      if (flag){
+        console.log('Login Success')
+        res.send({status : 'success', username : req.body.username});
+      }else{
+        res.send({status : 'failed', message:'Wrong Password'});
+      }
     }
+    else{
+      res.send({status : 'failed', message:'Wrong Username'});
+    };
   });
 }
 
