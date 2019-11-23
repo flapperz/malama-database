@@ -250,6 +250,13 @@ CREATE TABLE IF NOT EXISTS user
 );
 
 -- User Store Procedure
+DROP FUNCTION IF EXISTS usp_checkout_dog;
+DELIMITER $$
+CREATE PROCEDURE IF EXISTS usp_checkout;
+BEGIN
+END$$
+DELIMITER;
+
 DROP FUNCTION IF EXISTS usf_deposit_dog;
 DELIMITER $$
 CREATE FUNCTION `usf_deposit_dog`(v_dog_id INT, v_box_id INT) RETURNS INT DETERMINISTIC
@@ -282,7 +289,8 @@ BEGIN
         deposit_time = NOW();	
 	RETURN 0;
 END$$
-DELIMITER ;
+DELIMITER;
+
 
 
 
