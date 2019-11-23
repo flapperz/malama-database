@@ -116,31 +116,44 @@ var Deposition = function(deposit){
   this.checkout_time = deposit.checkout_time;
 };
 
-exports.add_deposition = function(req,res){
-  console.log(req.body);
-  let new_dep = new Deposition(req.body);
-  console.log(new_dep)
+// exports.add_deposition = function(req,res){
+//   console.log(req.body);
+//   let new_dep = new Deposition(req.body);
+//   console.log(new_dep)
 
-  if (!new_dep.dog_id || !new_dep.deposition_id || !new_dep.product_id || !new_dep.box_id || !new_dep.is_retrieved || !new_dep.checkout_time){
-    res.status(400).send({error:true, message: 'Please provide data'})
-  }else{
-    Model.dogUpdater.depositDog(new_dep, function(err,dog){
-      if (err)
-        res.send(err);
-      res.json(dog);
-    });
-  }
-};
+//   if (!new_dep.dog_id || !new_dep.deposition_id || !new_dep.product_id || !new_dep.box_id || !new_dep.is_retrieved || !new_dep.checkout_time){
+//     res.status(400).send({error:true, message: 'Please provide data'})
+//   }else{
+//     Model.dogUpdater.depositDog(new_dep, function(err,dog){
+//       if (err)
+//         res.send(err);
+//       res.json(dog);
+//     });
+//   }
+// };
 
 exports.get_deposition = function(req,res){
-  Model.dogUpdater.getDeposition(function(err, dog){
+  Model.dogUpdater.getDeposition(function(err, dep){
     console.log('controller')
         if (err)
           res.send(err);
-          console.log('res', dog);
-        res.send(dog);
+          console.log('res', dep);
+        res.send(dep);
   });
 };
+
+exports.deposit = function(req,res){
+  console.log(req.body);
+  if (!req.body.box_id || !req.body.dog_id){
+    res.status(400).send({error:true, message:'Please Provide box_id/dog_id'});
+  }else{
+    Model.dogUpdater.deposit_Dog(req.body.dog_id, req.body.box_id, function(err,status){
+      if (err) res.send(err)
+      console.log('status post',status);
+      res.send({status:status});
+    })
+  }
+}
 
 //For hashing password 
 var bcrypt = require('bcryptjs');
@@ -166,7 +179,7 @@ exports.sign_up = function(req,res){
     console.log(new_user);
 
     if (!new_user.username || !new_user.password || !new_user.firstname || !new_user.lastname){
-      res.status(400).send({error:true, message:'Please provide user data'})
+      res.send({status : 'failed', message:'Please provide user data'})
     }else{
       Model.userCred.createUser(new_user, function(err,new_user){
         if (err) res.send(err);
@@ -182,13 +195,30 @@ exports.log_in = function(req,res){
 
   Model.userCred.loginRequest(req.body.username,function(sql_err,usr_hash){
     console.log('user password from query:',usr_hash);
-    let flag = bcrypt.compareSync(req.body.password,usr_hash);
+    if (usr_hash != 'invalid'){
+      let flag = bcrypt.compareSync(req.body.password,usr_hash);
 
-    if (flag){
-      console.log('Login Success')
-      res.send({username : req.body.username, status : 'success'});
-    }else{
-      res.status(400).send({error:true, message:'Wrong Password'})
+      if (flag){
+        console.log('Login Success')
+        res.send({status : 'success', username : req.body.username});
+      }else{
+        res.send({status : 'failed', message:'Wrong Password'});
+      }
     }
+    else{
+      res.send({status : 'failed', message:'Wrong Username'});
+    };
   });
+}
+
+
+//For Box query
+exports.get_boxes = function(req,res){
+  console.log('Get all boxes list');
+
+  Model.boxes.getBoxes(function(err,box){
+    if (err) console.log(err);
+    console.log('Available box',box)
+    res.send(box);
+  })
 }
