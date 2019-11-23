@@ -30,6 +30,10 @@ module.exports = function(app) {
     .post(todoList.deposit);
     // .post(todoList.add_deposition);
 
+  //Checkout
+  app.route('/dep/checkout')
+    .post(todoList.checkout);
+
 
   //LOGIN/SIGNUP
   app.route('/login/signup')

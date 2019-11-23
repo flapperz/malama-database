@@ -157,14 +157,16 @@ DogUpdater.deposit_Dog = function(dog_id, box_id, result){
 };
 
 DogUpdater.checkout_dog = function(dog_id, deposition_id, result){
-    sql.query('call `usp_checkout(' + dog_id + ',' + deposition_id + ')', function(err,res){
+    sql.query('select `usf_checkout`(' + dog_id + ',' + deposition_id + ')', function(err,res){
         if (err){
             console.log('Checkout Error : ',err);
         }else{
-            
+            let res_key = '`usf_checkout`('+dog_id+','+deposition_id+')';
+            let status = res[0][res_key];
+            result(null,status);
         }
     });
-}
+};
 
 
 //LOGIN

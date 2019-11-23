@@ -148,11 +148,19 @@ exports.deposit = function(req,res){
     res.status(400).send({error:true, message:'Please Provide box_id/dog_id'});
   }else{
     Model.dogUpdater.deposit_Dog(req.body.dog_id, req.body.box_id, function(err,status){
-      if (err) res.send(err)
+      if (err) res.send(err);
       console.log('status post',status);
       res.send({status:status});
     })
   }
+}
+
+exports.checkout = function(req,res){
+  Model.dogUpdater.checkout_dog(req.body.dog_id, req.body.deposition_id, function(err,status){
+    if (err) res.send(err);
+    console.log('status checkout :',status);
+    res.send({status:status});
+  })
 }
 
 //For hashing password 
