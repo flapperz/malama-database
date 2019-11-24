@@ -768,7 +768,11 @@ function getDeposition() {
               ')';
         const checkout_time =
           response.data[i].checkout_time == null
-            ? '<p onclick="checkOut()" class="checkout-text">check out</p>'
+            ? '<p onclick="checkOut(' +
+              deposition_id +
+              ',' +
+              dog_id +
+              ')">check out</p>'
             : response.data[i].checkout_time.substring(0, 10) +
               ' (' +
               response.data[i].checkout_time.substring(11, 19) +
@@ -841,6 +845,21 @@ function getAvailableBoxes() {
     console.log('failed');
     console.error(error);
   }
+}
+
+function checkOut(deposition_id, dog_id) {
+  axios
+    .post('http://localhost:5000/dep/checkout', {
+      deposition_id: deposition_id,
+      dog_id: dog_id
+    })
+    .then(function(response) {
+      console.log(response);
+      getDeposition();
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 }
 //---------AUTHORIZATION----------------
 
