@@ -801,7 +801,6 @@ function getDeposition() {
       html += '</tbody></table></table>';
       document.getElementById('dog-display').innerHTML = html;
       // console.log(html);
-      // console.log('getCustomerDog');
     });
   } catch (error) {
     console.log('failed');
