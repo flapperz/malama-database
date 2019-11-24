@@ -745,7 +745,7 @@ function getDeposition() {
     axios.get('http://localhost:5000/dep').then(response => {
       console.log(response.data);
       var html =
-        '<table class="table-cafe"><thead><tr><th>Dep ID</th><th>BOX ID</th><th>DOG ID</th><th>PRODUCT ID</th><th>FEE</th><th>DEPOSIT TIME</th><th>CHECKOUT TIME</th></tr></thead></table>';
+        '<table class="table-cafe"><thead><tr><th>Dep ID</th><th>BOX ID</th><th>DOG ID</th><th>PRODUCT ID</th><th>FEE</th><th>DEPOSIT TIME</th><th>CHECK OUT TIME</th></tr></thead></table>';
 
       html += '<table class="table-data"><table class="table-cafe"><tbody>';
       for (let i = 0; i < response.data.length; i++) {
@@ -758,16 +758,16 @@ function getDeposition() {
             ? 0
             : response.data[i].deposit_fee;
         const deposit_time =
-          response.data[i].deposit_time.slice(0, 10) +
-          '(' +
-          response.data[i].deposit_time.slice(11, 8) +
+          response.data[i].deposit_time.substring(0, 10) +
+          ' (' +
+          response.data[i].deposit_time.substring(11, 19) +
           ')';
         const checkout_time =
           response.data[i].checkout_time == null
-            ? '-'
-            : response.data[i].checkout_time.slice(0, 10) +
-              '(' +
-              response.data[i].checkout_time.slice(11, 8) +
+            ? '<p onclick="checkOut()">check out</p>'
+            : response.data[i].checkout_time.substring(0, 10) +
+              ' (' +
+              response.data[i].checkout_time.substring(11, 19) +
               ')';
         const is_retrieved = response.data[i].is_retrieved;
 
