@@ -15,14 +15,17 @@ function setPage(thisPage) {
     document.getElementById('CAFE').style.textDecoration = 'underLine';
     document.getElementById('CUSTOMER').style.textDecoration = 'none';
     document.getElementById('DEPOSITION').style.textDecoration = 'none';
+    showSearchBar();
   } else if (page == 'CUSTOMER') {
     document.getElementById('CAFE').style.textDecoration = 'none';
     document.getElementById('CUSTOMER').style.textDecoration = 'underLine';
     document.getElementById('DEPOSITION').style.textDecoration = 'none';
+    showSearchBar();
   } else if (page == 'DEPOSITION') {
     document.getElementById('CAFE').style.textDecoration = 'none';
     document.getElementById('CUSTOMER').style.textDecoration = 'none';
     document.getElementById('DEPOSITION').style.textDecoration = 'underLine';
+    hideSearchBar();
   }
 }
 
@@ -64,6 +67,11 @@ function hideSignInForm() {
   clearFormSignIn();
 }
 
+function hideSearchBar() {
+  document.getElementById('id-search-bar').style.visibility = 'hidden';
+  document.getElementById('id-add-dog-botton').style.visibility = 'hidden';
+}
+
 //----------------Form Management (SHOW)
 
 function showFormAddDog() {
@@ -92,7 +100,6 @@ function showFormEditCustomerDog() {
 }
 
 function showSignUpForm() {
-  // hideSignInForm();
   document.getElementById('sign-up-form').style.visibility = 'visible';
   hideSignInForm();
 }
@@ -104,6 +111,11 @@ function showSignInForm() {
 
 function showFormAddDepositionDog() {
   document.getElementById('popup-deposition-form').style.visibility = 'visible';
+}
+
+function showSearchBar() {
+  document.getElementById('id-search-bar').style.visibility = 'visible';
+  document.getElementById('id-add-dog-botton').style.visibility = 'visible';
 }
 
 //----------------Form Management (CLEAR)
