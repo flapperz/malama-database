@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS deposition
     box_id			INT,
     deposit_fee		FLOAT,
     is_retrieved	BOOLEAN NOT NULL,
-    deposit_time    DATETIME,
+    checkin_time    DATETIME,
     checkout_time	DATETIME,
     
     PRIMARY KEY (deposition_id, dog_id),
@@ -250,31 +250,78 @@ CREATE TABLE IF NOT EXISTS user
 );
 
 -- User Store Procedure
-DROP FUNCTION IF EXISTS usp_checkout_dog;
+DROP FUNCTION IF EXISTS usf_checkout;
 DELIMITER $$
-CREATE PROCEDURE usp_checkout ()
+CREATE FUNCTION usf_checkout (v_dog_id INT, v_deposition_id INT) RETURNS INT DETERMINISTIC
 BEGIN
-SET @dummy_var = 1;
-END $$
-DELIMITER;
+    DECLARE v_base_price FLOAT;
+    DECLARE v_box_id INT;
+    DECLARE v_box_size	FLOAT;
+    DECLARE v_product_id INT;
+    DECLARE v_is_retrieved INT;
+    
+    SELECT is_retrieved INTO v_is_retrieved FROM deposition WHERE deposition_id = v_deposition_id AND dog_id = v_dog_id;
+    IF v_is_retrieved = 1 THEN
+		RETURN 1;
+	END IF;
+    
+    SELECT box_id, product_id INTO v_box_id, v_product_id FROM deposition WHERE deposition_id = v_deposition_id AND dog_id = v_dog_id;
+    SELECT size INTO v_box_size FROM `box` WHERE box_id = v_box_id;
+    SET v_base_price = 150;
+    SET @price = v_base_price * v_box_size;
+    
+    -- update depostion :: checkout datetime, is retrieved, fee
+	UPDATE 
+		deposition 
+	SET
+		checkout_time = now(),
+        is_retrieved = 1,
+        deposit_fee = @price
+	WHERE
+		deposition_id = v_deposition_id and dog_id = v_dog_id;
+        
+    -- update product :: price
+    UPDATE
+		product
+	SET
+		price = @price
+	WHERE
+		product_id = v_product_id;
+    -- udpate box :: status
+    UPDATE
+		`box`
+	SET
+		`status` = 'available'
+	WHERE
+		box_id = v_box_id;
+	RETURN 0;
+END$$
+DELIMITER ;
 
 DROP FUNCTION IF EXISTS usf_deposit_dog;
 DELIMITER $$
 CREATE FUNCTION `usf_deposit_dog`(v_dog_id INT, v_box_id INT) RETURNS INT DETERMINISTIC
 BEGIN
-	SET @deposition_fix_cost = 100;
-
-    -- check box available
---     IF NOT ((SELECT `status` FROM `box` WHERE box_id = v_box_id) = 2) THEN
--- 		RETURN 1;
---     END IF;
+    DECLARE v_box_size INT;
+    DECLARE v_status INT;
+	DECLARE v_dog_name LONGTEXT;
     
-	-- @box_size = SELECT size FROM `box` WHERE box_id = @v_box_id;   
+    SET @deposition_fix_cost = 100;
+	SELECT size, `status` INTO v_box_size, v_status FROM `box` WHERE box_id = v_box_id;
+    SELECT dog_name INTO v_dog_name FROM customer_dog WHERE dog_id = v_dog_id;
+    -- check box available
+	IF v_status <> 2 THEN
+ 		RETURN 1;
+	END IF; 
+    
+    -- set status to occupied
+    UPDATE `box` SET `status` = 'occupied' WHERE box_id = v_box_id;
+    
     -- insert product
     INSERT INTO 
 		product
 	SET
-		product_name = 'deposition_x',
+		product_name = CONCAT('deposition_', v_dog_name, '_', v_box_size),
         cost = @deposition_fix_cost,
         price = 0;
         
@@ -287,12 +334,13 @@ BEGIN
         product_id = @v_product_id,
         box_id = v_box_id,
         is_retrieved = false,
-        deposit_time = NOW();	
+        checkin_time = NOW();	
 	RETURN 0;
 END$$
 DELIMITER ;
 
-
+-- index
+CREATE INDEX price_index ON product(price) USING BTREE;
 
 
 
