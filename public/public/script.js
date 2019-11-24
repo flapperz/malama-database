@@ -879,21 +879,21 @@ function checkOut(deposition_id, dog_id) {
 //---------AUTHORIZATION----------------
 
 function checkStatus() {
-  // document.getElementById('sign-in-form').style.visibility = 'visible';
-  //   if (login) {
-  //     console.log('login');
-  //   } else {
-  //     console.log('not-login');
-  //     console.log(document.getElementById('sign-in-form'));
-  //   }
-  //
   setTimeout(function() {
-    if (login) {
-      console.log('login');
-    } else {
+    if (localStorage.getItem('login') != 'true') {
+      console.log(localStorage.getItem('login'));
       console.log('not-login');
       showSignInForm();
+    } else {
+      console.log('login :D ');
     }
+
+    // if (document.cookie == 'login') {
+    //   console.log('login');
+    // } else {
+    //   console.log('not-login');
+    //   showSignInForm();
+    // }
   }, 100);
 }
 
@@ -957,12 +957,14 @@ function signIn() {
         console.log(response.data.status);
         if (response.data.status == 'success') {
           alert('Login Success !');
+          // hideSignInForm();
+          localStorage.setItem('login', 'true');
           hideSignInForm();
         } else {
           alert('Log in Fail ! Please log in again.');
           clearFormSignIn();
+          localStorage.setItem('login', 'false');
         }
-        // if(response.data.)
       })
       .catch(function(error) {
         console.log(error);
