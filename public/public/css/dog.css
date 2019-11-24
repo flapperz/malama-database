@@ -137,6 +137,11 @@ div.content div.dog-display div.table-data table.table-cafe td img:hover {
   cursor: pointer;
 }
 
+div.content div.dog-display div.table-data table.table-cafe td p:hover {
+  cursor: pointer;
+  color: #ac9b68;
+}
+
 div.content div.dog-display div.table-data table.table-cafe tbody {
   /* background-color: pink; */
   height: 2vh;
@@ -267,4 +272,53 @@ div.popup div.form-bg div.dog-information-bg form input {
   border: none;
   padding: 5px;
   /* background-color: pink; */
+}
+
+/* deposition */
+
+#popup-deposition-form {
+  visibility: visible;
+}
+
+.dog-information-please-select-an-available-box {
+  font-size: 18px;
+  margin-top: 20px;
+  /* top: -50px; */
+  display: block;
+}
+
+#available-box {
+  position: relative;
+  display: inline-block;
+  top: -70px;
+}
+
+div.popup div.form-bg #add-deposition-dog {
+  position: relative;
+  width: 480px;
+  height: 140px;
+  top: 70px;
+  /* margin-bottom: -320px; */
+  bottom: 0px;
+  /*grey*/
+  background-color: #edeeee;
+  /* background-color: pink; */
+  display: inline-block;
+}
+
+div.popup #form-bg-add-deposition-dog {
+  position: relative;
+  top: 75px;
+  background-color: #ffffff;
+  /* background-color: pink; */
+  display: inline-block;
+  width: 600px;
+  height: 46vh;
+  border-radius: 13px;
+  overflow-y: scroll;
+}
+
+#depositButton {
+  top: -60px;
+  /* background-color: red; */
 }

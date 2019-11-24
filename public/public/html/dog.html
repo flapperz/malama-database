@@ -355,5 +355,41 @@
       </div>
     </div>
     <!-- DEPOSITION -->
+    <div class="popup" id="popup-deposition-form">
+      <div class="popup-bg"></div>
+      <div class="form-bg" id="form-bg-add-deposition-dog">
+        <img
+          onclick="hideFormAddDepositionDog()"
+          src="../img/close.png"
+          class="close"
+        />
+        <span class="form-name">
+          <p>ADD TO DEPOSITON</p>
+        </span>
+        <div classs="dog-information-bg" id="add-deposition-dog">
+          <span class="dog-information-please-select-an-available-box">
+            <p>Please select an available box</p>
+          </span>
+          <form id="depositionForm"></form>
+          <!-- <form id="deposition-form">
+            <select id="available-box" name="available-box">
+              <option value="" disabled selected hidden
+                >-- select a box --
+              </option>
+              <option value="NO">NO</option>
+              <option value="YES">YES</option>
+            </select>
+          </form> -->
+        </div>
+        <div
+          class="submit-botton"
+          id="depositButton"
+          onclick="editCustomerDog()"
+        >
+          <p>Submit</p>
+        </div>
+      </div>
+    </div>
+    s
   </body>
 </html>

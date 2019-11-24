@@ -48,6 +48,10 @@ function hideFormEditCustomerDog() {
   document.getElementById('popup-edit-customerDog').style.visibility = 'hidden';
   clearFormEditCafeDog();
 }
+
+function hideFormAddDepositionDog() {
+  document.getElementById('popup-deposition-form').style.visibility = 'hidden';
+}
 //----------------Form Management (SHOW)
 
 function showFormAddDog() {
@@ -73,6 +77,10 @@ function showFormAddCustomerDog() {
 function showFormEditCustomerDog() {
   document.getElementById('popup-edit-customerDog').style.visibility =
     'visible';
+}
+
+function showFormAddDepositionDog() {
+  document.getElementById('popup-deposition-form').style.visibility = 'visible';
 }
 
 //----------------Form Management (CLEAR)
@@ -530,7 +538,7 @@ function getCustomerDog() {
     axios.get('http://localhost:5000/customerdog').then(response => {
       console.log(response);
       var html =
-        '<table class="table-cafe"><thead><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>EDIT</th><th>DELETE</th></tr></thead></table>';
+        '<table class="table-cafe"><thead><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>EDIT</th><th>DELETE</th><th>DEPOSITION</th></tr></thead></table>';
 
       html += '<div class="table-data"><table class="table-cafe"><tbody>';
       for (let i = 0; i < response.data.length; i++) {
@@ -557,7 +565,12 @@ function getCustomerDog() {
           ID +
           ')" /></td><td><img src="../img/bin.png" onclick="delCustomerDog(' +
           ID +
-          ')"></td></tr>';
+          ')"></td><td>' +
+          '<p onclick=addToDeposition(' +
+          ID +
+          ')>+ ADD</p>' +
+          '</td>';
+        ('</tr>');
       }
       html += '</tbody></table></div>';
       document.getElementById('dog-display').innerHTML = html;
@@ -651,6 +664,68 @@ function searchCustomerDog() {
   }
 }
 
+//---------------Deposition-------------
+
+function addToDeposition(ID) {
+  console.log('add ' + ID + ' to Deposition');
+  showFormAddDepositionDog();
+  getAvailableBoxes();
+}
+
+function getAvailableBoxesUseThis() {
+  // try {
+  //   axios.get('localhost:5000/boxes').then(response => {
+  //     console.log(response);
+  var html = '';
+  //     for (let i = 0; i < response.data.length; i++) {
+  //       const boxID = response.data[i].box_id;
+  //       const size = response.data[i].size;
+  //       console.log(boxID + '#' + size);
+  //     }
+  html +=
+    '<form id="deposition-form"><select id="available-box" name="available-box"> \
+              <option value="" disabled selected hidden>-- select a box -- \
+              </option><option value="NO">NO</option><option value="YES">YES</option> \
+            </select></form>';
+  document.getElementById('depositionForm').innerHTML = html;
+  // clearSearchingValue();
+  //   });
+  // } catch (error) {
+  //   console.log('failed');
+  //   console.error(error);
+  // }
+}
+
+function getAvailableBoxes() {
+  try {
+    axios.get('http://localhost:5000/boxes').then(response => {
+      console.log(response);
+      var html =
+        '<form id="deposition-form"><select id="available-box" name="available-box"> \
+                  <option value="" disabled selected hidden>-- select a box --</option> ';
+      for (let i = 0; i < response.data.length; i++) {
+        const boxID = response.data[i].box_id;
+        const size = response.data[i].size;
+        console.log(boxID + '#' + size);
+        html +=
+          '<option value="' +
+          boxID +
+          '"> box : ' +
+          boxID +
+          ' ( size: ' +
+          size +
+          ' )' +
+          '</option>';
+      }
+      html += '</select></form>';
+      document.getElementById('depositionForm').innerHTML = html;
+      // clearSearchingValue();
+    });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
+  }
+}
 //---------AUTHORIZATION----------------
 
 function hideSignUpForm() {
