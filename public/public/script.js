@@ -608,8 +608,8 @@ function getCustomerDog() {
           '<p onclick=addToDeposition(' +
           ID +
           ')>+ ADD</p>' +
-          '</td>';
-        ('</tr>');
+          '</td></tr>';
+        // ('</tr>');
       }
       html += '</tbody></table></div>';
       document.getElementById('dog-display').innerHTML = html;
@@ -749,7 +749,7 @@ function getDeposition() {
       var html =
         '<table class="table-cafe"><thead><tr><th>Dep ID</th><th>BOX ID</th><th>DOG ID</th><th>PRODUCT ID</th><th>FEE</th><th>DEPOSIT TIME</th><th>CHECK OUT TIME</th></tr></thead></table>';
 
-      html += '<table class="table-data"><table class="table-cafe"><tbody>';
+      html += '<div class="table-data"><table class="table-cafe"><tbody>';
       for (let i = 0; i < response.data.length; i++) {
         const deposition_id = response.data[i].deposition_id;
         const box_id = response.data[i].box_id;
@@ -768,7 +768,7 @@ function getDeposition() {
               ')';
         const checkout_time =
           response.data[i].checkout_time == null
-            ? '<p onclick="checkOut()">check out</p>'
+            ? '<p onclick="checkOut()" class="checkout-text">check out</p>'
             : response.data[i].checkout_time.substring(0, 10) +
               ' (' +
               response.data[i].checkout_time.substring(11, 19) +
@@ -802,7 +802,7 @@ function getDeposition() {
         //   '</td>';
         // ('</tr>');
       }
-      html += '</tbody></table></table>';
+      html += '</tbody></table></div>';
       document.getElementById('dog-display').innerHTML = html;
       // console.log(html);
     });
