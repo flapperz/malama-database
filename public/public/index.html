@@ -66,7 +66,7 @@
             <span class="dog-information-name">
               <!-- <p>already have an account? Sign In</p> -->
             </span>
-            <form id="edit-customerDog-form" class="form">
+            <form id="sign-up-form-form" class="form">
               <input type="text" id="username" name="dog_name"
                 placeholder="USERNAME" />
               <input type="text" id="password" name="breed"
@@ -83,7 +83,7 @@
             <p>Submit</p>
           </div>
           <div class='text-sign-in'> <p>Already have an account ?</p> <p
-              class="linkLogin">Login</p>
+              class="linkLogin" onclick="showSignInForm()">Sign In</p>
           </div>
         </div>
       </div>
@@ -114,7 +114,7 @@
           </div>
           <div class='text-sign-in'>
             <p>No account ?</p>
-            <p class="linkLogin">Create account</p>
+            <p class="linkLogin" onclick="showSignUpForm()">Create account</p>
           </div>
         </div>
       </div>

@@ -53,6 +53,17 @@ function hideFormEditCustomerDog() {
 function hideFormAddDepositionDog() {
   document.getElementById('popup-deposition-form').style.visibility = 'hidden';
 }
+
+function hideSignUpForm() {
+  document.getElementById('sign-up-form').style.visibility = 'hidden';
+  clearFormSignUp();
+}
+
+function hideSignInForm() {
+  document.getElementById('sign-in-form').style.visibility = 'hidden';
+  clearFormSignIn();
+}
+
 //----------------Form Management (SHOW)
 
 function showFormAddDog() {
@@ -78,6 +89,17 @@ function showFormAddCustomerDog() {
 function showFormEditCustomerDog() {
   document.getElementById('popup-edit-customerDog').style.visibility =
     'visible';
+}
+
+function showSignUpForm() {
+  // hideSignInForm();
+  document.getElementById('sign-up-form').style.visibility = 'visible';
+  hideSignInForm();
+}
+
+function showSignInForm() {
+  hideSignUpForm();
+  document.getElementById('sign-in-form').style.visibility = 'visible';
 }
 
 function showFormAddDepositionDog() {
@@ -111,6 +133,22 @@ function clearFormValue() {
 
 function clearSearchingValue() {
   document.getElementById('searching-form').reset();
+}
+
+function clearFormSignUp() {
+  $("[id='username']").val('');
+  $("[id='password']").val('');
+  $("[id='firstname']").val('');
+  $("[id='lastname']").val('');
+  // document.getElementById('sign-up-form-form').reset();
+  // alert('clearFormSignUp');
+}
+
+function clearFormSignIn() {
+  $("[id='username_login']").val('');
+  $("[id='password_login']").val('');
+  // document.getElementById('sign-in-form-form').reset();
+  // alert('clearFormSignIn');
 }
 
 //-------Err Management-----------------
@@ -733,10 +771,6 @@ function getAvailableBoxes() {
 }
 //---------AUTHORIZATION----------------
 
-function hideSignUpForm() {
-  document.getElementById('sign-up-form').style.visibility = 'hidden';
-}
-
 function signUp() {
   console.log('signUp');
   var error = '';
@@ -763,9 +797,11 @@ function signUp() {
         // console.log(response.data.code);
         console.log(response);
         if (response.data.code == undefined) {
-          console.log('loginComplete');
+          alert('Sign up complete !');
+          showSignInForm();
         } else {
-          alert(response.data.code);
+          alert('This username is already exists !');
+          clearFormSignUp();
         }
       })
       .catch(function(error) {
@@ -775,7 +811,7 @@ function signUp() {
 }
 
 function signIn() {
-  console.log('signIp');
+  console.log('signIn');
   var error = '';
   var USERNAME = $("[id='username_login']").val();
   var PASSWORD = $("[id='password_login']").val();
@@ -793,7 +829,14 @@ function signIn() {
         password: PASSWORD
       })
       .then(function(response) {
-        console.log(response);
+        console.log(response.data.status);
+        if (response.data.status == 'success') {
+          alert('Login Success !');
+          hideSignInForm();
+        } else {
+          alert('Log in Fail ! Please log in again.');
+          clearFormSignIn();
+        }
         // if(response.data.)
       })
       .catch(function(error) {
