@@ -6,6 +6,7 @@ var dog_deposition_id = 0;
 
 var edit_id = 0;
 var page = '';
+var login = false;
 
 //-------OTHERS-------------------------
 function setPage(thisPage) {
@@ -55,13 +56,17 @@ function hideFormAddDepositionDog() {
 }
 
 function hideSignUpForm() {
-  document.getElementById('sign-up-form').style.visibility = 'hidden';
-  clearFormSignUp();
+  if (document.getElementById('sign-up-form') != null) {
+    document.getElementById('sign-up-form').style.visibility = 'hidden';
+    clearFormSignUp();
+  }
 }
 
 function hideSignInForm() {
-  document.getElementById('sign-in-form').style.visibility = 'hidden';
-  clearFormSignIn();
+  if (document.getElementById('sign-in-form') != null) {
+    document.getElementById('sign-in-form').style.visibility = 'hidden';
+    clearFormSignIn();
+  }
 }
 
 //----------------Form Management (SHOW)
@@ -497,8 +502,6 @@ function findCustomerDog(id) {
             date_of_birth: response.data[i].date_of_birth.slice(0, 10),
             weight: response.data[i].weight
           };
-          // console.log('return');
-          // console.log(dog);
           return dog;
         }
       }
@@ -771,10 +774,28 @@ function getAvailableBoxes() {
 }
 //---------AUTHORIZATION----------------
 
+function checkStatus() {
+  // document.getElementById('sign-in-form').style.visibility = 'visible';
+  //   if (login) {
+  //     console.log('login');
+  //   } else {
+  //     console.log('not-login');
+  //     console.log(document.getElementById('sign-in-form'));
+  //   }
+  //
+  setTimeout(function() {
+    if (login) {
+      console.log('login');
+    } else {
+      console.log('not-login');
+      showSignInForm();
+    }
+  }, 100);
+}
+
 function signUp() {
   console.log('signUp');
   var error = '';
-  // var ID = max_id_customer + 1;
   var USERNAME = $("[id='username']").val();
   var PASSWORD = $("[id='password']").val();
   var FIRSTNAME = $("[id='firstname']").val();

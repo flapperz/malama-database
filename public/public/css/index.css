@@ -1,15 +1,3 @@
-/* div.popup {
-    visibility: visible;
-} */
-
-/* #sign-up-form {
-    visibility: visible;
-} */
-
-#sign-in-form {
-    visibility: visible;
-}
-
 div.popup div.form-bg {
     margin-top: 12vh;
 }
