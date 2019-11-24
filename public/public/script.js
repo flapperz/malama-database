@@ -727,7 +727,7 @@ function addDeposition() {
       .post('http://localhost:5000/dep', {
         dog_id: dog_deposition_id,
         box_id: box_id
-        // deposit_time: '1999-09-09'
+        // checkin_time: '1999-09-09'
       })
       .then(function(response) {
         console.log(response);
@@ -759,12 +759,12 @@ function getDeposition() {
           response.data[i].deposit_fee == null
             ? 0
             : response.data[i].deposit_fee;
-        const deposit_time =
-          response.data[i].deposit_time == null
+        const checkin_time =
+          response.data[i].checkin_time == null
             ? '-'
-            : response.data[i].deposit_time.substring(0, 10) +
+            : response.data[i].checkin_time.substring(0, 10) +
               ' (' +
-              response.data[i].deposit_time.substring(11, 19) +
+              response.data[i].checkin_time.substring(11, 19) +
               ')';
         const checkout_time =
           response.data[i].checkout_time == null
@@ -787,7 +787,7 @@ function getDeposition() {
           '</td><td>' +
           deposit_fee +
           '</td><td>' +
-          deposit_time +
+          checkin_time +
           '</td><td>' +
           checkout_time +
           '</td></tr>';
