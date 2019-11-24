@@ -3,11 +3,6 @@
 USE malama;
 -- cal setup before cal lthis
 
-INSERT INTO box (size, last_cleaning_date, status)
-VALUES 	('L', curdate(), 'Occupied'),
-		('S', curdate(), 'Occupied');
-select * from box;
-
 INSERT INTO customer_dog (dog_name, breed, date_of_birth, weight)
 VALUES	('redgold', 'royal', '1999-05-27', 11.1),
 		('redblue', 'royal', '1999-05-27', 13.3);
@@ -29,7 +24,8 @@ VALUES ('flapperz', 'password1', 'krit', 'c'),
 		('ttk', 'password2', 'kkun', 'liw');
 
 INSERT INTO box(size, last_cleaning_date, `status`)
-VALUES  ('L', curdate(), 'Available'),
-		('S', curdate(), 'Available');
+VALUES  ('S', curdate(), 'Available'),
+		('M', curdate(), 'Available'),
+        ('L', curdate(), 'Available');
 SELECT * FROM box;
 
