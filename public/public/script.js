@@ -15,14 +15,17 @@ function setPage(thisPage) {
     document.getElementById('CAFE').style.textDecoration = 'underLine';
     document.getElementById('CUSTOMER').style.textDecoration = 'none';
     document.getElementById('DEPOSITION').style.textDecoration = 'none';
+    showSearchBar();
   } else if (page == 'CUSTOMER') {
     document.getElementById('CAFE').style.textDecoration = 'none';
     document.getElementById('CUSTOMER').style.textDecoration = 'underLine';
     document.getElementById('DEPOSITION').style.textDecoration = 'none';
-  } else if (page == 'DEPOSTION') {
+    showSearchBar();
+  } else if (page == 'DEPOSITION') {
     document.getElementById('CAFE').style.textDecoration = 'none';
     document.getElementById('CUSTOMER').style.textDecoration = 'none';
     document.getElementById('DEPOSITION').style.textDecoration = 'underLine';
+    hideSearchBar();
   }
 }
 
@@ -64,6 +67,11 @@ function hideSignInForm() {
   clearFormSignIn();
 }
 
+function hideSearchBar() {
+  document.getElementById('id-search-bar').style.visibility = 'hidden';
+  document.getElementById('id-add-dog-botton').style.visibility = 'hidden';
+}
+
 //----------------Form Management (SHOW)
 
 function showFormAddDog() {
@@ -92,7 +100,6 @@ function showFormEditCustomerDog() {
 }
 
 function showSignUpForm() {
-  // hideSignInForm();
   document.getElementById('sign-up-form').style.visibility = 'visible';
   hideSignInForm();
 }
@@ -104,6 +111,11 @@ function showSignInForm() {
 
 function showFormAddDepositionDog() {
   document.getElementById('popup-deposition-form').style.visibility = 'visible';
+}
+
+function showSearchBar() {
+  document.getElementById('id-search-bar').style.visibility = 'visible';
+  document.getElementById('id-add-dog-botton').style.visibility = 'visible';
 }
 
 //----------------Form Management (CLEAR)
@@ -608,8 +620,8 @@ function getCustomerDog() {
           '<p onclick=addToDeposition(' +
           ID +
           ')>+ ADD</p>' +
-          '</td>';
-        ('</tr>');
+          '</td></tr>';
+        // ('</tr>');
       }
       html += '</tbody></table></div>';
       document.getElementById('dog-display').innerHTML = html;
@@ -727,6 +739,7 @@ function addDeposition() {
       .post('http://localhost:5000/dep', {
         dog_id: dog_deposition_id,
         box_id: box_id
+        // checkin_time: '1999-09-09'
       })
       .then(function(response) {
         console.log(response);
@@ -736,6 +749,82 @@ function addDeposition() {
       .catch(function(error) {
         console.log(error);
       });
+  }
+}
+
+function getDeposition() {
+  console.log('deposition');
+  setPage('DEPOSITION');
+  try {
+    axios.get('http://localhost:5000/dep').then(response => {
+      console.log(response.data);
+      var html =
+        '<table class="table-cafe"><thead><tr><th>Dep ID</th><th>BOX ID</th><th>DOG ID</th><th>PRODUCT ID</th><th>FEE</th><th>DEPOSIT TIME</th><th>CHECK OUT TIME</th></tr></thead></table>';
+
+      html += '<div class="table-data"><table class="table-cafe"><tbody>';
+      for (let i = 0; i < response.data.length; i++) {
+        const deposition_id = response.data[i].deposition_id;
+        const box_id = response.data[i].box_id;
+        const dog_id = response.data[i].dog_id;
+        const product_id = response.data[i].product_id;
+        const deposit_fee =
+          response.data[i].deposit_fee == null
+            ? 0
+            : response.data[i].deposit_fee;
+        const checkin_time =
+          response.data[i].checkin_time == null
+            ? '-'
+            : response.data[i].checkin_time.substring(0, 10) +
+              ' (' +
+              response.data[i].checkin_time.substring(11, 19) +
+              ')';
+        const checkout_time =
+          response.data[i].checkout_time == null
+            ? '<p onclick="checkOut(' +
+              deposition_id +
+              ',' +
+              dog_id +
+              ')">check out</p>'
+            : response.data[i].checkout_time.substring(0, 10) +
+              ' (' +
+              response.data[i].checkout_time.substring(11, 19) +
+              ')';
+        const is_retrieved = response.data[i].is_retrieved;
+
+        html +=
+          '<tr><td>' +
+          deposition_id +
+          '</td><td>' +
+          box_id +
+          '</td><td>' +
+          dog_id +
+          '</td><td>' +
+          product_id +
+          '</td><td>' +
+          deposit_fee +
+          '</td><td>' +
+          checkin_time +
+          '</td><td>' +
+          checkout_time +
+          '</td></tr>';
+        //   '<td><img src="../img/pencil.png" onclick="editCustomerDog_(' +
+        //   ID +
+        //   ')" /></td><td><img src="../img/bin.png" onclick="delCustomerDog(' +
+        //   ID +
+        //   ')"></td><td>' +
+        //   '<p onclick=addToDeposition(' +
+        //   ID +
+        //   ')>+ ADD</p>' +
+        //   '</td>';
+        // ('</tr>');
+      }
+      html += '</tbody></table></div>';
+      document.getElementById('dog-display').innerHTML = html;
+      // console.log(html);
+    });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
   }
 }
 
@@ -768,6 +857,21 @@ function getAvailableBoxes() {
     console.log('failed');
     console.error(error);
   }
+}
+
+function checkOut(deposition_id, dog_id) {
+  axios
+    .post('http://localhost:5000/dep/checkout', {
+      deposition_id: deposition_id,
+      dog_id: dog_id
+    })
+    .then(function(response) {
+      console.log(response);
+      getDeposition();
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 }
 //---------AUTHORIZATION----------------
 
