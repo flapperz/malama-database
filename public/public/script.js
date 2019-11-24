@@ -2,6 +2,7 @@
 
 var max_id_cafe = 0;
 var max_id_customer = 0;
+var dog_deposition_id = 0;
 
 var edit_id = 0;
 var page = '';
@@ -667,33 +668,37 @@ function searchCustomerDog() {
 //---------------Deposition-------------
 
 function addToDeposition(ID) {
+  dog_deposition_id = ID;
   console.log('add ' + ID + ' to Deposition');
   showFormAddDepositionDog();
   getAvailableBoxes();
 }
 
-function getAvailableBoxesUseThis() {
-  // try {
-  //   axios.get('localhost:5000/boxes').then(response => {
-  //     console.log(response);
-  var html = '';
-  //     for (let i = 0; i < response.data.length; i++) {
-  //       const boxID = response.data[i].box_id;
-  //       const size = response.data[i].size;
-  //       console.log(boxID + '#' + size);
-  //     }
-  html +=
-    '<form id="deposition-form"><select id="available-box" name="available-box"> \
-              <option value="" disabled selected hidden>-- select a box -- \
-              </option><option value="NO">NO</option><option value="YES">YES</option> \
-            </select></form>';
-  document.getElementById('depositionForm').innerHTML = html;
-  // clearSearchingValue();
-  //   });
-  // } catch (error) {
-  //   console.log('failed');
-  //   console.error(error);
-  // }
+function addDeposition() {
+  console.log(dog_deposition_id);
+  var error = '';
+  const box_id = $("[name='available-box']").val();
+  if (box_id == null) {
+    error = addError(error, 'Fields required');
+  }
+  if (error != '') {
+    window.alert(error);
+    return;
+  } else {
+    axios
+      .post('http://localhost:5000/dep', {
+        dog_id: dog_deposition_id,
+        box_id: box_id
+      })
+      .then(function(response) {
+        console.log(response);
+        hideFormAddDepositionDog();
+        getCustomerDog();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 }
 
 function getAvailableBoxes() {

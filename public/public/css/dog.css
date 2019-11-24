@@ -276,10 +276,6 @@ div.popup div.form-bg div.dog-information-bg form input {
 
 /* deposition */
 
-#popup-deposition-form {
-  visibility: visible;
-}
-
 .dog-information-please-select-an-available-box {
   font-size: 18px;
   margin-top: 20px;
