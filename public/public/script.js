@@ -19,7 +19,7 @@ function setPage(thisPage) {
     document.getElementById('CAFE').style.textDecoration = 'none';
     document.getElementById('CUSTOMER').style.textDecoration = 'underLine';
     document.getElementById('DEPOSITION').style.textDecoration = 'none';
-  } else if (page == 'DEPOSTION') {
+  } else if (page == 'DEPOSITION') {
     document.getElementById('CAFE').style.textDecoration = 'none';
     document.getElementById('CUSTOMER').style.textDecoration = 'none';
     document.getElementById('DEPOSITION').style.textDecoration = 'underLine';
@@ -736,6 +736,76 @@ function addDeposition() {
       .catch(function(error) {
         console.log(error);
       });
+  }
+}
+
+function getDeposition() {
+  setPage('DEPOSITION');
+  try {
+    axios.get('http://localhost:5000/dep').then(response => {
+      console.log(response.data);
+      var html =
+        '<table class="table-cafe"><thead><tr><th>Dep ID</th><th>BOX ID</th><th>DOG ID</th><th>PRODUCT ID</th><th>FEE</th><th>DEPOSIT TIME</th><th>CHECKOUT TIME</th></tr></thead></table>';
+
+      html += '<table class="table-data"><table class="table-cafe"><tbody>';
+      for (let i = 0; i < response.data.length; i++) {
+        const deposition_id = response.data[i].deposition_id;
+        const box_id = response.data[i].box_id;
+        const dog_id = response.data[i].dog_id;
+        const product_id = response.data[i].product_id;
+        const deposit_fee =
+          response.data[i].deposit_fee == null
+            ? 0
+            : response.data[i].deposit_fee;
+        const deposit_time =
+          response.data[i].deposit_time.slice(0, 10) +
+          '(' +
+          response.data[i].deposit_time.slice(11, 8) +
+          ')';
+        const checkout_time =
+          response.data[i].checkout_time == null
+            ? '-'
+            : response.data[i].checkout_time.slice(0, 10) +
+              '(' +
+              response.data[i].checkout_time.slice(11, 8) +
+              ')';
+        const is_retrieved = response.data[i].is_retrieved;
+
+        html +=
+          '<tr><td>' +
+          deposition_id +
+          '</td><td>' +
+          box_id +
+          '</td><td>' +
+          dog_id +
+          '</td><td>' +
+          product_id +
+          '</td><td>' +
+          deposit_fee +
+          '</td><td>' +
+          deposit_time +
+          '</td><td>' +
+          checkout_time +
+          '</td></tr>';
+        //   '<td><img src="../img/pencil.png" onclick="editCustomerDog_(' +
+        //   ID +
+        //   ')" /></td><td><img src="../img/bin.png" onclick="delCustomerDog(' +
+        //   ID +
+        //   ')"></td><td>' +
+        //   '<p onclick=addToDeposition(' +
+        //   ID +
+        //   ')>+ ADD</p>' +
+        //   '</td>';
+        // ('</tr>');
+      }
+      html += '</tbody></table></table>';
+      document.getElementById('dog-display').innerHTML = html;
+      // console.log(html);
+      // console.log('getCustomerDog');
+    });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
   }
 }
 
