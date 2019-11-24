@@ -972,3 +972,8 @@ function signIn() {
       });
   }
 }
+
+function signOut() {
+  localStorage.setItem('login', 'false');
+  checkStatus();
+}
