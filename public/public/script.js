@@ -6,7 +6,6 @@ var dog_deposition_id = 0;
 
 var edit_id = 0;
 var page = '';
-var login = false;
 
 //-------OTHERS-------------------------
 function setPage(thisPage) {
@@ -157,15 +156,11 @@ function clearFormSignUp() {
   $("[id='password']").val('');
   $("[id='firstname']").val('');
   $("[id='lastname']").val('');
-  // document.getElementById('sign-up-form-form').reset();
-  // alert('clearFormSignUp');
 }
 
 function clearFormSignIn() {
   $("[id='username_login']").val('');
   $("[id='password_login']").val('');
-  // document.getElementById('sign-in-form-form').reset();
-  // alert('clearFormSignIn');
 }
 
 //-------Err Management-----------------
@@ -189,7 +184,6 @@ function searchDog() {
 function findCafeDog(id) {
   try {
     return axios.get('http://localhost:5000/cafedog').then(response => {
-      // console.log(response);
       var dog;
       for (let i = 0; i < response.data.length; i++) {
         if (response.data[i].dog_id == id) {
@@ -309,7 +303,6 @@ function delCafeDog(id) {
 }
 
 function getCafeDog() {
-  // setPage('CAFE');
   try {
     axios.get('http://localhost:5000/cafedog').then(response => {
       console.log(response);
@@ -321,7 +314,6 @@ function getCafeDog() {
         const ID = response.data[i].dog_id;
         const NAME = response.data[i].dog_name;
         const BREED = response.data[i].breed;
-        // const BIRTHDATE = response.data[i].date_of_birth;
         const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
         const WEIGHT = response.data[i].weight;
         const COMPANY = response.data[i].sourcing_company;
@@ -364,7 +356,6 @@ function getCafeDog() {
       html += '</tbody></table></div>';
       document.getElementById('dog-display').innerHTML = html;
       setPage('CAFE');
-      // console.log(html);
     });
   } catch (error) {
     console.log('failed');
@@ -447,7 +438,6 @@ function searchCafeDog() {
           const ID = response.data[i].dog_id;
           const NAME = response.data[i].dog_name;
           const BREED = response.data[i].breed;
-          // const BIRTHDATE = response.data[i].date_of_birth;
           const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
           const WEIGHT = response.data[i].weight;
           const COMPANY = response.data[i].sourcing_company;
@@ -489,7 +479,6 @@ function searchCafeDog() {
         }
         html += '</tbody></table></div>';
         document.getElementById('dog-display').innerHTML = html;
-        // console.log(html);
         clearSearchingValue();
       });
   } catch (error) {
@@ -503,7 +492,6 @@ function searchCafeDog() {
 function findCustomerDog(id) {
   try {
     return axios.get('http://localhost:5000/customerdog').then(response => {
-      // console.log(response);
       var dog;
       for (let i = 0; i < response.data.length; i++) {
         if (response.data[i].dog_id == id) {
@@ -599,7 +587,6 @@ function getCustomerDog() {
         const ID = response.data[i].dog_id;
         const NAME = response.data[i].dog_name;
         const BREED = response.data[i].breed;
-        // const BIRTHDATE = response.data[i].date_of_birth;
         const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
         const WEIGHT = response.data[i].weight;
         max_id_customer = max_id_customer > ID ? max_id_customer : ID;
@@ -624,11 +611,9 @@ function getCustomerDog() {
           ID +
           ')>+ ADD</p>' +
           '</td></tr>';
-        // ('</tr>');
       }
       html += '</tbody></table></div>';
       document.getElementById('dog-display').innerHTML = html;
-      // console.log(html);
       console.log('getCustomerDog');
     });
   } catch (error) {
@@ -742,7 +727,6 @@ function addDeposition() {
       .post('http://localhost:5000/dep', {
         dog_id: dog_deposition_id,
         box_id: box_id
-        // checkin_time: '1999-09-09'
       })
       .then(function(response) {
         console.log(response);
@@ -810,20 +794,9 @@ function getDeposition() {
           '</td><td>' +
           checkout_time +
           '</td></tr>';
-        //   '<td><img src="../img/pencil.png" onclick="editCustomerDog_(' +
-        //   ID +
-        //   ')" /></td><td><img src="../img/bin.png" onclick="delCustomerDog(' +
-        //   ID +
-        //   ')"></td><td>' +
-        //   '<p onclick=addToDeposition(' +
-        //   ID +
-        //   ')>+ ADD</p>' +
-        //   '</td>';
-        // ('</tr>');
       }
       html += '</tbody></table></div>';
       document.getElementById('dog-display').innerHTML = html;
-      // console.log(html);
     });
   } catch (error) {
     console.log('failed');
@@ -854,7 +827,6 @@ function getAvailableBoxes() {
       }
       html += '</select></form>';
       document.getElementById('depositionForm').innerHTML = html;
-      // clearSearchingValue();
     });
   } catch (error) {
     console.log('failed');
@@ -887,13 +859,6 @@ function checkStatus() {
     } else {
       console.log('login :D ');
     }
-
-    // if (document.cookie == 'login') {
-    //   console.log('login');
-    // } else {
-    //   console.log('not-login');
-    //   showSignInForm();
-    // }
   }, 100);
 }
 
@@ -957,7 +922,6 @@ function signIn() {
         console.log(response.data.status);
         if (response.data.status == 'success') {
           alert('Login Success !');
-          // hideSignInForm();
           localStorage.setItem('login', 'true');
           hideSignInForm();
         } else {
