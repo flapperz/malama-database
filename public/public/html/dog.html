@@ -48,12 +48,16 @@
               CUSTOMER
             </p>
             <p>|</p>
-            <p class="option-bar-text" id="DEPOSITION">
+            <p
+              class="option-bar-text"
+              id="DEPOSITION"
+              onclick="getDeposition()"
+            >
               DEPOSITION
             </p>
           </div>
           <br />
-          <div class="search-bar">
+          <div class="search-bar" id="id-search-bar">
             <form id="searching-form">
               <input
                 type="text"
@@ -72,7 +76,7 @@
           <div class="dog-display" id="dog-display">
             <p class="each-all"></p>
           </div>
-          <div class="add-dog-botton" onclick="showFormAddDog()">
+          <div class="add-dog-botton" id="id-add-dog-botton" onclick="showFormAddDog()">
             + ADD DOG
           </div>
         </div>
@@ -386,6 +390,5 @@
         </div>
       </div>
     </div>
-    s
   </body>
 </html>
