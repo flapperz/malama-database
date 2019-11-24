@@ -727,6 +727,7 @@ function addDeposition() {
       .post('http://localhost:5000/dep', {
         dog_id: dog_deposition_id,
         box_id: box_id
+        // deposit_time: '1999-09-09'
       })
       .then(function(response) {
         console.log(response);
@@ -740,6 +741,7 @@ function addDeposition() {
 }
 
 function getDeposition() {
+  console.log('deposition');
   setPage('DEPOSITION');
   try {
     axios.get('http://localhost:5000/dep').then(response => {
@@ -758,10 +760,12 @@ function getDeposition() {
             ? 0
             : response.data[i].deposit_fee;
         const deposit_time =
-          response.data[i].deposit_time.substring(0, 10) +
-          ' (' +
-          response.data[i].deposit_time.substring(11, 19) +
-          ')';
+          response.data[i].deposit_time == null
+            ? '-'
+            : response.data[i].deposit_time.substring(0, 10) +
+              ' (' +
+              response.data[i].deposit_time.substring(11, 19) +
+              ')';
         const checkout_time =
           response.data[i].checkout_time == null
             ? '<p onclick="checkOut()">check out</p>'
