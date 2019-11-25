@@ -275,7 +275,7 @@ BEGIN
 	UPDATE 
 		deposition 
 	SET
-		checkout_time = UTC_TIMESTAMP()+7,
+		checkout_time = NOW(),
         is_retrieved = 1,
         deposit_fee = @price
 	WHERE

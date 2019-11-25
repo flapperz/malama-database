@@ -25,7 +25,8 @@ const mc = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'admin',
-  database: 'malama'
+  database: 'malama',
+  dateStrings: true
 });
 
 // connect to database
