@@ -8,16 +8,12 @@ VALUES	('redgold', 'royal', '1999-05-27', 11.1),
 		('redblue', 'royal', '1999-05-27', 13.3);
 
 INSERT INTO cafe_dog
-VALUES 	(1, 'doge', 'shiba', '1999-05-27', 23.1, curdate(), curdate(), 'ear cancer, hypothermia, horny', 'mcdonald', 10, '10-14'),
-		(2, 'nully', 'nulltribe', null, 100, null, null, '', null, 0, 'NO SHOWTIME');
+VALUES 	(1, 'doge', 'shiba', '1999-05-27', 23.1, curdate(), curdate(), 'ear cancer, hypothermia, horny', 'mcdonald', 10, '10-14');
 SELECT * FROM cafe_dog;
 
 INSERT INTO customer_dog_foodtypes
 VALUES 	(1, 'chocolate');
 
-INSERT INTO cafe_dog_foodtypes
-VALUES 	(2, 'chocolate'),
-		(2, 'human');
 -- SELECT * FROM customer_dog_foodtypes;
 INSERT INTO user
 VALUES ('flapperz', 'password1', 'krit', 'c'),

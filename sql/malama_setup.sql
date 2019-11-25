@@ -309,9 +309,14 @@ BEGIN
     SET @deposition_fix_cost = 100;
 	SELECT size, `status` INTO v_box_size, v_status FROM `box` WHERE box_id = v_box_id;
     SELECT dog_name INTO v_dog_name FROM customer_dog WHERE dog_id = v_dog_id;
+    
+    SELECT EXISTS(SELECT is_retrieved FROM deposition WHERE dog_id = v_dog_id) INTO @is_already_checkin;
     -- check box available
 	IF v_status <> 2 THEN
  		RETURN 1;
+	END IF;
+	IF @is_already_checkin THEN
+		RETURN 1;
 	END IF; 
     
     -- set status to occupied
