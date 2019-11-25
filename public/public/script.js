@@ -291,15 +291,19 @@ function editCafeDog_(id) {
   });
 }
 
-function delCafeDog(id) {
-  try {
-    axios.delete('http://localhost:5000/del/cafe_dog/' + id).then(response => {
-      console.log(response.data);
-      window.alert('ID: ' + id + ' Successfully delete');
-      getCafeDog();
-    });
-  } catch (error) {
-    console.error(error);
+function delCafeDog(id, name) {
+  if (confirm('Confirm to delete ' + name)) {
+    try {
+      axios
+        .delete('http://localhost:5000/del/cafe_dog/' + id)
+        .then(response => {
+          console.log(response.data);
+          window.alert('ID: ' + id + ' Successfully delete');
+          getCafeDog();
+        });
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 
@@ -352,6 +356,10 @@ function getCafeDog() {
           ID +
           ')" /></td><td><img src="../img/bin.png" onclick="delCafeDog(' +
           ID +
+          ',' +
+          "'" +
+          NAME +
+          "'" +
           ')"></td></tr>';
       }
       html += '</tbody></table></div>';
