@@ -129,7 +129,7 @@ DogUpdater.deleteDog = function(id, table, result){
 // };
 
 DogUpdater.getDeposition = function(result){
-    sql.query('select * from deposition', function (err,res){
+    sql.query('select * from deposition order by is_retrieved', function (err,res){
         if(err) {
             console.log("error: ", err);
             result(null, err);
