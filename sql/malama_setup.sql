@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS cafe_dog
     -- end of dog session
     last_checkup_date DATE,
     last_bath_date	DATE,
-    health_status	VARCHAR(255) NOT NULL,
+    health_status	BOOLEAN NOT NULL,
     sourcing_company CHAR(50),
     brought_price	FLOAT NOT NULL,
     showtime		ENUM('10-14', '14-18', '18-21', 'NO SHOWTIME') NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS deposition
     deposition_id	INT NOT NULL AUTO_INCREMENT,
     product_id 		INT NOT NULL,
     box_id			INT,
-    deposit_fee		FLOAT,
+    deposit_fee		FLOAT NOT NULL,
     is_retrieved	BOOLEAN NOT NULL,
     checkin_time    DATETIME,
     checkout_time	DATETIME,
@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS guest
 CREATE TABLE IF NOT EXISTS cafe_member
 (
 	member_id		INT NOT NULL AUTO_INCREMENT,
-    email			CHAR(50),
+    email			CHAR(50) NOT NULL,
     date_of_birth	DATE,
     mobile_no		VARCHAR(10) NOT NULL,
 	address1 		CHAR(255) NOT NULL,
@@ -341,12 +341,4 @@ DELIMITER ;
 
 -- index
 CREATE INDEX price_index ON product(price) USING BTREE;
-
-
-
-
-
-
-
-
 
