@@ -78,7 +78,11 @@
           <div class="dog-display" id="dog-display">
             <p class="each-all"></p>
           </div>
-          <div class="add-dog-botton" id="id-add-dog-botton" onclick="showFormAddDog()">
+          <div
+            class="add-dog-botton"
+            id="id-add-dog-botton"
+            onclick="showFormAddDog()"
+          >
             + ADD DOG
           </div>
         </div>
@@ -397,30 +401,50 @@
       <div class="popup-bg"></div>
       <div class="form-bg" id="form-bg-sign-up">
         <span class="form-name">
-          <p>Sing Up</p>
+          <p>Sign Up</p>
         </span>
         <div class="dog-information-bg" id="dog-information-bg-sign-up">
           <span class="dog-information-name">
             <!-- <p>already have an account? Sign In</p> -->
           </span>
           <form id="sign-up-form-form" class="form">
-            <input type="text" id="username" name="dog_name" placeholder="USERNAME" />
-            <input type="text" id="password" name="breed" placeholder="PASSWORD" />
-            <input type="text" id="firstname" name="date_of_birth" placeholder="FIRST NAME" />
-    
-            <input type="text" id="lastname" name="weight" placeholder="LAST NAME" />
+            <input
+              type="text"
+              id="username"
+              name="dog_name"
+              placeholder="USERNAME"
+            />
+            <input
+              type="text"
+              id="password"
+              name="breed"
+              placeholder="PASSWORD"
+            />
+            <input
+              type="text"
+              id="firstname"
+              name="date_of_birth"
+              placeholder="FIRST NAME"
+            />
+
+            <input
+              type="text"
+              id="lastname"
+              name="weight"
+              placeholder="LAST NAME"
+            />
           </form>
         </div>
         <div class="submit-botton" onclick="signUp()">
           <p>Submit</p>
         </div>
-        <div class='text-sign-in'>
+        <div class="text-sign-in">
           <p>Already have an account ?</p>
           <p class="linkLogin" onclick="showSignInForm()">Sign In</p>
         </div>
       </div>
     </div>
-    
+
     <!-- sign-in-form -->
     <div class="popup" id="sign-in-form">
       <div class="popup-bg"></div>
@@ -428,26 +452,35 @@
         <!-- <img onclick="hideSignUpForm()" src="../img/close.png"
                       class="close" /> -->
         <span class="form-name">
-          <p>Sing In</p>
+          <p>Sign In</p>
         </span>
         <div class="dog-information-bg" id="dog-information-bg-sign-in">
           <span class="dog-information-name">
             <!-- <p>already have an account? Sign In</p> -->
           </span>
           <form id="edit-customerDog-form" class="form">
-            <input type="text" id="username_login" name="dog_name" placeholder="USERNAME" />
-            <input type="text" id="password_login" name="breed" placeholder="PASSWORD" />
+            <input
+              type="text"
+              id="username_login"
+              name="dog_name"
+              placeholder="USERNAME"
+            />
+            <input
+              type="text"
+              id="password_login"
+              name="breed"
+              placeholder="PASSWORD"
+            />
           </form>
         </div>
         <div class="submit-botton" onclick="signIn()">
           <p>Submit</p>
         </div>
-        <div class='text-sign-in'>
+        <div class="text-sign-in">
           <p>No account ?</p>
           <p class="linkLogin" onclick="showSignUpForm()">Create account</p>
         </div>
       </div>
     </div>
-
   </body>
 </html>
