@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS deposition
     deposition_id	INT NOT NULL AUTO_INCREMENT,
     product_id 		INT NOT NULL,
     box_id			INT,
-    deposit_fee		FLOAT NOT NULL,
+    deposit_fee		FLOAT NOT NULL DEFAULT 0,
     is_retrieved	BOOLEAN NOT NULL,
     checkin_time    DATETIME,
     checkout_time	DATETIME,
@@ -270,11 +270,12 @@ BEGIN
     SET v_base_price = 150;
     SET @price = v_base_price * v_box_size;
     
+    -- SET GLOBAL time_zone = 'SYSTEM';
     -- update depostion :: checkout datetime, is retrieved, fee
 	UPDATE 
 		deposition 
 	SET
-		checkout_time = now(),
+		checkout_time = UTC_TIMESTAMP()+7,
         is_retrieved = 1,
         deposit_fee = @price
 	WHERE
