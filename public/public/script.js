@@ -747,7 +747,7 @@ function getDeposition() {
     axios.get('http://localhost:5000/dep').then(response => {
       console.log(response.data);
       var html =
-        '<table class="table-cafe"><thead><tr><th>Dep ID</th><th>BOX ID</th><th>DOG ID</th><th>PRODUCT ID</th><th>FEE</th><th>DEPOSIT TIME</th><th>CHECK OUT TIME</th></tr></thead></table>';
+        '<table class="table-cafe"><thead><tr><th>DEPOSITION ID</th><th>BOX ID</th><th>DOG ID</th><th>PRODUCT ID</th><th>FEE</th><th>DEPOSIT TIME</th><th>CHECK OUT TIME</th></tr></thead></table>';
 
       html += '<div class="table-data"><table class="table-cafe"><tbody>';
       for (let i = 0; i < response.data.length; i++) {
