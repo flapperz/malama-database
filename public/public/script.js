@@ -154,6 +154,7 @@ function clearSearchingValue() {
 function clearFormSignUp() {
   $("[id='username']").val('');
   $("[id='password']").val('');
+  $("[id='confirm_password']").val('');
   $("[id='firstname']").val('');
   $("[id='lastname']").val('');
 }
@@ -878,10 +879,14 @@ function signUp() {
   var error = '';
   var USERNAME = $("[id='username']").val();
   var PASSWORD = $("[id='password']").val();
+  var CONFIRM_PASSWORD = $("[id='confirm_password']").val();
   var FIRSTNAME = $("[id='firstname']").val();
   var LASTNAME = $("[id='lastname']").val();
   if (USERNAME == '' || PASSWORD == '' || FIRSTNAME == '' || LASTNAME == '') {
     error = addError(error, 'Fields required');
+  }
+  if (PASSWORD != CONFIRM_PASSWORD) {
+    error = addError(error, 'Password and confirm password does not match');
   }
   if (error != '') {
     window.alert(error);
