@@ -154,6 +154,7 @@ function clearSearchingValue() {
 function clearFormSignUp() {
   $("[id='username']").val('');
   $("[id='password']").val('');
+  $("[id='confirm_password']").val('');
   $("[id='firstname']").val('');
   $("[id='lastname']").val('');
 }
@@ -849,6 +850,17 @@ function checkOut(deposition_id, dog_id) {
     });
 }
 //---------AUTHORIZATION----------------
+function checkStatusOnDog() {
+  if (localStorage.getItem('login') != 'true') {
+    console.log(localStorage.getItem('login'));
+    console.log('not-login');
+    alert('please log in');
+    location = 'http://localhost:3000';
+  } else {
+    console.log('login :D ');
+    getCafeDog();
+  }
+}
 
 function checkStatus() {
   setTimeout(function() {
@@ -867,10 +879,14 @@ function signUp() {
   var error = '';
   var USERNAME = $("[id='username']").val();
   var PASSWORD = $("[id='password']").val();
+  var CONFIRM_PASSWORD = $("[id='confirm_password']").val();
   var FIRSTNAME = $("[id='firstname']").val();
   var LASTNAME = $("[id='lastname']").val();
   if (USERNAME == '' || PASSWORD == '' || FIRSTNAME == '' || LASTNAME == '') {
     error = addError(error, 'Fields required');
+  }
+  if (PASSWORD != CONFIRM_PASSWORD) {
+    error = addError(error, 'Password and confirm password does not match');
   }
   if (error != '') {
     window.alert(error);
@@ -939,5 +955,9 @@ function signIn() {
 
 function signOut() {
   localStorage.setItem('login', 'false');
-  checkStatus();
+  if (location == 'http://localhost:3000') {
+    checkStatus();
+  } else {
+    location = 'http://localhost:3000';
+  }
 }

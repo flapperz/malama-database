@@ -8,7 +8,7 @@ div.popup #form-bg-sign-up {
     background-color: #ffffff;
     display: inline-block;
     width: 600px;
-    height: 65.5vh;
+    height: 68.5vh;
     border-radius: 13px;
     overflow-y: scroll;
 }
@@ -28,7 +28,7 @@ div.popup #form-bg-sign-in {
 div.popup div.form-bg #dog-information-bg-sign-up {
     position: relative;
     width: 480px;
-    height: 220px;
+    height: 264px;
     top: 70px;
     padding-top: 20px;
     margin-bottom: 20px;
