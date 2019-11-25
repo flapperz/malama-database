@@ -1,0 +1,78 @@
+div.popup #form-bg-sign-up, #form-bg-sign-in {
+    margin-top: 12vh;
+}
+
+div.popup #form-bg-sign-up {
+    position: relative;
+    top: 35px;
+    background-color: #ffffff;
+    display: inline-block;
+    width: 600px;
+    height: 65.5vh;
+    border-radius: 13px;
+    overflow-y: scroll;
+}
+
+div.popup #form-bg-sign-in {
+    position: relative;
+    top: 35px;
+    background-color: #ffffff;
+    /* background-color: pink; */
+    display: inline-block;
+    width: 600px;
+    height: 57.5vh;
+    border-radius: 13px;
+    overflow-y: scroll;
+}
+
+div.popup div.form-bg #dog-information-bg-sign-up {
+    position: relative;
+    width: 480px;
+    height: 220px;
+    top: 70px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    background-color: #edeeee;
+    display: inline-block;
+}
+
+div.popup div.form-bg #dog-information-bg-sign-in {
+    position: relative;
+    width: 480px;
+    height: 133px;
+    top: 70px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    /*grey*/
+    background-color: #edeeee;
+    display: inline-block;
+}
+
+div.popup div.form-bg div.text-sign-in {
+    position: relative;
+    font-size: 15px;
+    display: block;
+    top: -5px;
+    /* background-color: pink; */
+}
+
+div.popup div.form-bg div.text-sign-in p {
+    position: relative;
+    font-size: 15px;
+    display: inline-block;
+    color: #9E9E9E;
+    /* background-color: pink; */
+    margin: 0px;
+    padding: 0px;
+    /* top: -100px; */
+}
+
+div.popup div.form-bg div.text-sign-in p.linkLogin {
+    color: #6B5043;
+}
+
+div.popup div.form-bg div.text-sign-in p.linkLogin:hover {
+    /* color: #6B5043; */
+    text-decoration: underline;
+    cursor: pointer;
+}

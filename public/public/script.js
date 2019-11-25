@@ -1,7 +1,33 @@
 //--------variable----------------------
 
-var max_id = 0;
+var max_id_cafe = 0;
+var max_id_customer = 0;
+var dog_deposition_id = 0;
+
 var edit_id = 0;
+var page = '';
+
+//-------OTHERS-------------------------
+function setPage(thisPage) {
+  console.log(thisPage);
+  page = thisPage;
+  if (page == 'CAFE') {
+    document.getElementById('CAFE').style.textDecoration = 'underLine';
+    document.getElementById('CUSTOMER').style.textDecoration = 'none';
+    document.getElementById('DEPOSITION').style.textDecoration = 'none';
+    showSearchBar();
+  } else if (page == 'CUSTOMER') {
+    document.getElementById('CAFE').style.textDecoration = 'none';
+    document.getElementById('CUSTOMER').style.textDecoration = 'underLine';
+    document.getElementById('DEPOSITION').style.textDecoration = 'none';
+    showSearchBar();
+  } else if (page == 'DEPOSITION') {
+    document.getElementById('CAFE').style.textDecoration = 'none';
+    document.getElementById('CUSTOMER').style.textDecoration = 'none';
+    document.getElementById('DEPOSITION').style.textDecoration = 'underLine';
+    hideSearchBar();
+  }
+}
 
 //--------Form Managrment---------------
 
@@ -17,7 +43,48 @@ function hideFormEditCafeDog() {
   clearFormEditCafeDog();
 }
 
+function hideFormAddCustomerDog() {
+  document.getElementById('popup-add-customerDog').style.visibility = 'hidden';
+  clearFormAddCafeDog();
+}
+
+function hideFormEditCustomerDog() {
+  document.getElementById('popup-edit-customerDog').style.visibility = 'hidden';
+  clearFormEditCafeDog();
+}
+
+function hideFormAddDepositionDog() {
+  document.getElementById('popup-deposition-form').style.visibility = 'hidden';
+}
+
+function hideSignUpForm() {
+  if (document.getElementById('sign-up-form') != null) {
+    document.getElementById('sign-up-form').style.visibility = 'hidden';
+    clearFormSignUp();
+  }
+}
+
+function hideSignInForm() {
+  if (document.getElementById('sign-in-form') != null) {
+    document.getElementById('sign-in-form').style.visibility = 'hidden';
+    clearFormSignIn();
+  }
+}
+
+function hideSearchBar() {
+  document.getElementById('id-search-bar').style.visibility = 'hidden';
+  document.getElementById('id-add-dog-botton').style.visibility = 'hidden';
+}
+
 //----------------Form Management (SHOW)
+
+function showFormAddDog() {
+  if (page == 'CAFE') {
+    showFormAddCafeDog();
+  } else if (page == 'CUSTOMER') {
+    showFormAddCustomerDog();
+  }
+}
 
 function showFormAddCafeDog() {
   document.getElementById('popup-add-cafeDog').style.visibility = 'visible';
@@ -25,6 +92,34 @@ function showFormAddCafeDog() {
 
 function showFormEditCafeDog() {
   document.getElementById('popup-edit-cafeDog').style.visibility = 'visible';
+}
+
+function showFormAddCustomerDog() {
+  document.getElementById('popup-add-customerDog').style.visibility = 'visible';
+}
+
+function showFormEditCustomerDog() {
+  document.getElementById('popup-edit-customerDog').style.visibility =
+    'visible';
+}
+
+function showSignUpForm() {
+  document.getElementById('sign-up-form').style.visibility = 'visible';
+  hideSignInForm();
+}
+
+function showSignInForm() {
+  hideSignUpForm();
+  document.getElementById('sign-in-form').style.visibility = 'visible';
+}
+
+function showFormAddDepositionDog() {
+  document.getElementById('popup-deposition-form').style.visibility = 'visible';
+}
+
+function showSearchBar() {
+  document.getElementById('id-search-bar').style.visibility = 'visible';
+  document.getElementById('id-add-dog-botton').style.visibility = 'visible';
 }
 
 //----------------Form Management (CLEAR)
@@ -52,6 +147,22 @@ function clearFormValue() {
   $("[name='show-time']").val(null);
 }
 
+function clearSearchingValue() {
+  document.getElementById('searching-form').reset();
+}
+
+function clearFormSignUp() {
+  $("[id='username']").val('');
+  $("[id='password']").val('');
+  $("[id='firstname']").val('');
+  $("[id='lastname']").val('');
+}
+
+function clearFormSignIn() {
+  $("[id='username_login']").val('');
+  $("[id='password_login']").val('');
+}
+
 //-------Err Management-----------------
 
 function addError(error, message) {
@@ -60,10 +171,19 @@ function addError(error, message) {
 
 //--------------API-----------------
 
+function searchDog() {
+  if (page == 'CAFE') {
+    searchCafeDog();
+  } else if (page == 'CUSTOMER') {
+    searchCustomerDog();
+  }
+}
+
+//cafeDog
+
 function findCafeDog(id) {
   try {
     return axios.get('http://localhost:5000/cafedog').then(response => {
-      // console.log(response);
       var dog;
       for (let i = 0; i < response.data.length; i++) {
         if (response.data[i].dog_id == id) {
@@ -151,7 +271,7 @@ function editCafeDog() {
   }
 }
 
-function edit(id) {
+function editCafeDog_(id) {
   showFormEditCafeDog();
   edit_id = id;
 
@@ -194,7 +314,6 @@ function getCafeDog() {
         const ID = response.data[i].dog_id;
         const NAME = response.data[i].dog_name;
         const BREED = response.data[i].breed;
-        // const BIRTHDATE = response.data[i].date_of_birth;
         const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
         const WEIGHT = response.data[i].weight;
         const COMPANY = response.data[i].sourcing_company;
@@ -203,7 +322,7 @@ function getCafeDog() {
         const LAST_BATH = response.data[i].last_bath_date.slice(0, 10);
         const HEALTH = response.data[i].health_status;
         const SHOWTIME = response.data[i].showtime;
-        max_id = max_id > ID ? max_id : ID;
+        max_id_cafe = max_id_cafe > ID ? max_id_cafe : ID;
 
         html +=
           '<tr><td>' +
@@ -228,7 +347,7 @@ function getCafeDog() {
           HEALTH +
           '</td><td>' +
           SHOWTIME +
-          '</td><td><img src="../img/pencil.png" onclick="edit(' +
+          '</td><td><img src="../img/pencil.png" onclick="editCafeDog_(' +
           ID +
           ')" /></td><td><img src="../img/bin.png" onclick="delCafeDog(' +
           ID +
@@ -236,7 +355,7 @@ function getCafeDog() {
       }
       html += '</tbody></table></div>';
       document.getElementById('dog-display').innerHTML = html;
-      console.log(html);
+      setPage('CAFE');
     });
   } catch (error) {
     console.log('failed');
@@ -246,7 +365,7 @@ function getCafeDog() {
 
 function addCafeDog() {
   var error = '';
-  var ID = max_id + 1;
+  var ID = max_id_cafe + 1;
   var NAME = $("[name='dog_name']").val();
   var BREED = $("[name='breed']").val();
   var BIRTHDATE = $("[name='date_of_birth']").val();
@@ -293,7 +412,7 @@ function addCafeDog() {
       })
       .then(function(response) {
         console.log(response);
-        max_id = ID;
+        max_id_cafe = ID;
         hideFormAddCafeDog();
         getCafeDog();
       })
@@ -319,7 +438,6 @@ function searchCafeDog() {
           const ID = response.data[i].dog_id;
           const NAME = response.data[i].dog_name;
           const BREED = response.data[i].breed;
-          // const BIRTHDATE = response.data[i].date_of_birth;
           const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
           const WEIGHT = response.data[i].weight;
           const COMPANY = response.data[i].sourcing_company;
@@ -328,7 +446,7 @@ function searchCafeDog() {
           const LAST_BATH = response.data[i].last_bath_date.slice(0, 10);
           const HEALTH = response.data[i].health_status;
           const SHOWTIME = response.data[i].showtime;
-          max_id = max_id > ID ? max_id : ID;
+          max_id_cafe = max_id_cafe > ID ? max_id_cafe : ID;
 
           html +=
             '<tr><td>' +
@@ -353,7 +471,7 @@ function searchCafeDog() {
             HEALTH +
             '</td><td>' +
             SHOWTIME +
-            '</td><td><img src="../img/pencil.png" onclick="edit(' +
+            '</td><td><img src="../img/pencil.png" onclick="editCafeDog_(' +
             ID +
             ')" /></td><td><img src="../img/bin.png" onclick="delCafeDog(' +
             ID +
@@ -361,7 +479,7 @@ function searchCafeDog() {
         }
         html += '</tbody></table></div>';
         document.getElementById('dog-display').innerHTML = html;
-        console.log(html);
+        clearSearchingValue();
       });
   } catch (error) {
     console.log('failed');
@@ -369,121 +487,457 @@ function searchCafeDog() {
   }
 }
 
-// function getCustomerDog() {
-//   try {
-//     const response = await axios.get("http://localhost:5000/customerdog");
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+//customerDog
 
-// function addCafeDog() {
-//   //มาแก้ parameter ที่ส่งด้วยจ้าาาาา : 3
-//   try {
-//     const response = await axios.post("http://localhost:5000/cafedog", {
-//       dog_id: 99,
-//       dog_name: "OIL",
-//       breed: "EnglishCocker",
-//       date_of_birth: "1999-12-11",
-//       weight: "12",
-//       last_checkup_date: "1999-12-11",
-//       last_bath_date: "1999-12-11",
-//       health_status: "yes",
-//       sourcing_company: "dontknow",
-//       brought_price: "12",
-//       showtime: "14-18"
-//     });
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+function findCustomerDog(id) {
+  try {
+    return axios.get('http://localhost:5000/customerdog').then(response => {
+      var dog;
+      for (let i = 0; i < response.data.length; i++) {
+        if (response.data[i].dog_id == id) {
+          dog = {
+            dog_id: id,
+            dog_name: response.data[i].dog_name,
+            breed: response.data[i].breed,
+            date_of_birth: response.data[i].date_of_birth.slice(0, 10),
+            weight: response.data[i].weight
+          };
+          return dog;
+        }
+      }
+    });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
+  }
+}
 
-// function addCustomerDog() {
-//   //มาแก้ parameter ที่ส่งด้วยจ้าาาาา : 3
-//   try {
-//     const response = await axios.post("http://localhost:5000/customerdog", {
-//       dog_id: 999,
-//       dog_name: "OIL",
-//       breed: "EnglishCocker",
-//       date_of_birth: "1999-12-11",
-//       weight: "12"
-//     });
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+function editCustomerDog() {
+  var error = '';
+  const ID = edit_id;
+  var NAME = $("[id='edit_customerDog_dog_name']").val();
+  var BREED = $("[id='edit_customerDog_breed']").val();
+  var BIRTHDATE = $("[id='edit_customerDog_date_of_birth']").val();
+  var WEIGHT = $("[id='edit_customerDog_weight']").val();
 
-// function getCafeDogByName(name) {
-//   try {
-//     const response = await axios.get("http://localhost:5000/cafe_dog/" + name);
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+  if (NAME == '' || BREED == '' || BIRTHDATE == '' || WEIGHT == '') {
+    error = addError(error, 'Fields required');
+  }
 
-// function getCustomerDogByName(name) {
-//   try {
-//     const response = await axios.get(
-//       "http://localhost:5000/customer_dog/" + name
-//     );
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+  if (error != '') {
+    window.alert(error);
+    return;
+  } else {
+    axios
+      .put('http://localhost:5000/customerdog/' + ID, {
+        dog_id: ID,
+        dog_name: NAME,
+        breed: BREED,
+        date_of_birth: BIRTHDATE,
+        weight: WEIGHT
+      })
+      .then(function(response) {
+        console.log(response);
+        hideFormEditCustomerDog();
+        getCustomerDog();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+}
 
-// function updateCafeDogByID(id) {
-//   //มาแก้ parameter ที่ส่งด้วยจ้าาาาา : 3
-//   try {
-//     const response = await axios.put("http://localhost:5000/cafedog/" + id, {
-//       dog_id: id,
-//       dog_name: "EDIT",
-//       breed: "EnglishCocker",
-//       date_of_birth: "1999-12-11",
-//       weight: "12",
-//       last_checkup_date: "1999-12-11",
-//       last_bath_date: "1999-12-11",
-//       health_status: "yes",
-//       sourcing_company: "dontknow",
-//       brought_price: "12",
-//       showtime: "14-18"
-//     });
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+function editCustomerDog_(id) {
+  console.log('editCustomerDog : ' + id);
+  showFormEditCustomerDog();
+  edit_id = id;
+  var find = findCustomerDog(id);
+  find.then(dog => {
+    $("[id='edit_customerDog_dog_name']").val(dog.dog_name);
+    $("[id='edit_customerDog_breed']").val(dog.breed);
+    $("[id='edit_customerDog_date_of_birth']").val(dog.date_of_birth);
+    $("[id='edit_customerDog_weight']").val(dog.weight);
+  });
+}
 
-// function updateCustomerDogByID(id) {
-//   //มาแก้ parameter ที่ส่งด้วยจ้าาาาา : 3
-//   try {
-//     const response = await axios.put(
-//       "http://localhost:5000/customerdog/" + id,
-//       {
-//         dog_id: id,
-//         dog_name: "EDIT",
-//         breed: "EnglishCocker",
-//         date_of_birth: "1999-12-11",
-//         weight: "12"
-//       }
-//     );
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+function delCustomerDog(id) {
+  try {
+    axios
+      .delete('http://localhost:5000/del/customer_dog/' + id)
+      .then(response => {
+        console.log(response.data);
+        window.alert('ID: ' + id + ' Successfully delete');
+        getCustomerDog();
+      });
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-// getCafeDog();
-// getCustomerDog();
-// addCafeDog();
-// addCustomerDog();
+function getCustomerDog() {
+  setPage('CUSTOMER');
+  try {
+    axios.get('http://localhost:5000/customerdog').then(response => {
+      console.log(response);
+      var html =
+        '<table class="table-cafe"><thead><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>EDIT</th><th>DELETE</th><th>DEPOSITION</th></tr></thead></table>';
 
-//if ในหน้า form ว่าถ้าไม่กรอกห้ามใส่ !!!!!
-// getCafeDogByName("oil");
-// getCustomerDogByName("oil");
-// updateCafeDogByID(2);
-// updateCustomerDogByID(1);
+      html += '<div class="table-data"><table class="table-cafe"><tbody>';
+      for (let i = 0; i < response.data.length; i++) {
+        const ID = response.data[i].dog_id;
+        const NAME = response.data[i].dog_name;
+        const BREED = response.data[i].breed;
+        const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
+        const WEIGHT = response.data[i].weight;
+        max_id_customer = max_id_customer > ID ? max_id_customer : ID;
+
+        html +=
+          '<tr><td>' +
+          ID +
+          '</td><td>' +
+          NAME +
+          '</td><td>' +
+          BREED +
+          '</td><td>' +
+          BIRTHDATE +
+          '</td><td>' +
+          WEIGHT +
+          '</td><td><img src="../img/pencil.png" onclick="editCustomerDog_(' +
+          ID +
+          ')" /></td><td><img src="../img/bin.png" onclick="delCustomerDog(' +
+          ID +
+          ')"></td><td>' +
+          '<p onclick=addToDeposition(' +
+          ID +
+          ')>+ ADD</p>' +
+          '</td></tr>';
+      }
+      html += '</tbody></table></div>';
+      document.getElementById('dog-display').innerHTML = html;
+      console.log('getCustomerDog');
+    });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
+  }
+}
+
+function addCustomerDog() {
+  console.log('addCustomerDog');
+  var error = '';
+  var ID = max_id_customer + 1;
+  var NAME = $("[id='dog_name_customer']").val();
+  var BREED = $("[id='breed_customer']").val();
+  var BIRTHDATE = $("[id='date_of_birth_customer']").val();
+  var WEIGHT = $("[id='weight_customer']").val();
+  if (NAME == '' || BREED == '' || BIRTHDATE == '' || WEIGHT == '') {
+    error = addError(error, 'Fields required');
+  }
+  if (error != '') {
+    window.alert(error);
+    return;
+  } else {
+    axios
+      .post('http://localhost:5000/customerdog', {
+        dog_id: ID,
+        dog_name: NAME,
+        breed: BREED,
+        date_of_birth: BIRTHDATE,
+        weight: WEIGHT
+      })
+      .then(function(response) {
+        console.log(response);
+        max_id_customer = ID;
+        hideFormAddCustomerDog();
+        getCustomerDog();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+}
+
+function searchCustomerDog() {
+  const search_name = $("[id='search_form']").val();
+  console.log(search_name);
+  try {
+    axios
+      .get('http://localhost:5000/customer_dog/' + search_name)
+      .then(response => {
+        console.log(response);
+        var html =
+          '<table class="table-cafe"><thead><tr><th>ID</th><th>NAME</th><th>BREED</th><th>BIRTHDATE</th><th>WEIGHT</th><th>EDIT</th><th>DELETE</th></tr></thead></table>';
+
+        html += '<div class="table-data"><table class="table-cafe"><tbody>';
+        for (let i = 0; i < response.data.length; i++) {
+          const ID = response.data[i].dog_id;
+          const NAME = response.data[i].dog_name;
+          const BREED = response.data[i].breed;
+          const BIRTHDATE = response.data[i].date_of_birth.slice(0, 10);
+          const WEIGHT = response.data[i].weight;
+
+          html +=
+            '<tr><td>' +
+            ID +
+            '</td><td>' +
+            NAME +
+            '</td><td>' +
+            BREED +
+            '</td><td>' +
+            BIRTHDATE +
+            '</td><td>' +
+            WEIGHT +
+            '</td><td><img src="../img/pencil.png" onclick="editCustomerDog_(' +
+            ID +
+            ')" /></td><td><img src="../img/bin.png" onclick="delCustomerDog(' +
+            ID +
+            ')"></td></tr>';
+        }
+        html += '</tbody></table></div>';
+        document.getElementById('dog-display').innerHTML = html;
+        clearSearchingValue();
+      });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
+  }
+}
+
+//---------------Deposition-------------
+
+function addToDeposition(ID) {
+  dog_deposition_id = ID;
+  console.log('add ' + ID + ' to Deposition');
+  showFormAddDepositionDog();
+  getAvailableBoxes();
+}
+
+function addDeposition() {
+  console.log(dog_deposition_id);
+  var error = '';
+  const box_id = $("[name='available-box']").val();
+  if (box_id == null) {
+    error = addError(error, 'Fields required');
+  }
+  if (error != '') {
+    window.alert(error);
+    return;
+  } else {
+    axios
+      .post('http://localhost:5000/dep', {
+        dog_id: dog_deposition_id,
+        box_id: box_id
+      })
+      .then(function(response) {
+        console.log(response);
+        hideFormAddDepositionDog();
+        getCustomerDog();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+}
+
+function getDeposition() {
+  console.log('deposition');
+  setPage('DEPOSITION');
+  try {
+    axios.get('http://localhost:5000/dep').then(response => {
+      console.log(response.data);
+      var html =
+        '<table class="table-cafe"><thead><tr><th>Dep ID</th><th>BOX ID</th><th>DOG ID</th><th>PRODUCT ID</th><th>FEE</th><th>DEPOSIT TIME</th><th>CHECK OUT TIME</th></tr></thead></table>';
+
+      html += '<div class="table-data"><table class="table-cafe"><tbody>';
+      for (let i = 0; i < response.data.length; i++) {
+        const deposition_id = response.data[i].deposition_id;
+        const box_id = response.data[i].box_id;
+        const dog_id = response.data[i].dog_id;
+        const product_id = response.data[i].product_id;
+        const deposit_fee =
+          response.data[i].deposit_fee == null
+            ? 0
+            : response.data[i].deposit_fee;
+        const checkin_time =
+          response.data[i].checkin_time == null
+            ? '-'
+            : response.data[i].checkin_time.substring(0, 10) +
+              ' (' +
+              response.data[i].checkin_time.substring(11, 19) +
+              ')';
+        const checkout_time =
+          response.data[i].checkout_time == null
+            ? '<p onclick="checkOut(' +
+              deposition_id +
+              ',' +
+              dog_id +
+              ')">check out</p>'
+            : response.data[i].checkout_time.substring(0, 10) +
+              ' (' +
+              response.data[i].checkout_time.substring(11, 19) +
+              ')';
+        const is_retrieved = response.data[i].is_retrieved;
+
+        html +=
+          '<tr><td>' +
+          deposition_id +
+          '</td><td>' +
+          box_id +
+          '</td><td>' +
+          dog_id +
+          '</td><td>' +
+          product_id +
+          '</td><td>' +
+          deposit_fee +
+          '</td><td>' +
+          checkin_time +
+          '</td><td>' +
+          checkout_time +
+          '</td></tr>';
+      }
+      html += '</tbody></table></div>';
+      document.getElementById('dog-display').innerHTML = html;
+    });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
+  }
+}
+
+function getAvailableBoxes() {
+  try {
+    axios.get('http://localhost:5000/boxes').then(response => {
+      console.log(response);
+      var html =
+        '<form id="deposition-form"><select id="available-box" name="available-box"> \
+                  <option value="" disabled selected hidden>-- select a box --</option> ';
+      for (let i = 0; i < response.data.length; i++) {
+        const boxID = response.data[i].box_id;
+        const size = response.data[i].size;
+        console.log(boxID + '#' + size);
+        html +=
+          '<option value="' +
+          boxID +
+          '"> box : ' +
+          boxID +
+          ' ( size: ' +
+          size +
+          ' )' +
+          '</option>';
+      }
+      html += '</select></form>';
+      document.getElementById('depositionForm').innerHTML = html;
+    });
+  } catch (error) {
+    console.log('failed');
+    console.error(error);
+  }
+}
+
+function checkOut(deposition_id, dog_id) {
+  axios
+    .post('http://localhost:5000/dep/checkout', {
+      deposition_id: deposition_id,
+      dog_id: dog_id
+    })
+    .then(function(response) {
+      console.log(response);
+      getDeposition();
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}
+//---------AUTHORIZATION----------------
+
+function checkStatus() {
+  setTimeout(function() {
+    if (localStorage.getItem('login') != 'true') {
+      console.log(localStorage.getItem('login'));
+      console.log('not-login');
+      showSignInForm();
+    } else {
+      console.log('login :D ');
+    }
+  }, 100);
+}
+
+function signUp() {
+  console.log('signUp');
+  var error = '';
+  var USERNAME = $("[id='username']").val();
+  var PASSWORD = $("[id='password']").val();
+  var FIRSTNAME = $("[id='firstname']").val();
+  var LASTNAME = $("[id='lastname']").val();
+  if (USERNAME == '' || PASSWORD == '' || FIRSTNAME == '' || LASTNAME == '') {
+    error = addError(error, 'Fields required');
+  }
+  if (error != '') {
+    window.alert(error);
+    return;
+  } else {
+    axios
+      .post('http://localhost:5000/login/signup', {
+        username: USERNAME,
+        password: PASSWORD,
+        firstname: FIRSTNAME,
+        lastname: LASTNAME
+      })
+      .then(function(response) {
+        // console.log(response.data.code);
+        console.log(response);
+        if (response.data.code == undefined) {
+          alert('Sign up complete !');
+          showSignInForm();
+        } else {
+          alert('This username is already exists !');
+          clearFormSignUp();
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+}
+
+function signIn() {
+  console.log('signIn');
+  var error = '';
+  var USERNAME = $("[id='username_login']").val();
+  var PASSWORD = $("[id='password_login']").val();
+
+  if (USERNAME == '' || PASSWORD == '') {
+    error = addError(error, 'Fields required');
+  }
+  if (error != '') {
+    window.alert(error);
+    return;
+  } else {
+    axios
+      .post('http://localhost:5000/login/signin', {
+        username: USERNAME,
+        password: PASSWORD
+      })
+      .then(function(response) {
+        console.log(response.data.status);
+        if (response.data.status == 'success') {
+          alert('Login Success !');
+          localStorage.setItem('login', 'true');
+          hideSignInForm();
+        } else {
+          alert('Log in Fail ! Please log in again.');
+          clearFormSignIn();
+          localStorage.setItem('login', 'false');
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+        console.log('login Fail');
+      });
+  }
+}
+
+function signOut() {
+  localStorage.setItem('login', 'false');
+  checkStatus();
+}
