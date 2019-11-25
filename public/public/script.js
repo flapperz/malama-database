@@ -849,6 +849,17 @@ function checkOut(deposition_id, dog_id) {
     });
 }
 //---------AUTHORIZATION----------------
+function checkStatusOnDog() {
+  if (localStorage.getItem('login') != 'true') {
+    console.log(localStorage.getItem('login'));
+    console.log('not-login');
+    alert('please log in');
+    location = 'http://localhost:3000';
+  } else {
+    console.log('login :D ');
+    getCafeDog();
+  }
+}
 
 function checkStatus() {
   setTimeout(function() {
@@ -939,5 +950,9 @@ function signIn() {
 
 function signOut() {
   localStorage.setItem('login', 'false');
-  checkStatus();
+  if (location == 'http://localhost:3000') {
+    checkStatus();
+  } else {
+    location = 'http://localhost:3000';
+  }
 }
