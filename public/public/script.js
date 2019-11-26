@@ -325,7 +325,7 @@ function getCafeDog() {
         const PRICE = response.data[i].brought_price;
         const LAST_CHECK = response.data[i].last_checkup_date.slice(0, 10);
         const LAST_BATH = response.data[i].last_bath_date.slice(0, 10);
-        const HEALTH = response.data[i].health_status;
+        const HEALTH = response.data[i].health_status == 0 ? 'NO' : 'YES';
         const SHOWTIME = response.data[i].showtime;
         max_id_cafe = max_id_cafe > ID ? max_id_cafe : ID;
 
