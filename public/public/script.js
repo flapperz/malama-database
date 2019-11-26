@@ -578,7 +578,7 @@ function editCustomerDog_(id) {
 }
 
 function delCustomerDog(id) {
-  if (confirm('Confirm to edit')) {
+  if (confirm('Confirm to delete')) {
     try {
       axios
         .delete('http://localhost:5000/del/customer_dog/' + id)
@@ -722,7 +722,7 @@ function searchCustomerDog() {
       console.error(error);
     }
   } else {
-    //กรณีกดปุ่มโดยไม่ได้เขียน field search
+    //field search doesn't implement
   }
 }
 
@@ -753,7 +753,13 @@ function addDeposition() {
           box_id: box_id
         })
         .then(function(response) {
-          console.log(response);
+          console.log(response.data.status);
+          if (response.data.status == 1) {
+            //failed
+            alert('The dog is already in deposition');
+          } else {
+            //addDep complete
+          }
           hideFormAddDepositionDog();
           getCustomerDog();
         })
