@@ -3,16 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>DOG</title>
+    <title>Málama Café</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="stylesheet" type="text/css" href="../css/dog.css" />
     <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <link rel="shortcut icon" href="../img/dog.ico" />
+
 
     <link
       href="https://fonts.googleapis.com/css?family=Kodchasan"
       rel="stylesheet"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+      />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../script.js"></script>
     <script>
@@ -52,8 +55,7 @@
             <p
               class="option-bar-text"
               id="DEPOSITION"
-              onclick="getDeposition()"
-            >
+              onclick="getDeposition()">
               DEPOSITION
             </p>
           </div>
@@ -65,12 +67,12 @@
                 id="search_form"
                 name="search_form"
                 placeholder="SEARCH BY NAME"
-              />
+                />
               <img
                 src="../img/search.png"
                 class="search-img"
                 onclick="searchDog()"
-              />
+                />
             </form>
           </div>
           <br />
@@ -80,8 +82,7 @@
           <div
             class="add-dog-botton"
             id="id-add-dog-botton"
-            onclick="showFormAddDog()"
-          >
+            onclick="showFormAddDog()">
             + ADD DOG
           </div>
         </div>
@@ -95,7 +96,7 @@
           onclick="hideFormAddCafeDog()"
           src="../img/close.png"
           class="close"
-        />
+          />
         <span class="form-name"> <p>ADD CAFE DOG</p></span>
         <div class="dog-information-bg">
           <span class="dog-information-name"><p>Dog Information</p></span>
@@ -105,14 +106,14 @@
               id="dog_name"
               name="dog_name"
               placeholder="NAME"
-            />
+              />
             <input type="text" id="breed" name="breed" placeholder="BREED" />
             <input
               type="text"
               id="date_of_birth"
               name="date_of_birth"
               placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)"
-            />
+              />
 
             <input
               type="text"
@@ -120,40 +121,40 @@
               name="weight"
               placeholder="WEIGHT in
               Kg (ex. 3.5)"
-            />
+              />
 
             <input
               type="text"
               id="sourcing_company"
               name="sourcing_company"
               placeholder="SOURCING COMPANY"
-            />
+              />
 
             <input
               type="text"
               id="brought_price"
               name="brought_price"
               placeholder="BROUGHT PRICE (BAHT)"
-            />
+              />
 
             <input
               type="text"
               id="last_checkup_date"
               name="last_checkup_date"
               placeholder="Last_Checkup_Date (YYYY-MM-DD ex.1999-12-01)"
-            />
+              />
             <input
               type="text"
               id="last_bath_date"
               name="last_bath_date"
               placeholder="Last_Bath_Date (YYYY-MM-DD ex. 1999-12-01)"
-            />
+              />
             <select id="health_status" name="health_status">
-              <option value="" disabled selected hidden
-                >HEALTH STATUS (fine=no/sick=yes)
+              <option value="" disabled selected hidden>HEALTH STATUS
+                (fine=no/sick=yes)
               </option>
-              <option value="NO">NO</option>
-              <option value="YES">YES</option>
+              <option value=0>NO</option>
+              <option value=1>YES</option>
             </select>
             <select id="show-time" name="show-time">
               <option value="" disabled selected hidden>SHOW TIME</option>
@@ -175,7 +176,7 @@
           onclick="hideFormEditCafeDog()"
           src="../img/close.png"
           class="close"
-        />
+          />
         <span class="form-name">
           <p>EDIT CAFE DOG</p>
         </span>
@@ -189,19 +190,19 @@
               id="edit_cafeDog_dog_name"
               name="dog_name"
               placeholder="NAME"
-            />
+              />
             <input
               type="text"
               id="edit_cafeDog_breed"
               name="breed"
               placeholder="BREED"
-            />
+              />
             <input
               type="text"
               id="edit_cafeDog_date_of_birth"
               name="date_of_birth"
               placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)"
-            />
+              />
 
             <input
               type="text"
@@ -209,40 +210,40 @@
               name="weight"
               placeholder="WEIGHT in
               Kg (ex. 3.5)"
-            />
+              />
 
             <input
               type="text"
               id="edit_cafeDog_sourcing_company"
               name="sourcing_company"
               placeholder="SOURCING COMPANY"
-            />
+              />
 
             <input
               type="text"
               id="edit_cafeDog_brought_price"
               name="brought_price"
               placeholder="BROUGHT PRICE (BAHT)"
-            />
+              />
 
             <input
               type="text"
               id="edit_cafeDog_last_checkup_date"
               name="last_checkup_date"
               placeholder="Last_Checkup_Date (YYYY-MM-DD ex.1999-12-01)"
-            />
+              />
             <input
               type="text"
               id="edit_cafeDog_last_bath_date"
               name="last_bath_date"
               placeholder="Last_Bath_Date (YYYY-MM-DD ex. 1999-12-01)"
-            />
+              />
             <select id="edit_cafeDog_health_status" name="health_status">
-              <option value="" disabled selected hidden
-                >HEALTH STATUS (fine=no/sick=yes)
+              <option value="" disabled selected hidden>HEALTH STATUS
+                (fine=no/sick=yes)
               </option>
-              <option value="NO">NO</option>
-              <option value="YES">YES</option>
+              <option value=0>NO</option>
+              <option value=1>YES</option>
             </select>
             <select id="edit_cafeDog_show-time" name="show-time">
               <option value="" disabled selected hidden>SHOW TIME</option>
@@ -266,14 +267,13 @@
           onclick="hideFormAddCustomerDog()"
           src="../img/close.png"
           class="close"
-        />
+          />
         <span class="form-name">
           <p>ADD CUSTOMER DOG</p>
         </span>
         <div
           class="dog-information-bg"
-          id="dog-information-bg-add-customer-dog"
-        >
+          id="dog-information-bg-add-customer-dog">
           <span class="dog-information-name">
             <p>Dog Information</p>
           </span>
@@ -283,27 +283,27 @@
               id="dog_name_customer"
               name="dog_name"
               placeholder="NAME"
-            />
+              />
             <input
               type="text"
               id="breed_customer"
               name="breed"
               placeholder="BREED"
-            />
+              />
             <input
               type="text"
               id="date_of_birth_customer"
               name="date_of_birth"
               placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)"
-            />
+              />
 
             <input
               type="text"
               id="weight_customer"
               name="weight"
               placeholder="WEIGHT in
-                Kg (ex. 3.5)"
-            />
+              Kg (ex. 3.5)"
+              />
           </form>
         </div>
         <div class="submit-botton" onclick="addCustomerDog()">
@@ -319,14 +319,13 @@
           onclick="hideFormEditCustomerDog()"
           src="../img/close.png"
           class="close"
-        />
+          />
         <span class="form-name">
           <p>EDIT CUSTOMER DOG</p>
         </span>
         <div
           class="dog-information-bg"
-          id="dog-information-bg-edit-customer-dog"
-        >
+          id="dog-information-bg-edit-customer-dog">
           <span class="dog-information-name">
             <p>Dog Information</p>
           </span>
@@ -336,26 +335,26 @@
               id="edit_customerDog_dog_name"
               name="dog_name"
               placeholder="NAME"
-            />
+              />
             <input
               type="text"
               id="edit_customerDog_breed"
               name="breed"
               placeholder="BREED"
-            />
+              />
             <input
               type="text"
               id="edit_customerDog_date_of_birth"
               name="date_of_birth"
               placeholder="BIRTHDATED (YYYY-MM-DD ex.1999-12-01)"
-            />
+              />
 
             <input
               type="text"
               id="edit_customerDog_weight"
               name="weight"
               placeholder="WEIGHT in Kg (ex. 3.5)"
-            />
+              />
           </form>
         </div>
         <div class="submit-botton" onclick="editCustomerDog()">
@@ -371,7 +370,7 @@
           onclick="hideFormAddDepositionDog()"
           src="../img/close.png"
           class="close"
-        />
+          />
         <span class="form-name">
           <p>ADD TO DEPOSITON</p>
         </span>
