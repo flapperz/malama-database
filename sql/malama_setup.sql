@@ -265,8 +265,9 @@ BEGIN
 		RETURN 1;
 	END IF;
     
-    SELECT box_id, product_id INTO v_box_id, v_product_id FROM deposition WHERE deposition_id = v_deposition_id AND dog_id = v_dog_id;
-    SELECT size INTO v_box_size FROM `box` WHERE box_id = v_box_id;
+    SELECT product_id INTO v_product_id FROM deposition WHERE deposition_id = v_deposition_id AND dog_id = v_dog_id;
+    SELECT size, box_id INTO v_box_size, v_box_id FROM `box` LEFT JOIN deposition USING (box_id) WHERE deposition_id = v_deposition_id;
+
     SET v_base_price = 150;
     SET @price = v_base_price * v_box_size;
     
@@ -311,7 +312,7 @@ BEGIN
 	SELECT size, `status` INTO v_box_size, v_status FROM `box` WHERE box_id = v_box_id;
     SELECT dog_name INTO v_dog_name FROM customer_dog WHERE dog_id = v_dog_id;
     
-    SELECT EXISTS(SELECT is_retrieved FROM deposition WHERE dog_id = v_dog_id) INTO @is_already_checkin;
+    SELECT EXISTS(SELECT is_retrieved FROM deposition WHERE dog_id = v_dog_id AND is_retrieved = 0) INTO @is_already_checkin;
     -- check box available
 	IF v_status <> 2 THEN
  		RETURN 1;
